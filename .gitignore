@@ -1,0 +1,7 @@
+/*.test
+/gcredstash
+*.gz
+/debian/gcredstash.debhelper.log
+/debian/gcredstash.substvars
+/debian/gcredstash/
+/debian/files
