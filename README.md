@@ -39,3 +39,17 @@ usage: gcredstash put [-k KEY] [-v VERSION] [-a] credential value [context [cont
 $ gcredstash -h setup
 usage: credstash setup
 ```
+
+## Installation
+
+### OS X
+
+```sh
+brew install https://raw.githubusercontent.com/winebarrel/gcredstash/master/homebrew/gcredstash.rb
+```
+
+### Ubuntu
+
+```sh
+wget -q -O- https://github.com/winebarrel/gcredstash/releases/download/v0.1.1/gcredstash_0.1.1_amd64.deb | dpkg -i -
+```
