@@ -1,5 +1,11 @@
+gcredstash (0.1.1) unstable; urgency=low
+
+  * Add env subcommand.
+
+ -- Genki Sugawara <sgwr_dts@yahoo.co.jp>  Wed, 08 Jun 2016 21:07:14 +0900
+
 gcredstash (0.1.0) unstable; urgency=low
 
   * Initial Release.
 
- -- Genki Sugawara <sgwr_dts@yahoo.co.jp>  Wed, 25 May 2016 15:58:00 +0000
+ -- Genki Sugawara <sgwr_dts@yahoo.co.jp>  Tue, 07 Jun 2016 17:51:17 +0900
