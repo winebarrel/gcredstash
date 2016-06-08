@@ -24,6 +24,9 @@ Available commands are:
 $ gcredstash -h delete
 usage: gcredstash delete [-v VERSION] credential
 
+$ gcredstash -h env
+usage: gcredstash env [-v VERSION] credential [context [context ...]]
+
 $ gcredstash -h get
 usage: gcredstash get [-v VERSION] credential [context [context ...]]
 

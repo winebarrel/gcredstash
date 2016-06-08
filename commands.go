@@ -12,6 +12,11 @@ func Commands(meta *command.Meta) map[string]cli.CommandFactory {
 				Meta: *meta,
 			}, nil
 		},
+		"env": func() (cli.Command, error) {
+			return &command.EnvCommand{
+				Meta: *meta,
+			}, nil
+		},
 		"get": func() (cli.Command, error) {
 			return &command.GetCommand{
 				Meta: *meta,
