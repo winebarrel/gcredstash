@@ -43,6 +43,22 @@ $ gcredstash -h setup
 usage: credstash setup
 ```
 
+## Set to environment variables
+
+```
+$ gcredstash get xxx.*
+{
+  "xxx.xxx": "100",
+  "xxx.yyy": "200"
+}
+
+$ gcredstash  env xxx.*
+export XXX_YYY=200
+export XXX_XXX=100
+
+$ eval $(gcredstash env xxx.*)
+```
+
 ## Installation
 
 ### OS X
