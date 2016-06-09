@@ -65,6 +65,8 @@ $ eval $(gcredstash env xxx.*)
 
 ## Installation
 
+see https://github.com/winebarrel/gcredstash/releases.
+
 ### OS X
 
 ```sh
