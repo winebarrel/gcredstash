@@ -2,7 +2,7 @@
 
 ## Description
 
-This is a port of [CredStash](https://github.com/fugue/credstash).
+This is a port of [CredStash](https://github.com/fugue/credstash) to Go.
 
 gcredstash manages credentials using AWS Key Management Service (KMS) and DynamoDB.
 
