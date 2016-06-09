@@ -70,7 +70,7 @@ brew install https://raw.githubusercontent.com/winebarrel/gcredstash/master/home
 ### Ubuntu
 
 ```sh
-wget -q -O- https://github.com/winebarrel/gcredstash/releases/download/v0.1.1/gcredstash_0.1.1_amd64.deb | dpkg -i -
+wget -q -O- https://github.com/winebarrel/gcredstash/releases/download/vN.N.N/gcredstash_N.N.N_amd64.deb | dpkg -i -
 ```
 
 ## Environment variables
