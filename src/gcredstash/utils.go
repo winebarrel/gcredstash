@@ -1,30 +1,39 @@
 package gcredstash
 
 import (
-	"errors"
 	"fmt"
 	"strconv"
 	"strings"
 )
 
-func PerseVersion(args []string) ([]string, string, error) {
+func GetOptionValue(args []string, opt string) ([]string, string, error) {
 	newArgs := []string{}
-	version := ""
-	next_version := false
+	val := ""
+	nextOpt := false
 
 	for _, arg := range args {
-		if next_version {
-			version = arg
-			next_version = false
-		} else if arg == "-v" {
-			next_version = true
+		if nextOpt {
+			val = arg
+			nextOpt = false
+		} else if arg == opt {
+			nextOpt = true
 		} else {
 			newArgs = append(newArgs, arg)
 		}
 	}
 
-	if next_version {
-		return nil, "", errors.New("option requires an argument -- v")
+	if nextOpt {
+		return nil, "", fmt.Errorf("option requires an argument -- %s", opt)
+	}
+
+	return newArgs, val, nil
+}
+
+func PerseVersion(args []string) ([]string, string, error) {
+	newArgs, version, parseErr := GetOptionValue(args, "-v")
+
+	if parseErr != nil {
+		return nil, "", parseErr
 	}
 
 	if version != "" {
@@ -54,4 +63,19 @@ func PerseContext(contextStrs []string) (map[string]string, error) {
 	}
 
 	return context, nil
+}
+
+func HasOption(args []string, opt string) ([]string, bool) {
+	newArgs := []string{}
+	hasOpt := false
+
+	for _, arg := range args {
+		if arg == opt {
+			hasOpt = true
+		} else {
+			newArgs = append(newArgs, arg)
+		}
+	}
+
+	return newArgs, hasOpt
 }

@@ -11,23 +11,8 @@ type PutCommand struct {
 	Meta
 }
 
-func hasAutoVersion(args []string) ([]string, bool) {
-	newArgs := []string{}
-	autoVersion := false
-
-	for _, arg := range args {
-		if arg == "-a" {
-			autoVersion = true
-		} else {
-			newArgs = append(newArgs, arg)
-		}
-	}
-
-	return newArgs, autoVersion
-}
-
 func (c *PutCommand) Run(args []string) int {
-	argsWithoutA, autoVersion := hasAutoVersion(args)
+	argsWithoutA, autoVersion := gcredstash.HasOption(args, "-a")
 	newArgs, version, parseErr := gcredstash.PerseVersion(argsWithoutA)
 
 	if parseErr != nil {
