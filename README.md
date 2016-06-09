@@ -72,3 +72,18 @@ brew install https://raw.githubusercontent.com/winebarrel/gcredstash/master/home
 ```sh
 wget -q -O- https://github.com/winebarrel/gcredstash/releases/download/v0.1.1/gcredstash_0.1.1_amd64.deb | dpkg -i -
 ```
+
+## Environment variables
+
+```sh
+export AWS_REGION=...
+export AWS_ACCESS_KEY_ID=...
+export AWS_SECRET_ACCESS_KEY=...
+
+# default: credential-store
+#export GCREDSTASH_TABLE=...
+
+
+# default: alias/credstash
+#export GCREDSTASH_KMS_KEY"),
+```
