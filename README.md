@@ -52,9 +52,13 @@ $ gcredstash get xxx.*
   "xxx.yyy": "200"
 }
 
-$ gcredstash  env xxx.*
+$ gcredstash env xxx.*
 export XXX_YYY=200
 export XXX_XXX=100
+
+$ gcredstash env xxx.* -p xxx.
+export YYY=200
+export XXX=100
 
 $ eval $(gcredstash env xxx.*)
 ```
