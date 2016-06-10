@@ -25,16 +25,16 @@ func convShellKeyword(word string) string {
 }
 
 func parseArgs(args []string) ([]string, string, string, error) {
-	argsWithoutPrefix, prefix, getPreErr := gcredstash.GetOptionValue(args, "-p")
+	argsWithoutPrefix, prefix, err := gcredstash.GetOptionValue(args, "-p")
 
-	if getPreErr != nil {
-		return nil, "", "", getPreErr
+	if err != nil {
+		return nil, "", "", err
 	}
 
-	newArgs, version, parseErr := gcredstash.PerseVersion(argsWithoutPrefix)
+	newArgs, version, err := gcredstash.PerseVersion(argsWithoutPrefix)
 
-	if parseErr != nil {
-		return nil, "", "", parseErr
+	if err != nil {
+		return nil, "", "", err
 	}
 
 	return newArgs, version, prefix, nil
@@ -44,10 +44,10 @@ func getCredentials(credential string, version string, table string, context map
 	names := map[string]bool{}
 
 	if strings.Contains(credential, "*") {
-		items, listErr := gcredstash.ListSecrets(table)
+		items, err := gcredstash.ListSecrets(table)
 
-		if listErr != nil {
-			return nil, listErr
+		if err != nil {
+			return nil, err
 		}
 
 		for name, _ := range items {
@@ -64,10 +64,10 @@ func getCredentials(credential string, version string, table string, context map
 			continue
 		}
 
-		plainText, getSecErr := gcredstash.GetSecret(name, version, table, context)
+		plainText, err := gcredstash.GetSecret(name, version, table, context)
 
-		if getSecErr != nil {
-			fmt.Fprintf(os.Stderr, "# error: %s\n", getSecErr.Error())
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "# error: %s\n", err.Error())
 			continue
 		}
 
@@ -90,10 +90,10 @@ func printEnvs(creds map[string]string, prefix string) {
 }
 
 func (c *EnvCommand) Run(args []string) int {
-	newArgs, version, prefix, parseErr := parseArgs(args)
+	newArgs, version, prefix, err := parseArgs(args)
 
-	if parseErr != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", parseErr.Error())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 
@@ -103,17 +103,17 @@ func (c *EnvCommand) Run(args []string) int {
 	}
 
 	credential := args[0]
-	context, parseCtxErr := gcredstash.PerseContext(newArgs[1:])
+	context, err := gcredstash.PerseContext(newArgs[1:])
 
-	if parseCtxErr != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", parseCtxErr.Error())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 
-	creds, getCredErr := getCredentials(credential, version, c.Meta.Table, context)
+	creds, err := getCredentials(credential, version, c.Meta.Table, context)
 
-	if getCredErr != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", getCredErr.Error())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 

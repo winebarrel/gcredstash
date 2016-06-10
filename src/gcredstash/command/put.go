@@ -26,10 +26,10 @@ func readStdin() string {
 
 func (c *PutCommand) Run(args []string) int {
 	argsWithoutA, autoVersion := gcredstash.HasOption(args, "-a")
-	newArgs, version, parseErr := gcredstash.PerseVersion(argsWithoutA)
+	newArgs, version, err := gcredstash.PerseVersion(argsWithoutA)
 
-	if parseErr != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", parseErr.Error())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 
@@ -40,10 +40,10 @@ func (c *PutCommand) Run(args []string) int {
 
 	credential := newArgs[0]
 	value := newArgs[1]
-	context, parseCtxErr := gcredstash.PerseContext(newArgs[2:])
+	context, err := gcredstash.PerseContext(newArgs[2:])
 
-	if parseCtxErr != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", parseCtxErr.Error())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 
@@ -52,10 +52,10 @@ func (c *PutCommand) Run(args []string) int {
 	}
 
 	if autoVersion {
-		latestVersion, getVerErr := gcredstash.GetHighestVersion(credential, c.Meta.Table)
+		latestVersion, err := gcredstash.GetHighestVersion(credential, c.Meta.Table)
 
-		if getVerErr != nil {
-			fmt.Fprintf(os.Stderr, "error: %s\n", getVerErr.Error())
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 			return 1
 		}
 
@@ -65,10 +65,10 @@ func (c *PutCommand) Run(args []string) int {
 		version = fmt.Sprintf("%019d", 1)
 	}
 
-	putErr := gcredstash.PutSecret(credential, value, version, c.Meta.KmsKey, c.Meta.Table, context)
+	err = gcredstash.PutSecret(credential, value, version, c.Meta.KmsKey, c.Meta.Table, context)
 
-	if putErr != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", putErr.Error())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 
 	}

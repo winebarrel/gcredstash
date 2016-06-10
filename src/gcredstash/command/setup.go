@@ -17,10 +17,10 @@ func (c *SetupCommand) Run(args []string) int {
 		return 1
 	}
 
-	createErr := gcredstash.CreateDdbTable(c.Meta.Table)
+	err := gcredstash.CreateDdbTable(c.Meta.Table)
 
-	if createErr != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", createErr.Error())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 

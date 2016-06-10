@@ -12,10 +12,10 @@ type DeleteCommand struct {
 }
 
 func (c *DeleteCommand) Run(args []string) int {
-	newArgs, version, parseErr := gcredstash.PerseVersion(args)
+	newArgs, version, err := gcredstash.PerseVersion(args)
 
-	if parseErr != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", parseErr.Error())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 
@@ -26,10 +26,10 @@ func (c *DeleteCommand) Run(args []string) int {
 
 	credential := args[0]
 
-	delErr := gcredstash.DeleteSecrets(credential, version, c.Meta.Table)
+	err = gcredstash.DeleteSecrets(credential, version, c.Meta.Table)
 
-	if delErr != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", delErr.Error())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 

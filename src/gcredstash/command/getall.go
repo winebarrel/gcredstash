@@ -13,26 +13,26 @@ type GetallCommand struct {
 }
 
 func (c *GetallCommand) Run(args []string) int {
-	newArgs, version, parseErr := gcredstash.PerseVersion(args)
+	newArgs, version, err := gcredstash.PerseVersion(args)
 
-	if parseErr != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", parseErr.Error())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 
-	context, parseCtxErr := gcredstash.PerseContext(newArgs)
+	context, err := gcredstash.PerseContext(newArgs)
 
-	if parseCtxErr != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", parseCtxErr.Error())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 
 	names := map[string]bool{}
 
-	items, listErr := gcredstash.ListSecrets(c.Meta.Table)
+	items, err := gcredstash.ListSecrets(c.Meta.Table)
 
-	if listErr != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", listErr.Error())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 
@@ -44,21 +44,21 @@ func (c *GetallCommand) Run(args []string) int {
 	hasErr := false
 
 	for name, _ := range names {
-		plainText, getSecErr := gcredstash.GetSecret(name, version, c.Meta.Table, context)
+		plainText, err := gcredstash.GetSecret(name, version, c.Meta.Table, context)
 
-		if getSecErr != nil {
+		if err != nil {
 			hasErr = true
-			fmt.Fprintf(os.Stderr, "error: %s\n", getSecErr.Error())
+			fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 			continue
 		}
 
 		creds[name] = plainText
 	}
 
-	jsonString, jsonErr := json.MarshalIndent(creds, "", "  ")
+	jsonString, err := json.MarshalIndent(creds, "", "  ")
 
-	if jsonErr != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", jsonErr.Error())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 

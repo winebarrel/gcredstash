@@ -26,10 +26,10 @@ func maxNameLen(items *map[*string]*string) (max_len int) {
 }
 
 func (c *ListCommand) Run(args []string) int {
-	items, listErr := gcredstash.ListSecrets(c.Meta.Table)
+	items, err := gcredstash.ListSecrets(c.Meta.Table)
 
-	if listErr != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", listErr.Error())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 
@@ -37,10 +37,10 @@ func (c *ListCommand) Run(args []string) int {
 	lines := []string{}
 
 	for name, version := range items {
-		ver, atoiErr := strconv.Atoi(*version)
+		ver, err := strconv.Atoi(*version)
 
-		if atoiErr != nil {
-			panic(atoiErr)
+		if err != nil {
+			panic(err)
 		}
 
 		lines = append(lines, fmt.Sprintf("%-*s -- version: %d", max_len, *name, ver))

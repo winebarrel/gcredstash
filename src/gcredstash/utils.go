@@ -30,17 +30,17 @@ func GetOptionValue(args []string, opt string) ([]string, string, error) {
 }
 
 func PerseVersion(args []string) ([]string, string, error) {
-	newArgs, version, parseErr := GetOptionValue(args, "-v")
+	newArgs, version, err := GetOptionValue(args, "-v")
 
-	if parseErr != nil {
-		return nil, "", parseErr
+	if err != nil {
+		return nil, "", err
 	}
 
 	if version != "" {
-		ver, atoiErr := strconv.Atoi(version)
+		ver, err := strconv.Atoi(version)
 
-		if atoiErr != nil {
-			return nil, "", atoiErr
+		if err != nil {
+			return nil, "", err
 		}
 
 		version = fmt.Sprintf("%019d", ver)

@@ -104,10 +104,10 @@ func cryptAES(contents []byte, key []byte) []byte {
 }
 
 func decryptMaterial(name string, material map[string]*dynamodb.AttributeValue, context map[string]string) (string, error) {
-	data, decKeyErr := base64.StdEncoding.DecodeString(*material["key"].S)
+	data, err := base64.StdEncoding.DecodeString(*material["key"].S)
 
-	if decKeyErr != nil {
-		panic(decKeyErr)
+	if err != nil {
+		panic(err)
 	}
 
 	svc := kms.New(session.New())
@@ -126,27 +126,27 @@ func decryptMaterial(name string, material map[string]*dynamodb.AttributeValue, 
 		params.EncryptionContext = encCtx
 	}
 
-	resp, decryptErr := svc.Decrypt(params)
+	resp, err := svc.Decrypt(params)
 
-	if decryptErr != nil {
-		if strings.Contains(decryptErr.Error(), "InvalidCiphertextException") {
+	if err != nil {
+		if strings.Contains(err.Error(), "InvalidCiphertextException") {
 			if len(context) < 1 {
 				return "", fmt.Errorf("%s: Could not decrypt hmac key with KMS. The credential may require that an encryption context be provided to decrypt it.", name)
 			} else {
 				return "", fmt.Errorf("%s: Could not decrypt hmac key with KMS. The encryption context provided may not match the one used when the credential was stored.", name)
 			}
 		} else {
-			return "", decryptErr
+			return "", err
 		}
 	}
 
 	key := resp.Plaintext[:32]
 	hmacKey := resp.Plaintext[32:]
 
-	contents, decContentErr := base64.StdEncoding.DecodeString(*material["contents"].S)
+	contents, err := base64.StdEncoding.DecodeString(*material["contents"].S)
 
-	if decContentErr != nil {
-		return "", decContentErr
+	if err != nil {
+		return "", err
 	}
 
 	if !checkMAC(contents, material["hmac"].S, hmacKey) {
@@ -174,10 +174,10 @@ func GetHighestVersion(name string, table string) (int, error) {
 		ProjectionExpression: aws.String("version"),
 	}
 
-	resp, queryErr := svc.Query(params)
+	resp, err := svc.Query(params)
 
-	if queryErr != nil {
-		return -1, queryErr
+	if err != nil {
+		return -1, err
 	}
 
 	if *resp.Count == 0 {
@@ -186,10 +186,10 @@ func GetHighestVersion(name string, table string) (int, error) {
 	}
 
 	version := *resp.Items[0]["version"].S
-	ver, atoiErr := strconv.Atoi(version)
+	ver, err := strconv.Atoi(version)
 
-	if atoiErr != nil {
-		panic(atoiErr)
+	if err != nil {
+		panic(err)
 	}
 
 	return ver, nil
@@ -295,10 +295,10 @@ func getDeleteSecrets(name string, version string, table string) (map[*string]*s
 		}
 
 		if resp.Item == nil {
-			ver, atoiErr := strconv.Atoi(version)
+			ver, err := strconv.Atoi(version)
 
-			if atoiErr != nil {
-				panic(atoiErr)
+			if err != nil {
+				panic(err)
 			}
 
 			return nil, fmt.Errorf("Item {'name': '%s', 'version': %d} couldn't be found.", name, ver)
@@ -331,50 +331,36 @@ func deleteItem(name *string, version *string, table string) error {
 }
 
 func DeleteSecrets(name string, version string, table string) error {
-	items, getSecsErr := getDeleteSecrets(name, version, table)
+	items, err := getDeleteSecrets(name, version, table)
 
-	if getSecsErr != nil {
-		return getSecsErr
+	if err != nil {
+		return err
 	}
 
 	for name, version := range items {
-		delErr := deleteItem(name, version, table)
+		err := deleteItem(name, version, table)
 
-		if delErr != nil {
-			return delErr
+		if err != nil {
+			return err
 		}
 
-		ver, atoiErr := strconv.Atoi(*version)
+		ver, err := strconv.Atoi(*version)
 
-		if atoiErr != nil {
-			panic(atoiErr)
+		if err != nil {
+			panic(err)
 		}
 
 		fmt.Printf("Deleting %s -- version %d\n", *name, ver)
 	}
 
-	/*
-	   session = get_session(**kwargs)
-	   dynamodb = session.resource('dynamodb', region_name=region)
-	   secrets = dynamodb.Table(table)
-
-	   response = secrets.scan(FilterExpression=boto3.dynamodb.conditions.Attr("name").eq(name),
-	                           ProjectionExpression="#N, version",
-	                           ExpressionAttributeNames={"#N": "name"})
-
-	   for secret in response["Items"]:
-	       print("Deleting %s -- version %s" % (secret["name"], secret["version"]))
-	       secrets.delete_item(Key=secret)
-	*/
-
 	return nil
 }
 
 func PutSecret(name string, secret string, version string, kmsKey string, table string, context map[string]string) error {
-	kmsResp, genKeyErr := generateDataKey(kmsKey, context)
+	kmsResp, err := generateDataKey(kmsKey, context)
 
-	if genKeyErr != nil {
-		return genKeyErr
+	if err != nil {
+		return err
 	}
 
 	dataKey := kmsResp.Plaintext[:32]
@@ -384,14 +370,14 @@ func PutSecret(name string, secret string, version string, kmsKey string, table 
 	cipherText := cryptAES([]byte(secret), dataKey)
 	hmac := doHmac(cipherText, hmacKey)
 
-	putErr := putItem(name, version, wrappedKey, cipherText, hmac, table)
+	err = putItem(name, version, wrappedKey, cipherText, hmac, table)
 
-	if putErr != nil {
-		if strings.Contains(putErr.Error(), "ConditionalCheckFailedException") {
-			latestVersion, getVerErr := GetHighestVersion(name, table)
+	if err != nil {
+		if strings.Contains(err.Error(), "ConditionalCheckFailedException") {
+			latestVersion, err := GetHighestVersion(name, table)
 
-			if getVerErr != nil {
-				return getVerErr
+			if err != nil {
+				return err
 			}
 
 			return fmt.Errorf(
@@ -399,7 +385,7 @@ func PutSecret(name string, secret string, version string, kmsKey string, table 
 				name,
 				latestVersion)
 		} else {
-			return putErr
+			return err
 		}
 	}
 
@@ -407,16 +393,16 @@ func PutSecret(name string, secret string, version string, kmsKey string, table 
 }
 
 func GetSecret(name string, version string, table string, context map[string]string) (string, error) {
-	material, getErr := getMaterial(name, version, table)
+	material, err := getMaterial(name, version, table)
 
-	if getErr != nil {
-		return "", getErr
+	if err != nil {
+		return "", err
 	}
 
-	plainText, decryptErr := decryptMaterial(name, material, context)
+	plainText, err := decryptMaterial(name, material, context)
 
-	if decryptErr != nil {
-		return "", decryptErr
+	if err != nil {
+		return "", err
 	}
 
 	return plainText, nil
@@ -516,29 +502,29 @@ func waitUntilTableExists(table string) error {
 }
 
 func CreateDdbTable(table string) error {
-	exist, existErr := isTableExits(table)
+	exist, err := isTableExits(table)
 
-	if existErr != nil {
-		return existErr
+	if err != nil {
+		return err
 	}
 
 	if exist {
 		return fmt.Errorf("Credential Store table already exists -- %s", table)
 	}
 
-	createErr := createTable(table)
+	err = createTable(table)
 
-	if createErr != nil {
-		return createErr
+	if err != nil {
+		return err
 	}
 
 	fmt.Println("Creating table...")
 	fmt.Println("Waiting for table to be created...")
 
-	waitErr := waitUntilTableExists(table)
+	err = waitUntilTableExists(table)
 
-	if waitErr != nil {
-		return waitErr
+	if err != nil {
+		return err
 	}
 
 	fmt.Println("Table has been created. Go read the README about how to create your KMS key")

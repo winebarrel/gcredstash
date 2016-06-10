@@ -15,10 +15,10 @@ type GetCommand struct {
 
 func (c *GetCommand) Run(args []string) int {
 	argsWithoutN, noNL := gcredstash.HasOption(args, "-n")
-	newArgs, version, parseErr := gcredstash.PerseVersion(argsWithoutN)
+	newArgs, version, err := gcredstash.PerseVersion(argsWithoutN)
 
-	if parseErr != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", parseErr.Error())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 
@@ -28,20 +28,20 @@ func (c *GetCommand) Run(args []string) int {
 	}
 
 	credential := newArgs[0]
-	context, parseCtxErr := gcredstash.PerseContext(newArgs[1:])
+	context, err := gcredstash.PerseContext(newArgs[1:])
 
-	if parseCtxErr != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", parseCtxErr.Error())
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 
 	if strings.Contains(credential, "*") {
 		names := map[string]bool{}
 
-		items, listErr := gcredstash.ListSecrets(c.Meta.Table)
+		items, err := gcredstash.ListSecrets(c.Meta.Table)
 
-		if listErr != nil {
-			fmt.Fprintf(os.Stderr, "error: %s\n", listErr.Error())
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 			return 1
 		}
 
@@ -57,21 +57,21 @@ func (c *GetCommand) Run(args []string) int {
 				continue
 			}
 
-			plainText, getSecErr := gcredstash.GetSecret(name, version, c.Meta.Table, context)
+			plainText, err := gcredstash.GetSecret(name, version, c.Meta.Table, context)
 
-			if getSecErr != nil {
+			if err != nil {
 				hasErr = true
-				fmt.Fprintf(os.Stderr, "error: %s\n", getSecErr.Error())
+				fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 				continue
 			}
 
 			creds[name] = plainText
 		}
 
-		jsonString, jsonErr := json.MarshalIndent(creds, "", "  ")
+		jsonString, err := json.MarshalIndent(creds, "", "  ")
 
-		if jsonErr != nil {
-			fmt.Fprintf(os.Stderr, "error: %s\n", jsonErr.Error())
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 			return 1
 		}
 
@@ -81,10 +81,10 @@ func (c *GetCommand) Run(args []string) int {
 			return 1
 		}
 	} else {
-		plainText, getSecErr := gcredstash.GetSecret(credential, version, c.Meta.Table, context)
+		plainText, err := gcredstash.GetSecret(credential, version, c.Meta.Table, context)
 
-		if getSecErr != nil {
-			fmt.Fprintf(os.Stderr, "error: %s\n", getSecErr.Error())
+		if err != nil {
+			fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 			return 1
 		}
 
