@@ -14,7 +14,8 @@ type GetCommand struct {
 }
 
 func (c *GetCommand) Run(args []string) int {
-	newArgs, version, parseErr := gcredstash.PerseVersion(args)
+	argsWithoutN, noNL := gcredstash.HasOption(args, "-n")
+	newArgs, version, parseErr := gcredstash.PerseVersion(argsWithoutN)
 
 	if parseErr != nil {
 		fmt.Fprintf(os.Stderr, "error: %s\n", parseErr.Error())
@@ -87,7 +88,11 @@ func (c *GetCommand) Run(args []string) int {
 			return 1
 		}
 
-		fmt.Println(plainText)
+		fmt.Print(plainText)
+
+		if !noNL {
+			fmt.Println()
+		}
 	}
 
 	return 0
@@ -99,7 +104,7 @@ func (c *GetCommand) Synopsis() string {
 
 func (c *GetCommand) Help() string {
 	helpText := `
-usage: gcredstash get [-v VERSION] credential [context [context ...]]
+usage: gcredstash get [-v VERSION] [-n] credential [context [context ...]]
 `
 	return strings.TrimSpace(helpText)
 }
