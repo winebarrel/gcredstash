@@ -1,14 +1,27 @@
 package command
 
 import (
+	"bufio"
 	"fmt"
 	"gcredstash"
+	"io/ioutil"
 	"os"
 	"strings"
 )
 
 type PutCommand struct {
 	Meta
+}
+
+func readStdin() string {
+	reader := bufio.NewReader(os.Stdin)
+	input, err := ioutil.ReadAll(reader)
+
+	if err != nil {
+		panic(err)
+	}
+
+	return strings.TrimRight(string(input), "\n")
 }
 
 func (c *PutCommand) Run(args []string) int {
@@ -32,6 +45,10 @@ func (c *PutCommand) Run(args []string) int {
 	if parseCtxErr != nil {
 		fmt.Fprintf(os.Stderr, "error: %s\n", parseCtxErr.Error())
 		return 1
+	}
+
+	if value == "-" {
+		value = readStdin()
 	}
 
 	if autoVersion {
