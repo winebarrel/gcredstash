@@ -63,6 +63,12 @@ export XXX=100
 $ eval $(gcredstash env xxx.*)
 ```
 
+## Put from stdin
+
+```
+$ echo 300 | gcredstash put xxx.zzz -
+```
+
 ## Installation
 
 see https://github.com/winebarrel/gcredstash/releases.
