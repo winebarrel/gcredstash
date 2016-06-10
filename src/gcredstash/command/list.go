@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"gcredstash"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 )
@@ -33,6 +34,7 @@ func (c *ListCommand) Run(args []string) int {
 	}
 
 	max_len := maxNameLen(&items)
+	lines := []string{}
 
 	for name, version := range items {
 		ver, atoiErr := strconv.Atoi(*version)
@@ -41,7 +43,13 @@ func (c *ListCommand) Run(args []string) int {
 			panic(atoiErr)
 		}
 
-		fmt.Printf("%-*s -- version: %d\n", max_len, *name, ver)
+		lines = append(lines, fmt.Sprintf("%-*s -- version: %d", max_len, *name, ver))
+	}
+
+	sort.Strings(lines)
+
+	for _, line := range lines {
+		fmt.Println(line)
 	}
 
 	return 0
