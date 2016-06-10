@@ -28,7 +28,7 @@ $ gcredstash -h env
 usage: gcredstash env [-v VERSION] [-p PREFIX] credential [context [context ...]]
 
 $ gcredstash -h get
-usage: gcredstash get [-v VERSION] credential [context [context ...]]
+usage: gcredstash get [-v VERSION] [-n] credential [context [context ...]]
 
 $ gcredstash -h getall
 usage: gcredstash getall [-v VERSION] [context [context ...]]
