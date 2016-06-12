@@ -6,6 +6,8 @@ This is a port of [CredStash](https://github.com/fugue/credstash) to Go.
 
 gcredstash manages credentials using AWS Key Management Service (KMS) and DynamoDB.
 
+[![Build Status](https://travis-ci.org/winebarrel/gcredstash.svg?branch=master)](https://travis-ci.org/winebarrel/gcredstash)
+
 ## Usage
 
 ```
