@@ -1,3 +1,9 @@
+gcredstash (0.2.1) unstable; urgency=low
+
+  * Support template.
+
+ -- Genki Sugawara <sgwr_dts@yahoo.co.jp>  Mon, 13 Jun 2016 05:28:31 +0900
+
 gcredstash (0.2.0) unstable; urgency=high
 
   * Refactoring.

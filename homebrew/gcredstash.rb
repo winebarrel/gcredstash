@@ -1,7 +1,7 @@
 require 'formula'
 
 class Gcredstash < Formula
-  VERSION = '0.2.0'
+  VERSION = '0.2.1'
 
   homepage 'https://github.com/winebarrel/gcredstash'
   url "https://github.com/winebarrel/gcredstash/releases/download/v#{VERSION}/gcredstash-v#{VERSION}-darwin-amd64.gz"

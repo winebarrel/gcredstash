@@ -1,7 +1,7 @@
 %define  debug_package %{nil}
 
 Name:		gcredstash
-Version:	0.2.0
+Version:	0.2.1
 Release:	1%{?dist}
 Summary:	gcredstash manages credentials using AWS Key Management Service (KMS) and DynamoDB.
 
