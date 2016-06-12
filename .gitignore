@@ -1,6 +1,7 @@
 /*.test
 /gcredstash
 *.gz
+*.zip
 /debian/gcredstash.debhelper.log
 /debian/gcredstash.substvars
 /debian/gcredstash/

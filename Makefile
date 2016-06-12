@@ -22,10 +22,14 @@ go-get:
 	go get github.com/golang/mock/gomock
 
 clean:
-	rm -f gcredstash *.gz
+	rm -f gcredstash{,.exe} *.gz *.zip
 
 package: clean gcredstash
+ifeq ($(GOOS),windows)
+	zip gcredstash-$(VERSION)-$(GOOS)-$(GOARCH).zip gcredstash.exe
+else
 	gzip -c gcredstash > gcredstash-$(VERSION)-$(GOOS)-$(GOARCH).gz
+endif
 
 deb:
 	dpkg-buildpackage -us -uc
