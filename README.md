@@ -104,6 +104,12 @@ brew install https://raw.githubusercontent.com/winebarrel/gcredstash/master/home
 wget -q -O- https://github.com/winebarrel/gcredstash/releases/download/vN.N.N/gcredstash_N.N.N_amd64.deb | dpkg -i -
 ```
 
+### CentOS
+
+```sh
+yum install https://github.com/winebarrel/gcredstash/releases/download/vN.N.N/gcredstash-N.N.N-x.el6.x86_64.rpm
+```
+
 ## Setup
 
 * `IAM > Encryption Keys`
