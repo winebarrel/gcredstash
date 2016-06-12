@@ -37,5 +37,10 @@ func Commands(meta *command.Meta) map[string]cli.CommandFactory {
 				Meta: *meta,
 			}, nil
 		},
+		"template": func() (cli.Command, error) {
+			return &command.TemplateCommand{
+				Meta: *meta,
+			}, nil
+		},
 	}
 }

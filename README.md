@@ -20,6 +20,7 @@ Available commands are:
     list      list credentials and their version
     put       Put a credential into the store
     setup     setup the credential store
+    template    Parse a template file with credentials
 ```
 
 ```
@@ -40,6 +41,9 @@ usage: gcredstash put [-k KEY] [-v VERSION] [-a] credential value [context [cont
 
 $ gcredstash -h setup
 usage: credstash setup
+
+$ gcredstash -h template
+usage: gcredstash template template_file
 ```
 
 ## Example
@@ -104,6 +108,26 @@ $ gcredstash list
 foo.bar -- version: 1
 foo.bar -- version: 2
 ```
+
+## Use template
+
+```
+$ gcredstash getall
+{
+  "foo.bar": "100",
+  "foo.baz": "xxx"
+}
+
+$ cat template.txt
+foo.bar: {{get "foo.bar"}}
+foo.baz: {{get "foo.baz"}}
+
+$ gcredstash template template.txt
+foo.bar: 100
+foo.baz: xxx
+```
+
+see https://golang.org/pkg/text/template/.
 
 ## Installation
 

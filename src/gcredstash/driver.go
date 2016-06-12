@@ -297,13 +297,13 @@ func (driver *Driver) GetSecret(name string, version string, table string, conte
 		return "", err
 	}
 
-	plainText, err := driver.DecryptMaterial(name, material, context)
+	value, err := driver.DecryptMaterial(name, material, context)
 
 	if err != nil {
 		return "", err
 	}
 
-	return plainText, nil
+	return value, nil
 }
 
 func (driver *Driver) ListSecrets(table string) (map[*string]*string, error) {
