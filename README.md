@@ -88,6 +88,23 @@ $ gcredstash get foo.*
 $ echo 300 | gcredstash put xxx.zzz -
 ```
 
+## Put with increment version
+
+```
+$ gcredstash put foo.bar 100
+foo.bar has been stored
+
+$ gcredstash put foo.bar 100
+error: foo.bar version 1 is already in the credential store. Use the -v flag to specify a new version
+
+$ gcredstash put foo.bar 100 -a
+foo.bar has been stored
+
+$ gcredstash list
+foo.bar -- version: 1
+foo.bar -- version: 2
+```
+
 ## Installation
 
 see https://github.com/winebarrel/gcredstash/releases.
