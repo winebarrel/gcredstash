@@ -2,7 +2,11 @@ package main
 
 import (
 	"fmt"
+	"gcredstash"
 	"gcredstash/command"
+	"github.com/aws/aws-sdk-go/aws/session"
+	"github.com/aws/aws-sdk-go/service/dynamodb"
+	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/mitchellh/cli"
 	"os"
 )
@@ -10,6 +14,9 @@ import (
 func Run(args []string) int {
 	// Meta-option for executables.
 	// It defines output color and its stdout/stderr stream.
+
+	awsSession := session.New()
+
 	meta := &command.Meta{
 		Ui: &cli.ColoredUi{
 			InfoColor:  cli.UiColorBlue,
@@ -22,6 +29,10 @@ func Run(args []string) int {
 		},
 		Table:  os.Getenv("GCREDSTASH_TABLE"),
 		KmsKey: os.Getenv("GCREDSTASH_KMS_KEY"),
+		Driver: &gcredstash.Driver{
+			Ddb: dynamodb.New(awsSession),
+			Kms: kms.New(awsSession),
+		},
 	}
 
 	if meta.Table == "" {

@@ -1,7 +1,6 @@
 package command
 
 import (
-	"encoding/json"
 	"fmt"
 	"gcredstash"
 	"os"
@@ -12,61 +11,70 @@ type GetallCommand struct {
 	Meta
 }
 
-func (c *GetallCommand) Run(args []string) int {
-	newArgs, version, err := gcredstash.PerseVersion(args)
+func (c *GetallCommand) getNames() ([]string, error) {
+	namesMap := map[string]bool{}
+	names := []string{}
+
+	items, err := c.Driver.ListSecrets(c.Table)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
-		return 1
-	}
-
-	context, err := gcredstash.PerseContext(newArgs)
-
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
-		return 1
-	}
-
-	names := map[string]bool{}
-
-	items, err := gcredstash.ListSecrets(c.Meta.Table)
-
-	if err != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
-		return 1
+		return nil, err
 	}
 
 	for name, _ := range items {
-		names[*name] = true
+		namesMap[*name] = true
 	}
 
-	creds := map[string]string{}
-	hasErr := false
+	for name, _ := range namesMap {
+		names = append(names, name)
+	}
 
-	for name, _ := range names {
-		plainText, err := gcredstash.GetSecret(name, version, c.Meta.Table, context)
+	return names, nil
+}
+
+func (c *GetallCommand) getCredentials(names []string, context map[string]string) map[string]string {
+	creds := map[string]string{}
+
+	for _, name := range names {
+		value, err := c.Driver.GetSecret(name, "", c.Table, context)
 
 		if err != nil {
-			hasErr = true
-			fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 			continue
 		}
 
-		creds[name] = plainText
+		creds[name] = value
 	}
 
-	jsonString, err := json.MarshalIndent(creds, "", "  ")
+	return creds
+}
+
+func (c *GetallCommand) RunImpl(args []string) (string, error) {
+	context, err := gcredstash.ParseContext(args)
+
+	if err != nil {
+		return "", err
+	}
+
+	names, err := c.getNames()
+
+	if err != nil {
+		return "", err
+	}
+
+	creds := c.getCredentials(names, context)
+
+	return gcredstash.MapToJson(creds) + "\n", nil
+}
+
+func (c *GetallCommand) Run(args []string) int {
+	out, err := c.RunImpl(args)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 
-	fmt.Println(string(jsonString))
-
-	if hasErr {
-		return 1
-	}
+	fmt.Print(out)
 
 	return 0
 }
@@ -77,7 +85,7 @@ func (c *GetallCommand) Synopsis() string {
 
 func (c *GetallCommand) Help() string {
 	helpText := `
-usage: gcredstash getall [-v VERSION] [context [context ...]]
+usage: gcredstash getall [context [context ...]]
 `
 	return strings.TrimSpace(helpText)
 }

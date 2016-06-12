@@ -2,7 +2,6 @@ package command
 
 import (
 	"fmt"
-	"gcredstash"
 	"os"
 	"strings"
 )
@@ -11,13 +10,22 @@ type SetupCommand struct {
 	Meta
 }
 
-func (c *SetupCommand) Run(args []string) int {
+func (c *SetupCommand) RunImpl(args []string) error {
 	if len(args) > 0 {
-		fmt.Fprintf(os.Stderr, "error: too many arguments\n")
-		return 1
+		return fmt.Errorf("too many arguments")
 	}
 
-	err := gcredstash.CreateDdbTable(c.Meta.Table)
+	err := c.Driver.CreateDdbTable(c.Meta.Table)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (c *SetupCommand) Run(args []string) int {
+	err := c.RunImpl(args)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())

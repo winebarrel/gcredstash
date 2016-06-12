@@ -1,10 +1,8 @@
 package command
 
 import (
-	"bufio"
 	"fmt"
 	"gcredstash"
-	"io/ioutil"
 	"os"
 	"strings"
 )
@@ -13,67 +11,67 @@ type PutCommand struct {
 	Meta
 }
 
-func readStdin() string {
-	reader := bufio.NewReader(os.Stdin)
-	input, err := ioutil.ReadAll(reader)
-
-	if err != nil {
-		panic(err)
-	}
-
-	return strings.TrimRight(string(input), "\n")
-}
-
-func (c *PutCommand) Run(args []string) int {
+func (c *PutCommand) parseArgs(args []string) (string, string, string, map[string]string, bool, error) {
 	argsWithoutA, autoVersion := gcredstash.HasOption(args, "-a")
-	newArgs, version, err := gcredstash.PerseVersion(argsWithoutA)
+	newArgs, version, err := gcredstash.ParseVersion(argsWithoutA)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
-		return 1
+		return "", "", "", nil, false, err
 	}
 
 	if len(newArgs) < 2 {
-		fmt.Fprintf(os.Stderr, "error: too few arguments\n")
-		return 1
+		return "", "", "", nil, false, fmt.Errorf("too few arguments")
 	}
 
 	credential := newArgs[0]
 	value := newArgs[1]
-	context, err := gcredstash.PerseContext(newArgs[2:])
+	context, err := gcredstash.ParseContext(newArgs[2:])
+
+	return credential, value, version, context, autoVersion, err
+}
+
+func (c *PutCommand) RunImpl(args []string) error {
+	credential, value, version, context, autoVersion, err := c.parseArgs(args)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
-		return 1
+		return err
 	}
 
 	if value == "-" {
-		value = readStdin()
+		value = gcredstash.ReadStdin()
 	}
 
 	if autoVersion {
-		latestVersion, err := gcredstash.GetHighestVersion(credential, c.Meta.Table)
+		latestVersion, err := c.Driver.GetHighestVersion(credential, c.Table)
 
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
-			return 1
+			return err
 		}
 
 		latestVersion += 1
-		version = fmt.Sprintf("%019d", latestVersion)
+		version = gcredstash.VersionNumToStr(latestVersion)
 	} else if version == "" {
-		version = fmt.Sprintf("%019d", 1)
+		version = gcredstash.VersionNumToStr(1)
 	}
 
-	err = gcredstash.PutSecret(credential, value, version, c.Meta.KmsKey, c.Meta.Table, context)
+	err = c.Driver.PutSecret(credential, value, version, c.KmsKey, c.Table, context)
+
+	if err != nil {
+		return err
+	}
+
+	fmt.Printf("%s has been stored\n", credential)
+
+	return nil
+}
+
+func (c *PutCommand) Run(args []string) int {
+	err := c.RunImpl(args)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
-
 	}
-
-	fmt.Printf("%s has been stored\n", credential)
 
 	return 0
 }

@@ -5,7 +5,6 @@ import (
 	"gcredstash"
 	"os"
 	"sort"
-	"strconv"
 	"strings"
 )
 
@@ -13,44 +12,44 @@ type ListCommand struct {
 	Meta
 }
 
-func maxNameLen(items *map[*string]*string) (max_len int) {
-	for name, _ := range *items {
-		name_len := len(*name)
+func (c *ListCommand) getLines(items map[*string]*string) []string {
+	maxNameLen := gcredstash.MaxKeyLen(items)
+	lines := []string{}
 
-		if name_len > max_len {
-			max_len = name_len
-		}
+	for name, version := range items {
+		versionNum := gcredstash.Atoi(*version)
+		lines = append(lines, fmt.Sprintf("%-*s -- version: %d", maxNameLen, *name, versionNum))
 	}
 
-	return
+	return lines
+}
+
+func (c *ListCommand) RunImpl(args []string) (string, error) {
+	if len(args) > 0 {
+		return "", fmt.Errorf("too many arguments")
+	}
+
+	items, err := c.Driver.ListSecrets(c.Table)
+
+	if err != nil {
+		return "", err
+	}
+
+	lines := c.getLines(items)
+	sort.Strings(lines)
+
+	return strings.Join(lines, "\n"), nil
 }
 
 func (c *ListCommand) Run(args []string) int {
-	items, err := gcredstash.ListSecrets(c.Meta.Table)
+	out, err := c.RunImpl(args)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 
-	max_len := maxNameLen(&items)
-	lines := []string{}
-
-	for name, version := range items {
-		ver, err := strconv.Atoi(*version)
-
-		if err != nil {
-			panic(err)
-		}
-
-		lines = append(lines, fmt.Sprintf("%-*s -- version: %d", max_len, *name, ver))
-	}
-
-	sort.Strings(lines)
-
-	for _, line := range lines {
-		fmt.Println(line)
-	}
+	fmt.Println(out)
 
 	return 0
 }
