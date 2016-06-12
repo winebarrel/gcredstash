@@ -1,7 +1,6 @@
 package command
 
 import (
-	"encoding/json"
 	"fmt"
 	"gcredstash"
 	"github.com/ryanuber/go-glob"
@@ -13,87 +12,98 @@ type GetCommand struct {
 	Meta
 }
 
-func (c *GetCommand) Run(args []string) int {
+func (c *GetCommand) parseArgs(args []string) (string, string, map[string]string, bool, error) {
 	argsWithoutN, noNL := gcredstash.HasOption(args, "-n")
-	newArgs, version, err := gcredstash.PerseVersion(argsWithoutN)
+	newArgs, version, err := gcredstash.ParseVersion(argsWithoutN)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
-		return 1
+		return "", "", nil, false, err
 	}
 
 	if len(newArgs) < 1 {
-		fmt.Fprintf(os.Stderr, "error: too few arguments\n")
-		return 1
+		return "", "", nil, false, fmt.Errorf("too few arguments")
 	}
 
 	credential := newArgs[0]
-	context, err := gcredstash.PerseContext(newArgs[1:])
+	context, err := gcredstash.ParseContext(newArgs[1:])
+
+	return credential, version, context, noNL, err
+}
+
+func (c *GetCommand) getCredential(credential string, version string, context map[string]string) (string, error) {
+	value, err := c.Driver.GetSecret(credential, version, c.Table, context)
+
+	if err != nil {
+		return "", err
+	}
+
+	return value, nil
+}
+
+func (c *GetCommand) getCredentials(credential string, version string, context map[string]string) (string, error) {
+	names := map[string]bool{}
+	items, err := c.Driver.ListSecrets(c.Table)
+
+	if err != nil {
+		return "", err
+	}
+
+	for name, _ := range items {
+		names[*name] = true
+	}
+
+	creds := map[string]string{}
+
+	for name, _ := range names {
+		if !glob.Glob(credential, name) {
+			continue
+		}
+
+		value, err := c.Driver.GetSecret(name, version, c.Table, context)
+
+		if err != nil {
+			continue
+		}
+
+		creds[name] = value
+	}
+
+	return gcredstash.MapToJson(creds) + "\n", nil
+}
+
+func (c *GetCommand) RunImpl(args []string) (string, error) {
+	credential, version, context, noNL, err := c.parseArgs(args)
+
+	if err != nil {
+		return "", err
+	}
+
+	if strings.Contains(credential, "*") {
+		return c.getCredentials(credential, version, context)
+	} else {
+		value, err := c.getCredential(credential, version, context)
+
+		if err != nil {
+			return "", err
+		}
+
+		if noNL {
+			return value, nil
+		} else {
+			return value + "\n", nil
+		}
+	}
+}
+
+func (c *GetCommand) Run(args []string) int {
+	out, err := c.RunImpl(args)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
 		return 1
 	}
 
-	if strings.Contains(credential, "*") {
-		names := map[string]bool{}
-
-		items, err := gcredstash.ListSecrets(c.Meta.Table)
-
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
-			return 1
-		}
-
-		for name, _ := range items {
-			names[*name] = true
-		}
-
-		creds := map[string]string{}
-		hasErr := false
-
-		for name, _ := range names {
-			if !glob.Glob(credential, name) {
-				continue
-			}
-
-			plainText, err := gcredstash.GetSecret(name, version, c.Meta.Table, context)
-
-			if err != nil {
-				hasErr = true
-				fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
-				continue
-			}
-
-			creds[name] = plainText
-		}
-
-		jsonString, err := json.MarshalIndent(creds, "", "  ")
-
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
-			return 1
-		}
-
-		fmt.Println(string(jsonString))
-
-		if hasErr {
-			return 1
-		}
-	} else {
-		plainText, err := gcredstash.GetSecret(credential, version, c.Meta.Table, context)
-
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "error: %s\n", err.Error())
-			return 1
-		}
-
-		fmt.Print(plainText)
-
-		if !noNL {
-			fmt.Println()
-		}
-	}
+	fmt.Print(out)
 
 	return 0
 }

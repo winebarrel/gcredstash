@@ -1,132 +1,70 @@
 package gcredstash
 
 import (
-	"crypto/aes"
-	"crypto/cipher"
-	"crypto/hmac"
-	"crypto/sha256"
-	"encoding/base64"
-	"encoding/hex"
 	"fmt"
 	"github.com/aws/aws-sdk-go/aws"
-	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
-	"github.com/aws/aws-sdk-go/service/kms"
-	"strconv"
+	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface"
+	"github.com/aws/aws-sdk-go/service/kms/kmsiface"
 	"strings"
 )
 
-func getMaterial(name string, version string, table string) (map[string]*dynamodb.AttributeValue, error) {
-	svc := dynamodb.New(session.New())
+type Driver struct {
+	Ddb dynamodbiface.DynamoDBAPI
+	Kms kmsiface.KMSAPI
+}
 
-	var material map[string]*dynamodb.AttributeValue
-
-	if version == "" {
-		params := &dynamodb.QueryInput{
-			TableName:                aws.String(table),
-			Limit:                    aws.Int64(1),
-			ConsistentRead:           aws.Bool(true),
-			ScanIndexForward:         aws.Bool(false),
-			KeyConditionExpression:   aws.String("#name = :name"),
-			ExpressionAttributeNames: map[string]*string{"#name": aws.String("name")},
-			ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
-				":name": {S: aws.String(name)},
-			},
-		}
-
-		resp, err := svc.Query(params)
-
-		if err != nil {
-			return nil, err
-		}
-
-		if *resp.Count == 0 {
-			return nil, fmt.Errorf("Item {'name': '%s'} couldn't be found.", name)
-		}
-
-		material = resp.Items[0]
-	} else {
-		params := &dynamodb.GetItemInput{
-			TableName: aws.String(table),
-			Key: map[string]*dynamodb.AttributeValue{
-				"name":    {S: aws.String(name)},
-				"version": {S: aws.String(version)},
-			},
-		}
-
-		resp, err := svc.GetItem(params)
-
-		if err != nil {
-			return nil, err
-		}
-
-		if resp.Item == nil {
-			return nil, fmt.Errorf("Item {'name': '%s'} couldn't be found.", name)
-		}
-
-		material = resp.Item
+func (driver *Driver) GetMaterialWithoutVersion(name string, table string) (map[string]*dynamodb.AttributeValue, error) {
+	params := &dynamodb.QueryInput{
+		TableName:                aws.String(table),
+		Limit:                    aws.Int64(1),
+		ConsistentRead:           aws.Bool(true),
+		ScanIndexForward:         aws.Bool(false),
+		KeyConditionExpression:   aws.String("#name = :name"),
+		ExpressionAttributeNames: map[string]*string{"#name": aws.String("name")},
+		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
+			":name": {S: aws.String(name)},
+		},
 	}
 
-	return material, nil
-}
-
-func doHmac(message []byte, key []byte) []byte {
-	mac := hmac.New(sha256.New, key)
-	mac.Write(message)
-	return mac.Sum(nil)
-}
-
-func checkMAC(message []byte, hmacStr *string, key []byte) bool {
-	expectedMAC := doHmac(message, key)
-	messageMAC, err := hex.DecodeString(*hmacStr)
+	resp, err := driver.Ddb.Query(params)
 
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
-	return hmac.Equal(messageMAC, expectedMAC)
+	if *resp.Count == 0 {
+		return nil, fmt.Errorf("Item {'name': '%s'} couldn't be found.", name)
+	}
+
+	return resp.Items[0], nil
 }
 
-func cryptAES(contents []byte, key []byte) []byte {
-	block, err := aes.NewCipher(key)
-
-	if err != nil {
-		panic(err)
+func (driver *Driver) GetMaterialWithVersion(name string, version string, table string) (map[string]*dynamodb.AttributeValue, error) {
+	params := &dynamodb.GetItemInput{
+		TableName: aws.String(table),
+		Key: map[string]*dynamodb.AttributeValue{
+			"name":    {S: aws.String(name)},
+			"version": {S: aws.String(version)},
+		},
 	}
 
-	iv := []byte{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01}
-	text := make([]byte, len(contents))
+	resp, err := driver.Ddb.GetItem(params)
 
-	stream := cipher.NewCTR(block, iv)
-	stream.XORKeyStream(text, contents)
+	if err != nil {
+		return nil, err
+	}
 
-	return text
+	if resp.Item == nil {
+		return nil, fmt.Errorf("Item {'name': '%s'} couldn't be found.", name)
+	}
+
+	return resp.Item, nil
 }
 
-func decryptMaterial(name string, material map[string]*dynamodb.AttributeValue, context map[string]string) (string, error) {
-	data, err := base64.StdEncoding.DecodeString(*material["key"].S)
-
-	if err != nil {
-		panic(err)
-	}
-
-	svc := kms.New(session.New())
-
-	params := &kms.DecryptInput{
-		CiphertextBlob: data,
-	}
-
-	if len(context) > 0 {
-		encCtx := map[string]*string{}
-
-		for key, value := range context {
-			encCtx[key] = aws.String(value)
-		}
-
-		params.EncryptionContext = encCtx
-	}
-
-	resp, err := svc.Decrypt(params)
+func (driver *Driver) DecryptMaterial(name string, material map[string]*dynamodb.AttributeValue, context map[string]string) (string, error) {
+	data := B64Decode(*material["key"].S)
+	dataKey, hmacKey, err := KmsDecrypt(driver.Kms, data, context)
 
 	if err != nil {
 		if strings.Contains(err.Error(), "InvalidCiphertextException") {
@@ -140,27 +78,19 @@ func decryptMaterial(name string, material map[string]*dynamodb.AttributeValue, 
 		}
 	}
 
-	key := resp.Plaintext[:32]
-	hmacKey := resp.Plaintext[32:]
+	contents := B64Decode(*material["contents"].S)
+	hmac := HexDecode(*material["hmac"].S)
 
-	contents, err := base64.StdEncoding.DecodeString(*material["contents"].S)
-
-	if err != nil {
-		return "", err
-	}
-
-	if !checkMAC(contents, material["hmac"].S, hmacKey) {
+	if !ValidateHMAC(contents, hmac, hmacKey) {
 		return "", fmt.Errorf("Computed HMAC on %s does not match stored HMAC", name)
 	}
 
-	plainText := cryptAES(contents, key)
+	decrypted := Crypt(contents, dataKey)
 
-	return string(plainText), nil
+	return string(decrypted), nil
 }
 
-func GetHighestVersion(name string, table string) (int, error) {
-	svc := dynamodb.New(session.New())
-
+func (driver *Driver) GetHighestVersion(name string, table string) (int, error) {
 	params := &dynamodb.QueryInput{
 		TableName:                aws.String(table),
 		Limit:                    aws.Int64(1),
@@ -174,7 +104,7 @@ func GetHighestVersion(name string, table string) (int, error) {
 		ProjectionExpression: aws.String("version"),
 	}
 
-	resp, err := svc.Query(params)
+	resp, err := driver.Ddb.Query(params)
 
 	if err != nil {
 		return -1, err
@@ -182,52 +112,18 @@ func GetHighestVersion(name string, table string) (int, error) {
 
 	if *resp.Count == 0 {
 		return 0, nil
-
 	}
 
 	version := *resp.Items[0]["version"].S
-	ver, err := strconv.Atoi(version)
+	versionNum := Atoi(version)
 
-	if err != nil {
-		panic(err)
-	}
-
-	return ver, nil
+	return versionNum, nil
 }
 
-func generateDataKey(kmsKey string, context map[string]string) (*kms.GenerateDataKeyOutput, error) {
-	svc := kms.New(session.New())
-
-	params := &kms.GenerateDataKeyInput{
-		KeyId:         aws.String(kmsKey),
-		NumberOfBytes: aws.Int64(64),
-	}
-
-	if len(context) > 0 {
-		encCtx := map[string]*string{}
-
-		for key, value := range context {
-			encCtx[key] = aws.String(value)
-		}
-
-		params.EncryptionContext = encCtx
-	}
-
-	resp, err := svc.GenerateDataKey(params)
-
-	if err != nil {
-		return nil, fmt.Errorf("Could not generate key using KMS key %s", kmsKey)
-	}
-
-	return resp, nil
-}
-
-func putItem(name string, version string, key []byte, contents []byte, hmac []byte, table string) error {
-	b64key := base64.StdEncoding.EncodeToString(key)
-	b64contents := base64.StdEncoding.EncodeToString(contents)
-	hexHmac := hex.EncodeToString(hmac)
-
-	svc := dynamodb.New(session.New())
+func (driver *Driver) PutItem(name string, version string, key []byte, contents []byte, hmac []byte, table string) error {
+	b64key := B64Encode(key)
+	b64contents := B64Encode(contents)
+	hexHmac := HexEncode(hmac)
 
 	params := &dynamodb.PutItemInput{
 		TableName: aws.String(table),
@@ -242,7 +138,7 @@ func putItem(name string, version string, key []byte, contents []byte, hmac []by
 		ExpressionAttributeNames: map[string]*string{"#name": aws.String("name")},
 	}
 
-	_, err := svc.PutItem(params)
+	_, err := driver.Ddb.PutItem(params)
 
 	if err != nil {
 		return err
@@ -251,73 +147,70 @@ func putItem(name string, version string, key []byte, contents []byte, hmac []by
 	return nil
 }
 
-func getDeleteSecrets(name string, version string, table string) (map[*string]*string, error) {
-	svc := dynamodb.New(session.New())
+func (driver *Driver) GetDeleteTargetWithoutVersion(name string, table string) (map[*string]*string, error) {
 	items := map[*string]*string{}
 
-	if version == "" {
-		params := &dynamodb.ScanInput{
-			TableName:                aws.String(table),
-			ProjectionExpression:     aws.String("#name,version"),
-			FilterExpression:         aws.String("#name = :name"),
-			ExpressionAttributeNames: map[string]*string{"#name": aws.String("name")},
-			ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
-				":name": {S: aws.String(name)},
-			},
-		}
+	params := &dynamodb.QueryInput{
+		TableName:                aws.String(table),
+		ConsistentRead:           aws.Bool(true),
+		KeyConditionExpression:   aws.String("#name = :name"),
+		ExpressionAttributeNames: map[string]*string{"#name": aws.String("name")},
+		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
+			":name": {S: aws.String(name)},
+		},
+	}
 
-		resp, err := svc.Scan(params)
+	resp, err := driver.Ddb.Query(params)
 
-		if err != nil {
-			return nil, err
-		}
+	if err != nil {
+		return nil, err
+	}
 
-		if *resp.Count == 0 {
-			return nil, fmt.Errorf("Item {'name': '%s'} couldn't be found.", name)
-		}
+	if *resp.Count == 0 {
+		return nil, fmt.Errorf("Item {'name': '%s'} couldn't be found.", name)
+	}
 
-		for _, i := range resp.Items {
-			items[i["name"].S] = i["version"].S
-		}
-	} else {
-		params := &dynamodb.GetItemInput{
-			TableName: aws.String(table),
-			Key: map[string]*dynamodb.AttributeValue{
-				"name":    {S: aws.String(name)},
-				"version": {S: aws.String(version)},
-			},
-		}
-
-		resp, err := svc.GetItem(params)
-
-		if err != nil {
-			return nil, err
-		}
-
-		if resp.Item == nil {
-			ver, err := strconv.Atoi(version)
-
-			if err != nil {
-				panic(err)
-			}
-
-			return nil, fmt.Errorf("Item {'name': '%s', 'version': %d} couldn't be found.", name, ver)
-		}
-
-		items[resp.Item["name"].S] = resp.Item["version"].S
+	for _, i := range resp.Items {
+		items[i["name"].S] = i["version"].S
 	}
 
 	return items, nil
 }
 
-func deleteItem(name *string, version *string, table string) error {
-	svc := dynamodb.New(session.New())
+func (driver *Driver) GetDeleteTargetWithVersion(name string, version string, table string) (map[*string]*string, error) {
+	params := &dynamodb.GetItemInput{
+		TableName: aws.String(table),
+		Key: map[string]*dynamodb.AttributeValue{
+			"name":    {S: aws.String(name)},
+			"version": {S: aws.String(version)},
+		},
+	}
+
+	resp, err := driver.Ddb.GetItem(params)
+
+	if err != nil {
+		return nil, err
+	}
+
+	if resp.Item == nil {
+		versionNum := Atoi(version)
+		return nil, fmt.Errorf("Item {'name': '%s', 'version': %d} couldn't be found.", name, versionNum)
+	}
+
+	items := map[*string]*string{}
+	items[resp.Item["name"].S] = resp.Item["version"].S
+
+	return items, nil
+}
+
+func (driver *Driver) DeleteItem(name string, version string, table string) error {
+	svc := driver.Ddb
 
 	params := &dynamodb.DeleteItemInput{
 		TableName: aws.String(table),
 		Key: map[string]*dynamodb.AttributeValue{
-			"name":    {S: name},
-			"version": {S: version},
+			"name":    {S: aws.String(name)},
+			"version": {S: aws.String(version)},
 		},
 	}
 
@@ -330,51 +223,49 @@ func deleteItem(name *string, version *string, table string) error {
 	return nil
 }
 
-func DeleteSecrets(name string, version string, table string) error {
-	items, err := getDeleteSecrets(name, version, table)
+func (driver *Driver) DeleteSecrets(name string, version string, table string) error {
+	var items map[*string]*string
+	var err error
+
+	if version == "" {
+		items, err = driver.GetDeleteTargetWithoutVersion(name, table)
+	} else {
+		items, err = driver.GetDeleteTargetWithVersion(name, version, table)
+	}
 
 	if err != nil {
 		return err
 	}
 
 	for name, version := range items {
-		err := deleteItem(name, version, table)
+		err := driver.DeleteItem(*name, *version, table)
 
 		if err != nil {
 			return err
 		}
 
-		ver, err := strconv.Atoi(*version)
-
-		if err != nil {
-			panic(err)
-		}
-
-		fmt.Printf("Deleting %s -- version %d\n", *name, ver)
+		versionNum := Atoi(*version)
+		fmt.Printf("Deleting %s -- version %d\n", *name, versionNum)
 	}
 
 	return nil
 }
 
-func PutSecret(name string, secret string, version string, kmsKey string, table string, context map[string]string) error {
-	kmsResp, err := generateDataKey(kmsKey, context)
+func (driver *Driver) PutSecret(name string, secret string, version string, kmsKey string, table string, context map[string]string) error {
+	dataKey, hmacKey, wrappedKey, err := KmsGenerateDataKey(driver.Kms, kmsKey, context)
 
 	if err != nil {
-		return err
+		return fmt.Errorf("Could not generate key using KMS key(%s): %s", kmsKey, err.Error())
 	}
 
-	dataKey := kmsResp.Plaintext[:32]
-	hmacKey := kmsResp.Plaintext[32:]
-	wrappedKey := kmsResp.CiphertextBlob
+	cipherText := Crypt([]byte(secret), dataKey)
+	hmac := Digest(cipherText, hmacKey)
 
-	cipherText := cryptAES([]byte(secret), dataKey)
-	hmac := doHmac(cipherText, hmacKey)
-
-	err = putItem(name, version, wrappedKey, cipherText, hmac, table)
+	err = driver.PutItem(name, version, wrappedKey, cipherText, hmac, table)
 
 	if err != nil {
 		if strings.Contains(err.Error(), "ConditionalCheckFailedException") {
-			latestVersion, err := GetHighestVersion(name, table)
+			latestVersion, err := driver.GetHighestVersion(name, table)
 
 			if err != nil {
 				return err
@@ -392,14 +283,21 @@ func PutSecret(name string, secret string, version string, kmsKey string, table 
 	return nil
 }
 
-func GetSecret(name string, version string, table string, context map[string]string) (string, error) {
-	material, err := getMaterial(name, version, table)
+func (driver *Driver) GetSecret(name string, version string, table string, context map[string]string) (string, error) {
+	var material map[string]*dynamodb.AttributeValue
+	var err error
+
+	if version == "" {
+		material, err = driver.GetMaterialWithoutVersion(name, table)
+	} else {
+		material, err = driver.GetMaterialWithVersion(name, version, table)
+	}
 
 	if err != nil {
 		return "", err
 	}
 
-	plainText, err := decryptMaterial(name, material, context)
+	plainText, err := driver.DecryptMaterial(name, material, context)
 
 	if err != nil {
 		return "", err
@@ -408,8 +306,8 @@ func GetSecret(name string, version string, table string, context map[string]str
 	return plainText, nil
 }
 
-func ListSecrets(table string) (map[*string]*string, error) {
-	svc := dynamodb.New(session.New())
+func (driver *Driver) ListSecrets(table string) (map[*string]*string, error) {
+	svc := driver.Ddb
 
 	params := &dynamodb.ScanInput{
 		TableName:                aws.String(table),
@@ -430,104 +328,4 @@ func ListSecrets(table string) (map[*string]*string, error) {
 	}
 
 	return items, nil
-}
-
-func isTableExits(table string) (bool, error) {
-	svc := dynamodb.New(session.New())
-	params := &dynamodb.ListTablesInput{}
-	exist := false
-
-	err := svc.ListTablesPages(params, func(page *dynamodb.ListTablesOutput, lastPage bool) bool {
-		for _, tableName := range page.TableNames {
-			if *tableName == table {
-				exist = true
-				return false
-			}
-		}
-
-		return true
-	})
-
-	if err != nil {
-		return false, err
-	}
-
-	return exist, nil
-}
-
-func createTable(table string) error {
-	svc := dynamodb.New(session.New())
-
-	params := &dynamodb.CreateTableInput{
-		TableName: aws.String(table),
-		KeySchema: []*dynamodb.KeySchemaElement{
-			{
-				AttributeName: aws.String("name"),
-				KeyType:       aws.String("HASH"),
-			},
-			{
-				AttributeName: aws.String("version"),
-				KeyType:       aws.String("RANGE"),
-			},
-		},
-		AttributeDefinitions: []*dynamodb.AttributeDefinition{
-			{
-				AttributeName: aws.String("name"),
-				AttributeType: aws.String("S"),
-			},
-			{
-				AttributeName: aws.String("version"),
-				AttributeType: aws.String("S"),
-			},
-		},
-		ProvisionedThroughput: &dynamodb.ProvisionedThroughput{
-			ReadCapacityUnits:  aws.Int64(1),
-			WriteCapacityUnits: aws.Int64(1),
-		},
-	}
-
-	_, err := svc.CreateTable(params)
-
-	return err
-}
-
-func waitUntilTableExists(table string) error {
-	svc := dynamodb.New(session.New())
-
-	params := &dynamodb.DescribeTableInput{
-		TableName: aws.String(table),
-	}
-
-	return svc.WaitUntilTableExists(params)
-}
-
-func CreateDdbTable(table string) error {
-	exist, err := isTableExits(table)
-
-	if err != nil {
-		return err
-	}
-
-	if exist {
-		return fmt.Errorf("Credential Store table already exists -- %s", table)
-	}
-
-	err = createTable(table)
-
-	if err != nil {
-		return err
-	}
-
-	fmt.Println("Creating table...")
-	fmt.Println("Waiting for table to be created...")
-
-	err = waitUntilTableExists(table)
-
-	if err != nil {
-		return err
-	}
-
-	fmt.Println("Table has been created. Go read the README about how to create your KMS key")
-
-	return nil
 }

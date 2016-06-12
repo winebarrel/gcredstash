@@ -1,81 +1,64 @@
 package gcredstash
 
 import (
+	"bufio"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
+	"os"
 	"strconv"
 	"strings"
 )
 
-func GetOptionValue(args []string, opt string) ([]string, string, error) {
-	newArgs := []string{}
-	val := ""
-	nextOpt := false
+const (
+	VERSION_FORMAT = "%019d"
+)
 
-	for _, arg := range args {
-		if nextOpt {
-			val = arg
-			nextOpt = false
-		} else if arg == opt {
-			nextOpt = true
-		} else {
-			newArgs = append(newArgs, arg)
-		}
-	}
-
-	if nextOpt {
-		return nil, "", fmt.Errorf("option requires an argument -- %s", opt)
-	}
-
-	return newArgs, val, nil
-}
-
-func PerseVersion(args []string) ([]string, string, error) {
-	newArgs, version, err := GetOptionValue(args, "-v")
+func Atoi(str string) int {
+	num, err := strconv.Atoi(str)
 
 	if err != nil {
-		return nil, "", err
+		panic(err)
 	}
 
-	if version != "" {
-		ver, err := strconv.Atoi(version)
-
-		if err != nil {
-			return nil, "", err
-		}
-
-		version = fmt.Sprintf("%019d", ver)
-	}
-
-	return newArgs, version, nil
+	return num
 }
 
-func PerseContext(contextStrs []string) (map[string]string, error) {
-	context := map[string]string{}
-
-	for _, ctxStr := range contextStrs {
-		kv := strings.SplitN(ctxStr, "=", 2)
-
-		if len(kv) < 2 || kv[0] == "" || kv[1] == "" {
-			return nil, fmt.Errorf("invalid context -- %s", ctxStr)
-		}
-
-		context[kv[0]] = kv[1]
-	}
-
-	return context, nil
+func VersionNumToStr(version int) string {
+	return fmt.Sprintf(VERSION_FORMAT, version)
 }
 
-func HasOption(args []string, opt string) ([]string, bool) {
-	newArgs := []string{}
-	hasOpt := false
+func ReadStdin() string {
+	reader := bufio.NewReader(os.Stdin)
+	input, err := ioutil.ReadAll(reader)
 
-	for _, arg := range args {
-		if arg == opt {
-			hasOpt = true
-		} else {
-			newArgs = append(newArgs, arg)
+	if err != nil {
+		panic(err)
+	}
+
+	return strings.TrimRight(string(input), "\n")
+}
+
+func MapToJson(m map[string]string) string {
+	jsonString, err := json.MarshalIndent(m, "", "  ")
+
+	if err != nil {
+		panic(err)
+	}
+
+	return string(jsonString)
+}
+
+func MaxKeyLen(items map[*string]*string) int {
+	max := 0
+
+	for key, _ := range items {
+		keyLen := len(*key)
+
+		if keyLen > max {
+			max = keyLen
 		}
 	}
 
-	return newArgs, hasOpt
+	return max
 }
