@@ -39,6 +39,16 @@ func ReadStdin() string {
 	return strings.TrimRight(string(input), "\n")
 }
 
+func ReadFile(filename string) (string, error) {
+	content, err := ioutil.ReadFile(filename)
+
+	if err != nil {
+		return "", err
+	}
+
+	return string(content), nil
+}
+
 func MapToJson(m map[string]string) string {
 	jsonString, err := json.MarshalIndent(m, "", "  ")
 
