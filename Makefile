@@ -11,7 +11,7 @@ all: gcredstash
 gcredstash: go-get $(SRC)
 	GOPATH=$(RUNTIME_GOPATH) go build
 
-test: $(TEST_SRC) $(CMD_TEST_SRC)
+test: go-get $(TEST_SRC) $(CMD_TEST_SRC)
 	GOPATH=$(RUNTIME_GOPATH) go test $(TEST_SRC)
 	GOPATH=$(RUNTIME_GOPATH) go test $(CMD_TEST_SRC)
 
