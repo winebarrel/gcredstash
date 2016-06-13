@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"gcredstash"
 	"html/template"
+	"io/ioutil"
 	"os"
 	"strings"
 )
@@ -13,18 +14,20 @@ type TemplateCommand struct {
 	Meta
 }
 
-func (c *TemplateCommand) parseArgs(args []string) (string, error) {
-	if len(args) < 1 {
-		return "", fmt.Errorf("too few arguments")
+func (c *TemplateCommand) parseArgs(args []string) (string, bool, error) {
+	newArgs, inPlace := gcredstash.HasOption(args, "-i")
+
+	if len(newArgs) < 1 {
+		return "", false, fmt.Errorf("too few arguments")
 	}
 
-	if len(args) > 1 {
-		return "", fmt.Errorf("too few arguments")
+	if len(newArgs) > 1 {
+		return "", false, fmt.Errorf("too few arguments")
 	}
 
-	tmplFile := args[0]
+	tmplFile := newArgs[0]
 
-	return tmplFile, nil
+	return tmplFile, inPlace, nil
 }
 
 func (c *TemplateCommand) readTemplate(filename string) (string, error) {
@@ -122,7 +125,7 @@ func (c *TemplateCommand) executeTemplate(name string, content string) (string, 
 }
 
 func (c *TemplateCommand) RunImpl(args []string) (string, error) {
-	tmplFile, err := c.parseArgs(args)
+	tmplFile, inPlace, err := c.parseArgs(args)
 
 	if err != nil {
 		return "", err
@@ -135,6 +138,11 @@ func (c *TemplateCommand) RunImpl(args []string) (string, error) {
 	}
 
 	out, err := c.executeTemplate(tmplFile, tmplContent)
+
+	if inPlace {
+		err = ioutil.WriteFile(tmplFile, []byte(out), 0644)
+		out = ""
+	}
 
 	return out, err
 }
@@ -158,7 +166,7 @@ func (c *TemplateCommand) Synopsis() string {
 
 func (c *TemplateCommand) Help() string {
 	helpText := `
-usage: gcredstash template template_file
+usage: gcredstash template [-i] template_file
 `
 	return strings.TrimSpace(helpText)
 }

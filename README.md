@@ -43,7 +43,7 @@ $ gcredstash -h setup
 usage: credstash setup
 
 $ gcredstash -h template
-usage: gcredstash template template_file
+usage: gcredstash template [-i] template_file
 ```
 
 ## Example
