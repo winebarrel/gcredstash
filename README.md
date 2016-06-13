@@ -40,7 +40,7 @@ $ gcredstash -h put
 usage: gcredstash put [-k KEY] [-v VERSION] [-a] credential value [context [context ...]]
 
 $ gcredstash -h setup
-usage: credstash setup
+usage: gcredstash setup
 
 $ gcredstash -h template
 usage: gcredstash template [-i] template_file

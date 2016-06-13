@@ -41,7 +41,7 @@ func (c *SetupCommand) Synopsis() string {
 
 func (c *SetupCommand) Help() string {
 	helpText := `
-usage: credstash setup
+usage: gcredstash setup
 `
 	return strings.TrimSpace(helpText)
 }
