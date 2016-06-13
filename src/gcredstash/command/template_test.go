@@ -60,12 +60,17 @@ func TestTemplateCommand(t *testing.T) {
 		},
 	}
 
-	tmplContent := `test.key={{get "test.key"}}`
+	tmplContent := `test.key={{get "test.key"}}
+GCREDSTASH_TEST_ENV_KEY={{env "GCREDSTASH_TEST_ENV_KEY"}}`
 
 	testutils.TempFile(tmplContent, func(tmpfile *os.File) {
+		testutils.Setenv("GCREDSTASH_TEST_ENV_KEY", "env.value")
+
 		args := []string{tmpfile.Name()}
 		out, err := cmd.RunImpl(args)
-		expected := "test.key=test.value"
+
+		expected := `test.key=test.value
+GCREDSTASH_TEST_ENV_KEY=env.value`
 
 		if err != nil {
 			t.Errorf("\nexpected: %v\ngot: %v\n", nil, err)

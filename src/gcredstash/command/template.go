@@ -59,17 +59,17 @@ func (c *TemplateCommand) executeTemplate(name string, content string) (string, 
 
 	tmpl = tmpl.Funcs(template.FuncMap{
 		"get": func(args ...interface{}) string {
-			newArgs := []string{}
-
 			if len(args) < 1 {
-				return "(too few arguments)"
+				return "(error: too few arguments)"
 			}
+
+			newArgs := []string{}
 
 			for _, arg := range args {
 				str, ok := arg.(string)
 
 				if !ok {
-					return fmt.Sprintf("(invalid string: %v)", arg)
+					return fmt.Sprintf("(error: cannot cast %v to string)", arg)
 				}
 
 				newArgs = append(newArgs, str)
@@ -79,16 +79,33 @@ func (c *TemplateCommand) executeTemplate(name string, content string) (string, 
 			context, err := gcredstash.ParseContext(newArgs[1:])
 
 			if err != nil {
-				return err.Error()
+				return fmt.Sprintf("(error: %s)", err.Error())
 			}
 
 			value, err := c.getCredential(credential, context)
 
 			if err != nil {
-				return err.Error()
+				return fmt.Sprintf("(error: %s)", err.Error())
 			}
 
 			return value
+		},
+		"env": func(args ...interface{}) string {
+			if len(args) < 1 {
+				return "(error: too few arguments)"
+			}
+
+			if len(args) > 1 {
+				return "(error: too many arguments)"
+			}
+
+			key, ok := args[0].(string)
+
+			if !ok {
+				return fmt.Sprintf("(error: cannot cast %v to string)", args[0])
+			}
+
+			return os.Getenv(key)
 		},
 	})
 

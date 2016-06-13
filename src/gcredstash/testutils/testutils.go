@@ -56,3 +56,11 @@ func TempFile(content string, f func(*os.File)) {
 		panic(err)
 	}
 }
+
+func Setenv(key, value string) {
+	err := os.Setenv(key, value)
+
+	if err != nil {
+		panic(err)
+	}
+}
