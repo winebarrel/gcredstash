@@ -121,10 +121,12 @@ $ gcredstash getall
 $ cat template.txt
 foo.bar: {{get "foo.bar"}}
 foo.baz: {{get "foo.baz"}}
+HOME: {{env "HOME"}}
 
 $ gcredstash template template.txt
 foo.bar: 100
 foo.baz: xxx
+HOME: /home/scott
 ```
 
 see https://golang.org/pkg/text/template/.
