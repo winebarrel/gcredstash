@@ -131,7 +131,7 @@ HOME: /home/scott
 
 see https://golang.org/pkg/text/template/.
 
-### Edit in-place
+### `-i` option (edit file in-place)
 
 ```
 $ gcredstash getall
