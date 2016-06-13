@@ -3,6 +3,8 @@ package testutils
 import (
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
+	"io/ioutil"
+	"os"
 )
 
 func MapToItem(m map[string]string) map[string]*dynamodb.AttributeValue {
@@ -23,4 +25,34 @@ func ItemToMap(item map[string]*dynamodb.AttributeValue) map[string]string {
 	}
 
 	return m
+}
+
+func TempFile(content string, f func(*os.File)) {
+	tmpfile, err := ioutil.TempFile("", "gcredstash")
+
+	if err != nil {
+		panic(err)
+	}
+
+	defer os.Remove(tmpfile.Name())
+
+	_, err = tmpfile.WriteString(content)
+
+	if err != nil {
+		panic(err)
+	}
+
+	err = tmpfile.Sync()
+
+	if err != nil {
+		panic(err)
+	}
+
+	f(tmpfile)
+
+	err = tmpfile.Close()
+
+	if err != nil {
+		panic(err)
+	}
 }
