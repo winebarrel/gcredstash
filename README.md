@@ -131,6 +131,28 @@ HOME: /home/scott
 
 see https://golang.org/pkg/text/template/.
 
+### Edit in-place
+
+```
+$ gcredstash getall
+{
+  "foo.bar": "100",
+  "foo.baz": "xxx"
+}
+
+$ cat template.txt
+foo.bar: {{get "foo.bar"}}
+foo.baz: {{get "foo.baz"}}
+HOME: {{env "HOME"}}
+
+$ gcredstash template -i template.txt
+
+$ cat template.txt
+foo.bar: 100
+foo.baz: xxx
+HOME: /home/scott
+```
+
 ## Installation
 
 see https://github.com/winebarrel/gcredstash/releases.
