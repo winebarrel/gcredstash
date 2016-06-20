@@ -62,7 +62,7 @@ func TestTemplateCommand(t *testing.T) {
 
 	tmplContent := `test.key={{get "test.key"}}
 GCREDSTASH_TEST_ENV_KEY={{env "GCREDSTASH_TEST_ENV_KEY"}}
-CMD_OUT={{sh "echo -n 100"}}`
+CMD_OUT={{sh "echo 100"}}`
 
 	testutils.TempFile(tmplContent, func(tmpfile *os.File) {
 		testutils.Setenv("GCREDSTASH_TEST_ENV_KEY", "env.value")

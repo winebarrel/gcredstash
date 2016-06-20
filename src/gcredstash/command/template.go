@@ -148,7 +148,9 @@ func (c *TemplateCommand) executeTemplate(name string, content string) (string, 
 				return fmt.Sprintf("(sh error: %s)", err.Error())
 			}
 
-			return string(out)
+			str := string(out)
+
+			return strings.TrimRight(str, "\n")
 		},
 	})
 

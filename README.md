@@ -122,7 +122,7 @@ $ cat template.txt
 foo.bar: {{get "foo.bar"}}
 foo.baz: {{get "foo.baz"}}
 HOME: {{env "HOME"}}
-ECHO: {{sh "echo -n 100"}}
+ECHO: {{sh "echo 100"}}
 
 $ gcredstash template template.txt
 foo.bar: 100
@@ -146,7 +146,7 @@ $ cat template.txt
 foo.bar: {{get "foo.bar"}}
 foo.baz: {{get "foo.baz"}}
 HOME: {{env "HOME"}}
-ECHO: {{sh "echo -n 100"}}
+ECHO: {{sh "echo 100"}}
 
 $ gcredstash template -i template.txt
 
