@@ -1,7 +1,7 @@
 package main
 
 const Name string = "gcredstash"
-const Version string = "0.2.3"
+const Version string = "0.2.4"
 
 // GitCommit describes latest commit hash.
 // This value is extracted by git command when building.

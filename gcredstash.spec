@@ -1,7 +1,7 @@
 %define  debug_package %{nil}
 
 Name:		gcredstash
-Version:	0.2.3
+Version:	0.2.4
 Release:	1%{?dist}
 Summary:	gcredstash manages credentials using AWS Key Management Service (KMS) and DynamoDB.
 
@@ -22,9 +22,9 @@ make
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/bin
-install -m 755 gcredstash %{buildroot}/usr/bin/
+mkdir -p %{buildroot}/usr/sbin
+install -m 755 gcredstash %{buildroot}/usr/sbin/
 
 %files
-%defattr(-,root,root,-)
-/usr/bin/gcredstash
+%defattr(700,root,root,-)
+/usr/sbin/gcredstash

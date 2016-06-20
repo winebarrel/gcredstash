@@ -1,3 +1,11 @@
+gcredstash (0.2.4) unstable; urgency=high
+
+  * Fix type.
+  * Fix install path.
+  * Fix gcredstash permission.
+
+ -- Genki Sugawara <sgwr_dts@yahoo.co.jp>  Mon, 20 Jun 2016 12:26:40 +0900
+
 gcredstash (0.2.3) unstable; urgency=low
 
   * Add template -i option.
