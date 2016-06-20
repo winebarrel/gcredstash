@@ -1,3 +1,9 @@
+gcredstash (0.2.6) unstable; urgency=low
+
+  * Fix sh function.
+
+ -- Genki Sugawara <sgwr_dts@yahoo.co.jp>  Mon, 20 Jun 2016 15:18:11 +0900
+
 gcredstash (0.2.5) unstable; urgency=low
 
   * Add sh function.
