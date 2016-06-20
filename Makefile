@@ -20,6 +20,7 @@ go-get:
 	go get github.com/aws/aws-sdk-go
 	go get github.com/ryanuber/go-glob
 	go get github.com/golang/mock/gomock
+	go get github.com/mattn/go-shellwords
 
 clean:
 	rm -f gcredstash{,.exe} *.gz *.zip

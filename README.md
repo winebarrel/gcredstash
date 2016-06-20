@@ -122,11 +122,13 @@ $ cat template.txt
 foo.bar: {{get "foo.bar"}}
 foo.baz: {{get "foo.baz"}}
 HOME: {{env "HOME"}}
+ECHO: {{sh "echo -n 100"}}
 
 $ gcredstash template template.txt
 foo.bar: 100
 foo.baz: xxx
 HOME: /home/scott
+ECHO: 100
 ```
 
 see https://golang.org/pkg/text/template/.
@@ -144,6 +146,7 @@ $ cat template.txt
 foo.bar: {{get "foo.bar"}}
 foo.baz: {{get "foo.baz"}}
 HOME: {{env "HOME"}}
+ECHO: {{sh "echo -n 100"}}
 
 $ gcredstash template -i template.txt
 
@@ -151,6 +154,7 @@ $ cat template.txt
 foo.bar: 100
 foo.baz: xxx
 HOME: /home/scott
+ECHO: 100
 ```
 
 ## Installation

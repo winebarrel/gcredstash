@@ -4,9 +4,11 @@ import (
 	"bytes"
 	"fmt"
 	"gcredstash"
+	"github.com/mattn/go-shellwords"
 	"html/template"
 	"io/ioutil"
 	"os"
+	"os/exec"
 	"strings"
 )
 
@@ -63,7 +65,7 @@ func (c *TemplateCommand) executeTemplate(name string, content string) (string, 
 	tmpl = tmpl.Funcs(template.FuncMap{
 		"get": func(args ...interface{}) string {
 			if len(args) < 1 {
-				return "(error: too few arguments)"
+				return "(get error: too few arguments)"
 			}
 
 			newArgs := []string{}
@@ -72,7 +74,7 @@ func (c *TemplateCommand) executeTemplate(name string, content string) (string, 
 				str, ok := arg.(string)
 
 				if !ok {
-					return fmt.Sprintf("(error: cannot cast %v to string)", arg)
+					return fmt.Sprintf("(get error: cannot cast %v to string)", arg)
 				}
 
 				newArgs = append(newArgs, str)
@@ -82,33 +84,71 @@ func (c *TemplateCommand) executeTemplate(name string, content string) (string, 
 			context, err := gcredstash.ParseContext(newArgs[1:])
 
 			if err != nil {
-				return fmt.Sprintf("(error: %s)", err.Error())
+				return fmt.Sprintf("(get error: %s)", err.Error())
 			}
 
 			value, err := c.getCredential(credential, context)
 
 			if err != nil {
-				return fmt.Sprintf("(error: %s)", err.Error())
+				return fmt.Sprintf("(get error: %s)", err.Error())
 			}
 
 			return value
 		},
 		"env": func(args ...interface{}) string {
 			if len(args) < 1 {
-				return "(error: too few arguments)"
+				return "(env error: too few arguments)"
 			}
 
 			if len(args) > 1 {
-				return "(error: too many arguments)"
+				return "(env error: too many arguments)"
 			}
 
 			key, ok := args[0].(string)
 
 			if !ok {
-				return fmt.Sprintf("(error: cannot cast %v to string)", args[0])
+				return fmt.Sprintf("(env error: cannot cast %v to string)", args[0])
 			}
 
 			return os.Getenv(key)
+		},
+		"sh": func(args ...interface{}) string {
+			if len(args) < 1 {
+				return "(sh error: too few arguments)"
+			}
+
+			if len(args) > 1 {
+				return "(sh error: too many arguments)"
+			}
+
+			line, ok := args[0].(string)
+
+			if !ok {
+				return fmt.Sprintf("(sh error: cannot cast %v to string)", args[0])
+			}
+
+			cmd, err := shellwords.Parse(line)
+
+			if err != nil {
+				return fmt.Sprintf("(sh error: %s)", err.Error())
+			}
+
+			var out []byte
+
+			switch len(cmd) {
+			case 0:
+				out = []byte{}
+			case 1:
+				out, err = exec.Command(cmd[0]).Output()
+			default:
+				out, err = exec.Command(cmd[0], cmd[1:]...).Output()
+			}
+
+			if err != nil {
+				return fmt.Sprintf("(sh error: %s)", err.Error())
+			}
+
+			return string(out)
 		},
 	})
 
