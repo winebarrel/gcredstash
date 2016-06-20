@@ -23,7 +23,7 @@ make
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/sbin
-install -m 755 gcredstash %{buildroot}/usr/sbin/
+install -m 700 gcredstash %{buildroot}/usr/sbin/
 
 %files
 %defattr(700,root,root,-)
