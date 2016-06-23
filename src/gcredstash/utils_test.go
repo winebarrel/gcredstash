@@ -38,6 +38,21 @@ func TestMapToJson(t *testing.T) {
 	}
 }
 
+func TestMapToJsonWithoutEscape(t *testing.T) {
+	m := map[string]string{"<foo>": "&bar", "&bar": "<zoo>"}
+
+	expected := `{
+  "&bar": "<zoo>",
+  "<foo>": "&bar"
+}`
+
+	actual := MapToJson(m)
+
+	if expected != actual {
+		t.Errorf("\nexpected: %v\ngot: %v\n", expected, actual)
+	}
+}
+
 func TestMaxKeyLen(t *testing.T) {
 	key1 := "12"
 	val1 := "foobar"

@@ -2,6 +2,7 @@ package gcredstash
 
 import (
 	"bufio"
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -55,6 +56,10 @@ func MapToJson(m map[string]string) string {
 	if err != nil {
 		panic(err)
 	}
+
+	jsonString = bytes.Replace(jsonString, []byte("\\u003c"), []byte("<"), -1)
+	jsonString = bytes.Replace(jsonString, []byte("\\u003e"), []byte(">"), -1)
+	jsonString = bytes.Replace(jsonString, []byte("\\u0026"), []byte("&"), -1)
 
 	return string(jsonString)
 }
