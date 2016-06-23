@@ -1,3 +1,9 @@
+gcredstash (0.2.7) unstable; urgency=low
+
+  * Fix MapToJson().
+
+ -- Genki Sugawara <sgwr_dts@yahoo.co.jp>  Mon, 23 Jun 2016 17:42:55 +0900
+
 gcredstash (0.2.6) unstable; urgency=low
 
   * Fix sh function.
