@@ -7,3 +7,5 @@
 /debian/gcredstash.substvars
 /debian/gcredstash/
 /debian/files
+/pkg/gcredstash*
+.DS_Store
