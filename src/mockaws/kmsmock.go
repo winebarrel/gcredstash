@@ -162,6 +162,28 @@ func (_mr *_MockKMSAPIRecorder) DeleteAlias(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteAlias", arg0)
 }
 
+func (_m *MockKMSAPI) DeleteImportedKeyMaterialRequest(_param0 *kms.DeleteImportedKeyMaterialInput) (*request.Request, *kms.DeleteImportedKeyMaterialOutput) {
+	ret := _m.ctrl.Call(_m, "DeleteImportedKeyMaterialRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*kms.DeleteImportedKeyMaterialOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockKMSAPIRecorder) DeleteImportedKeyMaterialRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteImportedKeyMaterialRequest", arg0)
+}
+
+func (_m *MockKMSAPI) DeleteImportedKeyMaterial(_param0 *kms.DeleteImportedKeyMaterialInput) (*kms.DeleteImportedKeyMaterialOutput, error) {
+	ret := _m.ctrl.Call(_m, "DeleteImportedKeyMaterial", _param0)
+	ret0, _ := ret[0].(*kms.DeleteImportedKeyMaterialOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockKMSAPIRecorder) DeleteImportedKeyMaterial(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteImportedKeyMaterial", arg0)
+}
+
 func (_m *MockKMSAPI) DescribeKeyRequest(_param0 *kms.DescribeKeyInput) (*request.Request, *kms.DescribeKeyOutput) {
 	ret := _m.ctrl.Call(_m, "DescribeKeyRequest", _param0)
 	ret0, _ := ret[0].(*request.Request)
@@ -402,6 +424,50 @@ func (_m *MockKMSAPI) GetKeyRotationStatus(_param0 *kms.GetKeyRotationStatusInpu
 
 func (_mr *_MockKMSAPIRecorder) GetKeyRotationStatus(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetKeyRotationStatus", arg0)
+}
+
+func (_m *MockKMSAPI) GetParametersForImportRequest(_param0 *kms.GetParametersForImportInput) (*request.Request, *kms.GetParametersForImportOutput) {
+	ret := _m.ctrl.Call(_m, "GetParametersForImportRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*kms.GetParametersForImportOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockKMSAPIRecorder) GetParametersForImportRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetParametersForImportRequest", arg0)
+}
+
+func (_m *MockKMSAPI) GetParametersForImport(_param0 *kms.GetParametersForImportInput) (*kms.GetParametersForImportOutput, error) {
+	ret := _m.ctrl.Call(_m, "GetParametersForImport", _param0)
+	ret0, _ := ret[0].(*kms.GetParametersForImportOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockKMSAPIRecorder) GetParametersForImport(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetParametersForImport", arg0)
+}
+
+func (_m *MockKMSAPI) ImportKeyMaterialRequest(_param0 *kms.ImportKeyMaterialInput) (*request.Request, *kms.ImportKeyMaterialOutput) {
+	ret := _m.ctrl.Call(_m, "ImportKeyMaterialRequest", _param0)
+	ret0, _ := ret[0].(*request.Request)
+	ret1, _ := ret[1].(*kms.ImportKeyMaterialOutput)
+	return ret0, ret1
+}
+
+func (_mr *_MockKMSAPIRecorder) ImportKeyMaterialRequest(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ImportKeyMaterialRequest", arg0)
+}
+
+func (_m *MockKMSAPI) ImportKeyMaterial(_param0 *kms.ImportKeyMaterialInput) (*kms.ImportKeyMaterialOutput, error) {
+	ret := _m.ctrl.Call(_m, "ImportKeyMaterial", _param0)
+	ret0, _ := ret[0].(*kms.ImportKeyMaterialOutput)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+func (_mr *_MockKMSAPIRecorder) ImportKeyMaterial(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ImportKeyMaterial", arg0)
 }
 
 func (_m *MockKMSAPI) ListAliasesRequest(_param0 *kms.ListAliasesInput) (*request.Request, *kms.ListAliasesOutput) {

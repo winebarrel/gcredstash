@@ -377,3 +377,23 @@ func (_m *MockDynamoDBAPI) UpdateTable(_param0 *dynamodb.UpdateTableInput) (*dyn
 func (_mr *_MockDynamoDBAPIRecorder) UpdateTable(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateTable", arg0)
 }
+
+func (_m *MockDynamoDBAPI) WaitUntilTableExists(_param0 *dynamodb.DescribeTableInput) error {
+	ret := _m.ctrl.Call(_m, "WaitUntilTableExists", _param0)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+func (_mr *_MockDynamoDBAPIRecorder) WaitUntilTableExists(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilTableExists", arg0)
+}
+
+func (_m *MockDynamoDBAPI) WaitUntilTableNotExists(_param0 *dynamodb.DescribeTableInput) error {
+	ret := _m.ctrl.Call(_m, "WaitUntilTableNotExists", _param0)
+	ret0, _ := ret[0].(error)
+	return ret0
+}
+
+func (_mr *_MockDynamoDBAPIRecorder) WaitUntilTableNotExists(arg0 interface{}) *gomock.Call {
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilTableNotExists", arg0)
+}
