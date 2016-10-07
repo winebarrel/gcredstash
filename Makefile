@@ -1,4 +1,4 @@
-VERSION=v0.2.8
+VERSION=v0.2.9
 GOOS=$(shell go env GOOS)
 GOARCH=$(shell go env GOARCH)
 RUNTIME_GOPATH=$(GOPATH):$(shell pwd)

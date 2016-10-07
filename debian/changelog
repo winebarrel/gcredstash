@@ -1,3 +1,9 @@
+gcredstash (0.2.9) unstable; urgency=low
+
+  * Fix build option. (force static link)
+
+ -- Genki Sugawara <sgwr_dts@yahoo.co.jp>  Fri, 07 Oct 2016 16:27:14 +0900
+
 gcredstash (0.2.8) unstable; urgency=low
 
   * Update aws-sdk-go.
