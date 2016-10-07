@@ -14,7 +14,13 @@ CENTOS_CONTAINER_NAME=docker-go-pkg-build-centos6-$(shell date +%s)
 all: gcredstash
 
 gcredstash: go-get $(SRC)
-	GOPATH=$(RUNTIME_GOPATH) go build -o gcredstash
+	GOPATH=$(RUNTIME_GOPATH) go build -a -tags netgo -installsuffix netgo -o gcredstash
+ifeq ($(GOOS),linux)
+	if [[ ! "$(shell ldd gcredstash)" =~ "not a dynamic executable" ]]; then
+		ldd gcredstash
+		exit 1
+	fi
+endif
 
 test: go-get $(TEST_SRC) $(CMD_TEST_SRC)
 	GOPATH=$(RUNTIME_GOPATH) go test $(TEST_SRC)
