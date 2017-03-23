@@ -347,7 +347,7 @@ func TestGetCommandWithE(t *testing.T) {
 		t.Errorf("\nexpected: %v\ngot: %v\n", expected, err)
 	}
 
-	if errOut, _ := ioutil.ReadAll(tmpfile); expected != string(errOut) {
-		t.Errorf("\nexpected: %v\ngot: %v\n", expected, errOut)
+	if errOut, _ := ioutil.ReadAll(tmpfile); expected+"\n" != string(errOut) {
+		t.Errorf("\nexpected: %v\ngot: %v\n", expected, string(errOut))
 	}
 }

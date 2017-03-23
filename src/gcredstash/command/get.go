@@ -101,7 +101,7 @@ func (c *GetCommand) RunImpl(args []string) (string, error) {
 		value, err := c.getCredentials(credential, version, context)
 
 		if err != nil && errOut != "" {
-			c.write(errOut, err.Error())
+			c.write(errOut, err.Error()+"\n")
 		}
 
 		return value, err
@@ -110,7 +110,7 @@ func (c *GetCommand) RunImpl(args []string) (string, error) {
 
 		if err != nil {
 			if errOut != "" {
-				c.write(errOut, err.Error())
+				c.write(errOut, err.Error()+"\n")
 			}
 
 			if noErr {
