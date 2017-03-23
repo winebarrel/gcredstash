@@ -119,7 +119,7 @@ func (c *GetCommand) Synopsis() string {
 
 func (c *GetCommand) Help() string {
 	helpText := `
-usage: gcredstash get [-v VERSION] [-n] credential [context [context ...]]
+usage: gcredstash get [-v VERSION] [-n] [-s] credential [context [context ...]]
 `
 	return strings.TrimSpace(helpText)
 }
