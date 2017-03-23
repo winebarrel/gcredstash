@@ -21,8 +21,8 @@ ifeq ($(GOOS),linux)
 endif
 
 test: go-get $(TEST_SRC) $(CMD_TEST_SRC)
-	GOPATH=$(RUNTIME_GOPATH) go test $(TEST_SRC)
-	GOPATH=$(RUNTIME_GOPATH) go test $(CMD_TEST_SRC)
+	GOPATH=$(RUNTIME_GOPATH) go test -v $(TEST_SRC)
+	GOPATH=$(RUNTIME_GOPATH) go test -v $(CMD_TEST_SRC)
 
 go-get:
 	go get github.com/mitchellh/cli

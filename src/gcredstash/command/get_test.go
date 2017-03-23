@@ -8,7 +8,9 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/golang/mock/gomock"
+	"io/ioutil"
 	"mockaws"
+	"os"
 	"testing"
 )
 
@@ -292,5 +294,60 @@ func TestGetCommandWithS(t *testing.T) {
 
 	if expected != out {
 		t.Errorf("\nexpected: %v\ngot: %v\n", expected, out)
+	}
+}
+
+func TestGetCommandWithE(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
+	mddb := mockaws.NewMockDynamoDBAPI(ctrl)
+	mkms := mockaws.NewMockKMSAPI(ctrl)
+
+	name := "test.key"
+	table := "credential-store"
+
+	mddb.EXPECT().Query(&dynamodb.QueryInput{
+		TableName:                aws.String(table),
+		Limit:                    aws.Int64(1),
+		ConsistentRead:           aws.Bool(true),
+		ScanIndexForward:         aws.Bool(false),
+		KeyConditionExpression:   aws.String("#name = :name"),
+		ExpressionAttributeNames: map[string]*string{"#name": aws.String("name")},
+		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
+			":name": {S: aws.String(name)},
+		},
+	}).Return(&dynamodb.QueryOutput{
+		Count: aws.Int64(0),
+		Items: []map[string]*dynamodb.AttributeValue{},
+	}, nil)
+
+	cmd := &GetCommand{
+		Meta: Meta{
+			Table:  table,
+			KmsKey: "alias/credstash",
+			Driver: &gcredstash.Driver{Ddb: mddb, Kms: mkms},
+		},
+	}
+
+	tmpfile, _ := ioutil.TempFile("", "gcredstash")
+	defer os.Remove(tmpfile.Name())
+
+	args := []string{"-e", tmpfile.Name(), name}
+	_, err := cmd.RunImpl(args)
+	expected := "Item {'name': 'test.key'} couldn't be found."
+	tmpfile.Sync()
+	tmpfile.Seek(0, 0)
+
+	if err == nil {
+		t.Errorf("expected error does not happen")
+	}
+
+	if expected != err.Error() {
+		t.Errorf("\nexpected: %v\ngot: %v\n", expected, err)
+	}
+
+	if errOut, _ := ioutil.ReadAll(tmpfile); expected != string(errOut) {
+		t.Errorf("\nexpected: %v\ngot: %v\n", expected, errOut)
 	}
 }
