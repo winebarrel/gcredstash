@@ -1,3 +1,9 @@
+gcredstash (0.3.0) unstable; urgency=low
+
+  * Add get "-s" option.
+
+ -- Genki Sugawara <sgwr_dts@yahoo.co.jp>  Thu, 23 Mar 2017 20:31:35 +0900
+
 gcredstash (0.2.9) unstable; urgency=low
 
   * Fix build option. (force static link)
