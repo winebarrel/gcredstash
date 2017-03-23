@@ -121,7 +121,7 @@ func TestErrParseVersion1(t *testing.T) {
 
 func TestErrParseVersion2(t *testing.T) {
 	args := []string{"-a", "-v", "X", "-c", "CCC"}
-	expected := `strconv.ParseInt: parsing "X": invalid syntax`
+	expected := `strconv.Atoi: parsing "X": invalid syntax`
 
 	_, _, err := ParseVersion(args)
 
