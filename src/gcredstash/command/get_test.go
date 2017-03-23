@@ -202,3 +202,95 @@ func TestGetCommandWithN(t *testing.T) {
 		t.Errorf("\nexpected: %v\ngot: %v\n", expected, out)
 	}
 }
+
+func TestGetCommandWithoutItem(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
+	mddb := mockaws.NewMockDynamoDBAPI(ctrl)
+	mkms := mockaws.NewMockKMSAPI(ctrl)
+
+	name := "test.key"
+	table := "credential-store"
+
+	mddb.EXPECT().Query(&dynamodb.QueryInput{
+		TableName:                aws.String(table),
+		Limit:                    aws.Int64(1),
+		ConsistentRead:           aws.Bool(true),
+		ScanIndexForward:         aws.Bool(false),
+		KeyConditionExpression:   aws.String("#name = :name"),
+		ExpressionAttributeNames: map[string]*string{"#name": aws.String("name")},
+		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
+			":name": {S: aws.String(name)},
+		},
+	}).Return(&dynamodb.QueryOutput{
+		Count: aws.Int64(0),
+		Items: []map[string]*dynamodb.AttributeValue{},
+	}, nil)
+
+	cmd := &GetCommand{
+		Meta: Meta{
+			Table:  table,
+			KmsKey: "alias/credstash",
+			Driver: &gcredstash.Driver{Ddb: mddb, Kms: mkms},
+		},
+	}
+
+	args := []string{name}
+	_, err := cmd.RunImpl(args)
+	expected := "Item {'name': 'test.key'} couldn't be found."
+
+	if err == nil {
+		t.Errorf("expected error does not happen")
+	}
+
+	if expected != err.Error() {
+		t.Errorf("\nexpected: %v\ngot: %v\n", expected, err)
+	}
+}
+
+func TestGetCommandWithS(t *testing.T) {
+	ctrl := gomock.NewController(t)
+	defer ctrl.Finish()
+
+	mddb := mockaws.NewMockDynamoDBAPI(ctrl)
+	mkms := mockaws.NewMockKMSAPI(ctrl)
+
+	name := "test.key"
+	table := "credential-store"
+
+	mddb.EXPECT().Query(&dynamodb.QueryInput{
+		TableName:                aws.String(table),
+		Limit:                    aws.Int64(1),
+		ConsistentRead:           aws.Bool(true),
+		ScanIndexForward:         aws.Bool(false),
+		KeyConditionExpression:   aws.String("#name = :name"),
+		ExpressionAttributeNames: map[string]*string{"#name": aws.String("name")},
+		ExpressionAttributeValues: map[string]*dynamodb.AttributeValue{
+			":name": {S: aws.String(name)},
+		},
+	}).Return(&dynamodb.QueryOutput{
+		Count: aws.Int64(0),
+		Items: []map[string]*dynamodb.AttributeValue{},
+	}, nil)
+
+	cmd := &GetCommand{
+		Meta: Meta{
+			Table:  table,
+			KmsKey: "alias/credstash",
+			Driver: &gcredstash.Driver{Ddb: mddb, Kms: mkms},
+		},
+	}
+
+	args := []string{"-s", name}
+	out, err := cmd.RunImpl(args)
+	expected := ""
+
+	if err != nil {
+		t.Errorf("\nexpected: %v\ngot: %v\n", nil, err)
+	}
+
+	if expected != out {
+		t.Errorf("\nexpected: %v\ngot: %v\n", expected, out)
+	}
+}

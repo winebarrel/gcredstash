@@ -12,22 +12,23 @@ type GetCommand struct {
 	Meta
 }
 
-func (c *GetCommand) parseArgs(args []string) (string, string, map[string]string, bool, error) {
+func (c *GetCommand) parseArgs(args []string) (string, string, map[string]string, bool, bool, error) {
 	argsWithoutN, noNL := gcredstash.HasOption(args, "-n")
-	newArgs, version, err := gcredstash.ParseVersion(argsWithoutN)
+	argsWithoutNS, noErr := gcredstash.HasOption(argsWithoutN, "-s")
+	newArgs, version, err := gcredstash.ParseVersion(argsWithoutNS)
 
 	if err != nil {
-		return "", "", nil, false, err
+		return "", "", nil, false, false, err
 	}
 
 	if len(newArgs) < 1 {
-		return "", "", nil, false, fmt.Errorf("too few arguments")
+		return "", "", nil, false, false, fmt.Errorf("too few arguments")
 	}
 
 	credential := newArgs[0]
 	context, err := gcredstash.ParseContext(newArgs[1:])
 
-	return credential, version, context, noNL, err
+	return credential, version, context, noNL, noErr, err
 }
 
 func (c *GetCommand) getCredential(credential string, version string, context map[string]string) (string, error) {
@@ -72,7 +73,7 @@ func (c *GetCommand) getCredentials(credential string, version string, context m
 }
 
 func (c *GetCommand) RunImpl(args []string) (string, error) {
-	credential, version, context, noNL, err := c.parseArgs(args)
+	credential, version, context, noNL, noErr, err := c.parseArgs(args)
 
 	if err != nil {
 		return "", err
@@ -84,7 +85,11 @@ func (c *GetCommand) RunImpl(args []string) (string, error) {
 		value, err := c.getCredential(credential, version, context)
 
 		if err != nil {
-			return "", err
+			if noErr {
+				return "", nil
+			} else {
+				return "", err
+			}
 		}
 
 		if noNL {
