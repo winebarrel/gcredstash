@@ -5,7 +5,7 @@ class Gcredstash < Formula
 
   homepage 'https://github.com/winebarrel/gcredstash'
   url "https://github.com/winebarrel/gcredstash/releases/download/v#{VERSION}/gcredstash-v#{VERSION}-darwin-amd64.gz"
-  sha256 '8d5fa90ac6b0cd0fc8c927ff11b7ce340439e1e82aad7bb7e08fd145f51edacb'
+  sha256 'e60eb70d6038df1693d654ccd02a84a7451e5cf4b268c9689e8409652f6c90b9'
   version VERSION
   head 'https://github.com/winebarrel/gcredstash.git', :branch => 'master'
 
