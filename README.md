@@ -28,7 +28,7 @@ $ gcredstash -h delete
 usage: gcredstash delete [-v VERSION] credential
 
 $ gcredstash -h get
-usage: gcredstash get [-v VERSION] [-n] credential [context [context ...]]
+usage: gcredstash get [-v VERSION] [-n] [-s] [-e ERROUT] credential [context [context ...]]
 
 $ gcredstash -h getall
 usage: gcredstash getall [context [context ...]]
