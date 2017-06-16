@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"gcredstash"
 	"github.com/mattn/go-shellwords"
-	"html/template"
+	"text/template"
 	"io/ioutil"
 	"os"
 	"os/exec"
