@@ -1,3 +1,10 @@
+gcredstash (0.3.2) unstable; urgency=low
+
+  * Fix template package path.
+  * Update go version.
+
+ -- Genki Sugawara <sgwr_dts@yahoo.co.jp>  Fri, 21 Jul 2017 19:58:54 +0900
+
 gcredstash (0.3.1) unstable; urgency=low
 
   * Add get "-e" option.
