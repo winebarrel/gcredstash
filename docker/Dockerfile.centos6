@@ -7,7 +7,7 @@ WORKDIR /
 RUN yum install -y rpmdevtools make git
 RUN rpmdev-setuptree
 
-ENV GO_VERSION 1.8
+ARG GO_VERSION=1.8.3
 ENV GOROOT=/usr/local/go
 ENV GOPATH=/root/.go
 ENV PATH $GOROOT/bin:$PATH
