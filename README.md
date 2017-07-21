@@ -14,12 +14,12 @@ gcredstash manages credentials using AWS Key Management Service (KMS) and Dynamo
 usage: gcredstash [--version] [--help] <command> [<args>]
 
 Available commands are:
-    delete    Delete a credential from the store
-    get       Get a credential from the store
-    getall    Get all credentials from the store
-    list      list credentials and their version
-    put       Put a credential into the store
-    setup     setup the credential store
+    delete      Delete a credential from the store
+    get         Get a credential from the store
+    getall      Get all credentials from the store
+    list        list credentials and their version
+    put         Put a credential into the store
+    setup       setup the credential store
     template    Parse a template file with credentials
 ```
 
