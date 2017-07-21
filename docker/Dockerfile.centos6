@@ -4,7 +4,7 @@ MAINTAINER Genki Sugawara <sgwr_dts@yahoo.co.jp>
 USER root
 WORKDIR /
 
-RUN yum install -y rpmdevtools make git
+RUN yum install -y rpmdevtools make git gcc
 RUN rpmdev-setuptree
 
 ARG GO_VERSION=1.8.3
