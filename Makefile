@@ -16,9 +16,6 @@ all: gcredstash
 
 gcredstash: go-get $(SRC)
 	GOPATH=$(RUNTIME_GOPATH) go build -a -tags netgo -installsuffix netgo -o gcredstash
-ifeq ($(GOOS),linux)
-	[[ "`ldd gcredstash`" =~ "not a dynamic executable" ]] || exit 1
-endif
 
 test: go-get $(TEST_SRC) $(CMD_TEST_SRC)
 	GOPATH=$(RUNTIME_GOPATH) go test -v $(TEST_SRC)
