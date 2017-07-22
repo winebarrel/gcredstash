@@ -1,5 +1,5 @@
 SHELL:=/bin/bash
-VERSION=v0.3.2
+VERSION=v0.3.3
 GOOS=$(shell go env GOOS)
 GOARCH=$(shell go env GOARCH)
 RUNTIME_GOPATH=$(GOPATH):$(shell pwd)

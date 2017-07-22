@@ -1,3 +1,9 @@
+gcredstash (0.3.3) unstable; urgency=low
+
+  * Fix get error message.
+
+ -- Genki Sugawara <sgwr_dts@yahoo.co.jp>  Sat, 22 Jul 2017 17:11:53 +0900
+
 gcredstash (0.3.2) unstable; urgency=low
 
   * Fix template package path.
