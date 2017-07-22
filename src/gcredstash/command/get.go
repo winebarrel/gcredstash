@@ -17,6 +17,10 @@ func (c *GetCommand) parseArgs(args []string) (string, string, map[string]string
 	argsWithoutNS, noErr := gcredstash.HasOption(argsWithoutN, "-s")
 	argsWithoutNSE, errOut, err := gcredstash.ParseOptionWithValue(argsWithoutNS, "-e")
 
+	if errOut == "" {
+		errOut = os.Getenv("GCREDSTASH_GET_ERROUT")
+	}
+
 	if err != nil {
 		return "", "", nil, false, false, "", err
 	}
@@ -79,6 +83,10 @@ func (c *GetCommand) getCredentials(credential string, version string, context m
 }
 
 func (c *GetCommand) write(filename string, message string) {
+	if filename == "" || message == "" {
+		return
+	}
+
 	fp, err := os.OpenFile(filename, os.O_WRONLY|os.O_CREATE|os.O_APPEND, os.ModePerm)
 
 	if err != nil {
