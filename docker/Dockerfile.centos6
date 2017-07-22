@@ -4,6 +4,8 @@ MAINTAINER Genki Sugawara <sgwr_dts@yahoo.co.jp>
 USER root
 WORKDIR /
 
+RUN yum -y install yum-plugin-fastestmirror
+RUN echo "include_only=.jp" >> /etc/yum/pluginconf.d/fastestmirror.conf
 RUN yum install -y rpmdevtools make git gcc
 RUN rpmdev-setuptree
 
