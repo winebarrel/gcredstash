@@ -14,6 +14,15 @@ type GetCommand struct {
 
 func (c *GetCommand) parseArgs(args []string) (string, string, map[string]string, bool, bool, string, error) {
 	argsWithoutN, noNL := gcredstash.HasOption(args, "-n")
+
+	if !noNL {
+		trailingNewline := os.Getenv("GCREDSTASH_TRAILING_NEWLINE")
+
+		if trailingNewline == "1" {
+			noNL = true
+		}
+	}
+
 	argsWithoutNS, noErr := gcredstash.HasOption(argsWithoutN, "-s")
 	argsWithoutNSE, errOut, err := gcredstash.ParseOptionWithValue(argsWithoutNS, "-e")
 
