@@ -194,7 +194,7 @@ func TestGetCommandWithTrailingNewline(t *testing.T) {
 	}
 
 	args := []string{name}
-	os.Setenv("GCREDSTASH_TRAILING_NEWLINE", "1")
+	os.Setenv("GCREDSTASH_GET_TRAILING_NEWLINE", "1")
 	out, err := cmd.RunImpl(args)
 	expected := "test.value"
 

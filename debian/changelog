@@ -1,7 +1,7 @@
 gcredstash (0.3.5) unstable; urgency=low
 
   * Add GCREDSTASH_GET_ERROUT env.
-  * Add GCREDSTASH_TRAILING_NEWLINE env.
+  * Add GCREDSTASH_GET_TRAILING_NEWLINE env.
 
  -- Genki Sugawara <sgwr_dts@yahoo.co.jp>  Sat, 22 Jul 2017 19:07:34 +0900
 

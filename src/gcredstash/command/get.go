@@ -16,7 +16,7 @@ func (c *GetCommand) parseArgs(args []string) (string, string, map[string]string
 	argsWithoutN, noNL := gcredstash.HasOption(args, "-n")
 
 	if !noNL {
-		trailingNewline := os.Getenv("GCREDSTASH_TRAILING_NEWLINE")
+		trailingNewline := os.Getenv("GCREDSTASH_GET_TRAILING_NEWLINE")
 
 		if trailingNewline == "1" {
 			noNL = true
