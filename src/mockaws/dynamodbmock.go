@@ -8,6 +8,7 @@ import (
 	request "github.com/aws/aws-sdk-go/aws/request"
 	dynamodb "github.com/aws/aws-sdk-go/service/dynamodb"
 	gomock "github.com/golang/mock/gomock"
+	reflect "reflect"
 )
 
 // MockDynamoDBAPI is a mock of DynamoDBAPI interface
@@ -43,7 +44,7 @@ func (_m *MockDynamoDBAPI) BatchGetItem(_param0 *dynamodb.BatchGetItemInput) (*d
 
 // BatchGetItem indicates an expected call of BatchGetItem
 func (_mr *MockDynamoDBAPIMockRecorder) BatchGetItem(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "BatchGetItem", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "BatchGetItem", reflect.TypeOf((*MockDynamoDBAPI)(nil).BatchGetItem), arg0)
 }
 
 // BatchGetItemWithContext mocks base method
@@ -61,7 +62,7 @@ func (_m *MockDynamoDBAPI) BatchGetItemWithContext(_param0 aws.Context, _param1 
 // BatchGetItemWithContext indicates an expected call of BatchGetItemWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) BatchGetItemWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "BatchGetItemWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "BatchGetItemWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).BatchGetItemWithContext), _s...)
 }
 
 // BatchGetItemRequest mocks base method
@@ -74,7 +75,7 @@ func (_m *MockDynamoDBAPI) BatchGetItemRequest(_param0 *dynamodb.BatchGetItemInp
 
 // BatchGetItemRequest indicates an expected call of BatchGetItemRequest
 func (_mr *MockDynamoDBAPIMockRecorder) BatchGetItemRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "BatchGetItemRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "BatchGetItemRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).BatchGetItemRequest), arg0)
 }
 
 // BatchGetItemPages mocks base method
@@ -86,7 +87,7 @@ func (_m *MockDynamoDBAPI) BatchGetItemPages(_param0 *dynamodb.BatchGetItemInput
 
 // BatchGetItemPages indicates an expected call of BatchGetItemPages
 func (_mr *MockDynamoDBAPIMockRecorder) BatchGetItemPages(arg0, arg1 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "BatchGetItemPages", arg0, arg1)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "BatchGetItemPages", reflect.TypeOf((*MockDynamoDBAPI)(nil).BatchGetItemPages), arg0, arg1)
 }
 
 // BatchGetItemPagesWithContext mocks base method
@@ -103,7 +104,7 @@ func (_m *MockDynamoDBAPI) BatchGetItemPagesWithContext(_param0 aws.Context, _pa
 // BatchGetItemPagesWithContext indicates an expected call of BatchGetItemPagesWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) BatchGetItemPagesWithContext(arg0, arg1, arg2 interface{}, arg3 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1, arg2}, arg3...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "BatchGetItemPagesWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "BatchGetItemPagesWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).BatchGetItemPagesWithContext), _s...)
 }
 
 // BatchWriteItem mocks base method
@@ -116,7 +117,7 @@ func (_m *MockDynamoDBAPI) BatchWriteItem(_param0 *dynamodb.BatchWriteItemInput)
 
 // BatchWriteItem indicates an expected call of BatchWriteItem
 func (_mr *MockDynamoDBAPIMockRecorder) BatchWriteItem(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "BatchWriteItem", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "BatchWriteItem", reflect.TypeOf((*MockDynamoDBAPI)(nil).BatchWriteItem), arg0)
 }
 
 // BatchWriteItemWithContext mocks base method
@@ -134,7 +135,7 @@ func (_m *MockDynamoDBAPI) BatchWriteItemWithContext(_param0 aws.Context, _param
 // BatchWriteItemWithContext indicates an expected call of BatchWriteItemWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) BatchWriteItemWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "BatchWriteItemWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "BatchWriteItemWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).BatchWriteItemWithContext), _s...)
 }
 
 // BatchWriteItemRequest mocks base method
@@ -147,7 +148,7 @@ func (_m *MockDynamoDBAPI) BatchWriteItemRequest(_param0 *dynamodb.BatchWriteIte
 
 // BatchWriteItemRequest indicates an expected call of BatchWriteItemRequest
 func (_mr *MockDynamoDBAPIMockRecorder) BatchWriteItemRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "BatchWriteItemRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "BatchWriteItemRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).BatchWriteItemRequest), arg0)
 }
 
 // CreateTable mocks base method
@@ -160,7 +161,7 @@ func (_m *MockDynamoDBAPI) CreateTable(_param0 *dynamodb.CreateTableInput) (*dyn
 
 // CreateTable indicates an expected call of CreateTable
 func (_mr *MockDynamoDBAPIMockRecorder) CreateTable(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateTable", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateTable", reflect.TypeOf((*MockDynamoDBAPI)(nil).CreateTable), arg0)
 }
 
 // CreateTableWithContext mocks base method
@@ -178,7 +179,7 @@ func (_m *MockDynamoDBAPI) CreateTableWithContext(_param0 aws.Context, _param1 *
 // CreateTableWithContext indicates an expected call of CreateTableWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) CreateTableWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateTableWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateTableWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).CreateTableWithContext), _s...)
 }
 
 // CreateTableRequest mocks base method
@@ -191,7 +192,7 @@ func (_m *MockDynamoDBAPI) CreateTableRequest(_param0 *dynamodb.CreateTableInput
 
 // CreateTableRequest indicates an expected call of CreateTableRequest
 func (_mr *MockDynamoDBAPIMockRecorder) CreateTableRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateTableRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateTableRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).CreateTableRequest), arg0)
 }
 
 // DeleteItem mocks base method
@@ -204,7 +205,7 @@ func (_m *MockDynamoDBAPI) DeleteItem(_param0 *dynamodb.DeleteItemInput) (*dynam
 
 // DeleteItem indicates an expected call of DeleteItem
 func (_mr *MockDynamoDBAPIMockRecorder) DeleteItem(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteItem", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteItem", reflect.TypeOf((*MockDynamoDBAPI)(nil).DeleteItem), arg0)
 }
 
 // DeleteItemWithContext mocks base method
@@ -222,7 +223,7 @@ func (_m *MockDynamoDBAPI) DeleteItemWithContext(_param0 aws.Context, _param1 *d
 // DeleteItemWithContext indicates an expected call of DeleteItemWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) DeleteItemWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteItemWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteItemWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).DeleteItemWithContext), _s...)
 }
 
 // DeleteItemRequest mocks base method
@@ -235,7 +236,7 @@ func (_m *MockDynamoDBAPI) DeleteItemRequest(_param0 *dynamodb.DeleteItemInput) 
 
 // DeleteItemRequest indicates an expected call of DeleteItemRequest
 func (_mr *MockDynamoDBAPIMockRecorder) DeleteItemRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteItemRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteItemRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).DeleteItemRequest), arg0)
 }
 
 // DeleteTable mocks base method
@@ -248,7 +249,7 @@ func (_m *MockDynamoDBAPI) DeleteTable(_param0 *dynamodb.DeleteTableInput) (*dyn
 
 // DeleteTable indicates an expected call of DeleteTable
 func (_mr *MockDynamoDBAPIMockRecorder) DeleteTable(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteTable", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteTable", reflect.TypeOf((*MockDynamoDBAPI)(nil).DeleteTable), arg0)
 }
 
 // DeleteTableWithContext mocks base method
@@ -266,7 +267,7 @@ func (_m *MockDynamoDBAPI) DeleteTableWithContext(_param0 aws.Context, _param1 *
 // DeleteTableWithContext indicates an expected call of DeleteTableWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) DeleteTableWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteTableWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteTableWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).DeleteTableWithContext), _s...)
 }
 
 // DeleteTableRequest mocks base method
@@ -279,7 +280,7 @@ func (_m *MockDynamoDBAPI) DeleteTableRequest(_param0 *dynamodb.DeleteTableInput
 
 // DeleteTableRequest indicates an expected call of DeleteTableRequest
 func (_mr *MockDynamoDBAPIMockRecorder) DeleteTableRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteTableRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteTableRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).DeleteTableRequest), arg0)
 }
 
 // DescribeLimits mocks base method
@@ -292,7 +293,7 @@ func (_m *MockDynamoDBAPI) DescribeLimits(_param0 *dynamodb.DescribeLimitsInput)
 
 // DescribeLimits indicates an expected call of DescribeLimits
 func (_mr *MockDynamoDBAPIMockRecorder) DescribeLimits(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeLimits", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeLimits", reflect.TypeOf((*MockDynamoDBAPI)(nil).DescribeLimits), arg0)
 }
 
 // DescribeLimitsWithContext mocks base method
@@ -310,7 +311,7 @@ func (_m *MockDynamoDBAPI) DescribeLimitsWithContext(_param0 aws.Context, _param
 // DescribeLimitsWithContext indicates an expected call of DescribeLimitsWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) DescribeLimitsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeLimitsWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeLimitsWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).DescribeLimitsWithContext), _s...)
 }
 
 // DescribeLimitsRequest mocks base method
@@ -323,7 +324,7 @@ func (_m *MockDynamoDBAPI) DescribeLimitsRequest(_param0 *dynamodb.DescribeLimit
 
 // DescribeLimitsRequest indicates an expected call of DescribeLimitsRequest
 func (_mr *MockDynamoDBAPIMockRecorder) DescribeLimitsRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeLimitsRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeLimitsRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).DescribeLimitsRequest), arg0)
 }
 
 // DescribeTable mocks base method
@@ -336,7 +337,7 @@ func (_m *MockDynamoDBAPI) DescribeTable(_param0 *dynamodb.DescribeTableInput) (
 
 // DescribeTable indicates an expected call of DescribeTable
 func (_mr *MockDynamoDBAPIMockRecorder) DescribeTable(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeTable", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeTable", reflect.TypeOf((*MockDynamoDBAPI)(nil).DescribeTable), arg0)
 }
 
 // DescribeTableWithContext mocks base method
@@ -354,7 +355,7 @@ func (_m *MockDynamoDBAPI) DescribeTableWithContext(_param0 aws.Context, _param1
 // DescribeTableWithContext indicates an expected call of DescribeTableWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) DescribeTableWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeTableWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeTableWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).DescribeTableWithContext), _s...)
 }
 
 // DescribeTableRequest mocks base method
@@ -367,7 +368,7 @@ func (_m *MockDynamoDBAPI) DescribeTableRequest(_param0 *dynamodb.DescribeTableI
 
 // DescribeTableRequest indicates an expected call of DescribeTableRequest
 func (_mr *MockDynamoDBAPIMockRecorder) DescribeTableRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeTableRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeTableRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).DescribeTableRequest), arg0)
 }
 
 // DescribeTimeToLive mocks base method
@@ -380,7 +381,7 @@ func (_m *MockDynamoDBAPI) DescribeTimeToLive(_param0 *dynamodb.DescribeTimeToLi
 
 // DescribeTimeToLive indicates an expected call of DescribeTimeToLive
 func (_mr *MockDynamoDBAPIMockRecorder) DescribeTimeToLive(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeTimeToLive", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeTimeToLive", reflect.TypeOf((*MockDynamoDBAPI)(nil).DescribeTimeToLive), arg0)
 }
 
 // DescribeTimeToLiveWithContext mocks base method
@@ -398,7 +399,7 @@ func (_m *MockDynamoDBAPI) DescribeTimeToLiveWithContext(_param0 aws.Context, _p
 // DescribeTimeToLiveWithContext indicates an expected call of DescribeTimeToLiveWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) DescribeTimeToLiveWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeTimeToLiveWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeTimeToLiveWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).DescribeTimeToLiveWithContext), _s...)
 }
 
 // DescribeTimeToLiveRequest mocks base method
@@ -411,7 +412,7 @@ func (_m *MockDynamoDBAPI) DescribeTimeToLiveRequest(_param0 *dynamodb.DescribeT
 
 // DescribeTimeToLiveRequest indicates an expected call of DescribeTimeToLiveRequest
 func (_mr *MockDynamoDBAPIMockRecorder) DescribeTimeToLiveRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeTimeToLiveRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeTimeToLiveRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).DescribeTimeToLiveRequest), arg0)
 }
 
 // GetItem mocks base method
@@ -424,7 +425,7 @@ func (_m *MockDynamoDBAPI) GetItem(_param0 *dynamodb.GetItemInput) (*dynamodb.Ge
 
 // GetItem indicates an expected call of GetItem
 func (_mr *MockDynamoDBAPIMockRecorder) GetItem(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetItem", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetItem", reflect.TypeOf((*MockDynamoDBAPI)(nil).GetItem), arg0)
 }
 
 // GetItemWithContext mocks base method
@@ -442,7 +443,7 @@ func (_m *MockDynamoDBAPI) GetItemWithContext(_param0 aws.Context, _param1 *dyna
 // GetItemWithContext indicates an expected call of GetItemWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) GetItemWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetItemWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetItemWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).GetItemWithContext), _s...)
 }
 
 // GetItemRequest mocks base method
@@ -455,7 +456,7 @@ func (_m *MockDynamoDBAPI) GetItemRequest(_param0 *dynamodb.GetItemInput) (*requ
 
 // GetItemRequest indicates an expected call of GetItemRequest
 func (_mr *MockDynamoDBAPIMockRecorder) GetItemRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetItemRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetItemRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).GetItemRequest), arg0)
 }
 
 // ListTables mocks base method
@@ -468,7 +469,7 @@ func (_m *MockDynamoDBAPI) ListTables(_param0 *dynamodb.ListTablesInput) (*dynam
 
 // ListTables indicates an expected call of ListTables
 func (_mr *MockDynamoDBAPIMockRecorder) ListTables(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTables", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTables", reflect.TypeOf((*MockDynamoDBAPI)(nil).ListTables), arg0)
 }
 
 // ListTablesWithContext mocks base method
@@ -486,7 +487,7 @@ func (_m *MockDynamoDBAPI) ListTablesWithContext(_param0 aws.Context, _param1 *d
 // ListTablesWithContext indicates an expected call of ListTablesWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) ListTablesWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTablesWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTablesWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).ListTablesWithContext), _s...)
 }
 
 // ListTablesRequest mocks base method
@@ -499,7 +500,7 @@ func (_m *MockDynamoDBAPI) ListTablesRequest(_param0 *dynamodb.ListTablesInput) 
 
 // ListTablesRequest indicates an expected call of ListTablesRequest
 func (_mr *MockDynamoDBAPIMockRecorder) ListTablesRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTablesRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTablesRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).ListTablesRequest), arg0)
 }
 
 // ListTablesPages mocks base method
@@ -511,7 +512,7 @@ func (_m *MockDynamoDBAPI) ListTablesPages(_param0 *dynamodb.ListTablesInput, _p
 
 // ListTablesPages indicates an expected call of ListTablesPages
 func (_mr *MockDynamoDBAPIMockRecorder) ListTablesPages(arg0, arg1 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTablesPages", arg0, arg1)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTablesPages", reflect.TypeOf((*MockDynamoDBAPI)(nil).ListTablesPages), arg0, arg1)
 }
 
 // ListTablesPagesWithContext mocks base method
@@ -528,7 +529,7 @@ func (_m *MockDynamoDBAPI) ListTablesPagesWithContext(_param0 aws.Context, _para
 // ListTablesPagesWithContext indicates an expected call of ListTablesPagesWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) ListTablesPagesWithContext(arg0, arg1, arg2 interface{}, arg3 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1, arg2}, arg3...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTablesPagesWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTablesPagesWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).ListTablesPagesWithContext), _s...)
 }
 
 // ListTagsOfResource mocks base method
@@ -541,7 +542,7 @@ func (_m *MockDynamoDBAPI) ListTagsOfResource(_param0 *dynamodb.ListTagsOfResour
 
 // ListTagsOfResource indicates an expected call of ListTagsOfResource
 func (_mr *MockDynamoDBAPIMockRecorder) ListTagsOfResource(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTagsOfResource", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTagsOfResource", reflect.TypeOf((*MockDynamoDBAPI)(nil).ListTagsOfResource), arg0)
 }
 
 // ListTagsOfResourceWithContext mocks base method
@@ -559,7 +560,7 @@ func (_m *MockDynamoDBAPI) ListTagsOfResourceWithContext(_param0 aws.Context, _p
 // ListTagsOfResourceWithContext indicates an expected call of ListTagsOfResourceWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) ListTagsOfResourceWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTagsOfResourceWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTagsOfResourceWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).ListTagsOfResourceWithContext), _s...)
 }
 
 // ListTagsOfResourceRequest mocks base method
@@ -572,7 +573,7 @@ func (_m *MockDynamoDBAPI) ListTagsOfResourceRequest(_param0 *dynamodb.ListTagsO
 
 // ListTagsOfResourceRequest indicates an expected call of ListTagsOfResourceRequest
 func (_mr *MockDynamoDBAPIMockRecorder) ListTagsOfResourceRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTagsOfResourceRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListTagsOfResourceRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).ListTagsOfResourceRequest), arg0)
 }
 
 // PutItem mocks base method
@@ -585,7 +586,7 @@ func (_m *MockDynamoDBAPI) PutItem(_param0 *dynamodb.PutItemInput) (*dynamodb.Pu
 
 // PutItem indicates an expected call of PutItem
 func (_mr *MockDynamoDBAPIMockRecorder) PutItem(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutItem", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutItem", reflect.TypeOf((*MockDynamoDBAPI)(nil).PutItem), arg0)
 }
 
 // PutItemWithContext mocks base method
@@ -603,7 +604,7 @@ func (_m *MockDynamoDBAPI) PutItemWithContext(_param0 aws.Context, _param1 *dyna
 // PutItemWithContext indicates an expected call of PutItemWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) PutItemWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutItemWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutItemWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).PutItemWithContext), _s...)
 }
 
 // PutItemRequest mocks base method
@@ -616,7 +617,7 @@ func (_m *MockDynamoDBAPI) PutItemRequest(_param0 *dynamodb.PutItemInput) (*requ
 
 // PutItemRequest indicates an expected call of PutItemRequest
 func (_mr *MockDynamoDBAPIMockRecorder) PutItemRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutItemRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutItemRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).PutItemRequest), arg0)
 }
 
 // Query mocks base method
@@ -629,7 +630,7 @@ func (_m *MockDynamoDBAPI) Query(_param0 *dynamodb.QueryInput) (*dynamodb.QueryO
 
 // Query indicates an expected call of Query
 func (_mr *MockDynamoDBAPIMockRecorder) Query(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "Query", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "Query", reflect.TypeOf((*MockDynamoDBAPI)(nil).Query), arg0)
 }
 
 // QueryWithContext mocks base method
@@ -647,7 +648,7 @@ func (_m *MockDynamoDBAPI) QueryWithContext(_param0 aws.Context, _param1 *dynamo
 // QueryWithContext indicates an expected call of QueryWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) QueryWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "QueryWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "QueryWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).QueryWithContext), _s...)
 }
 
 // QueryRequest mocks base method
@@ -660,7 +661,7 @@ func (_m *MockDynamoDBAPI) QueryRequest(_param0 *dynamodb.QueryInput) (*request.
 
 // QueryRequest indicates an expected call of QueryRequest
 func (_mr *MockDynamoDBAPIMockRecorder) QueryRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "QueryRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "QueryRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).QueryRequest), arg0)
 }
 
 // QueryPages mocks base method
@@ -672,7 +673,7 @@ func (_m *MockDynamoDBAPI) QueryPages(_param0 *dynamodb.QueryInput, _param1 func
 
 // QueryPages indicates an expected call of QueryPages
 func (_mr *MockDynamoDBAPIMockRecorder) QueryPages(arg0, arg1 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "QueryPages", arg0, arg1)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "QueryPages", reflect.TypeOf((*MockDynamoDBAPI)(nil).QueryPages), arg0, arg1)
 }
 
 // QueryPagesWithContext mocks base method
@@ -689,7 +690,7 @@ func (_m *MockDynamoDBAPI) QueryPagesWithContext(_param0 aws.Context, _param1 *d
 // QueryPagesWithContext indicates an expected call of QueryPagesWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) QueryPagesWithContext(arg0, arg1, arg2 interface{}, arg3 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1, arg2}, arg3...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "QueryPagesWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "QueryPagesWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).QueryPagesWithContext), _s...)
 }
 
 // Scan mocks base method
@@ -702,7 +703,7 @@ func (_m *MockDynamoDBAPI) Scan(_param0 *dynamodb.ScanInput) (*dynamodb.ScanOutp
 
 // Scan indicates an expected call of Scan
 func (_mr *MockDynamoDBAPIMockRecorder) Scan(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "Scan", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "Scan", reflect.TypeOf((*MockDynamoDBAPI)(nil).Scan), arg0)
 }
 
 // ScanWithContext mocks base method
@@ -720,7 +721,7 @@ func (_m *MockDynamoDBAPI) ScanWithContext(_param0 aws.Context, _param1 *dynamod
 // ScanWithContext indicates an expected call of ScanWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) ScanWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ScanWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ScanWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).ScanWithContext), _s...)
 }
 
 // ScanRequest mocks base method
@@ -733,7 +734,7 @@ func (_m *MockDynamoDBAPI) ScanRequest(_param0 *dynamodb.ScanInput) (*request.Re
 
 // ScanRequest indicates an expected call of ScanRequest
 func (_mr *MockDynamoDBAPIMockRecorder) ScanRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ScanRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ScanRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).ScanRequest), arg0)
 }
 
 // ScanPages mocks base method
@@ -745,7 +746,7 @@ func (_m *MockDynamoDBAPI) ScanPages(_param0 *dynamodb.ScanInput, _param1 func(*
 
 // ScanPages indicates an expected call of ScanPages
 func (_mr *MockDynamoDBAPIMockRecorder) ScanPages(arg0, arg1 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ScanPages", arg0, arg1)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ScanPages", reflect.TypeOf((*MockDynamoDBAPI)(nil).ScanPages), arg0, arg1)
 }
 
 // ScanPagesWithContext mocks base method
@@ -762,7 +763,7 @@ func (_m *MockDynamoDBAPI) ScanPagesWithContext(_param0 aws.Context, _param1 *dy
 // ScanPagesWithContext indicates an expected call of ScanPagesWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) ScanPagesWithContext(arg0, arg1, arg2 interface{}, arg3 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1, arg2}, arg3...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ScanPagesWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ScanPagesWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).ScanPagesWithContext), _s...)
 }
 
 // TagResource mocks base method
@@ -775,7 +776,7 @@ func (_m *MockDynamoDBAPI) TagResource(_param0 *dynamodb.TagResourceInput) (*dyn
 
 // TagResource indicates an expected call of TagResource
 func (_mr *MockDynamoDBAPIMockRecorder) TagResource(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "TagResource", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "TagResource", reflect.TypeOf((*MockDynamoDBAPI)(nil).TagResource), arg0)
 }
 
 // TagResourceWithContext mocks base method
@@ -793,7 +794,7 @@ func (_m *MockDynamoDBAPI) TagResourceWithContext(_param0 aws.Context, _param1 *
 // TagResourceWithContext indicates an expected call of TagResourceWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) TagResourceWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "TagResourceWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "TagResourceWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).TagResourceWithContext), _s...)
 }
 
 // TagResourceRequest mocks base method
@@ -806,7 +807,7 @@ func (_m *MockDynamoDBAPI) TagResourceRequest(_param0 *dynamodb.TagResourceInput
 
 // TagResourceRequest indicates an expected call of TagResourceRequest
 func (_mr *MockDynamoDBAPIMockRecorder) TagResourceRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "TagResourceRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "TagResourceRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).TagResourceRequest), arg0)
 }
 
 // UntagResource mocks base method
@@ -819,7 +820,7 @@ func (_m *MockDynamoDBAPI) UntagResource(_param0 *dynamodb.UntagResourceInput) (
 
 // UntagResource indicates an expected call of UntagResource
 func (_mr *MockDynamoDBAPIMockRecorder) UntagResource(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UntagResource", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UntagResource", reflect.TypeOf((*MockDynamoDBAPI)(nil).UntagResource), arg0)
 }
 
 // UntagResourceWithContext mocks base method
@@ -837,7 +838,7 @@ func (_m *MockDynamoDBAPI) UntagResourceWithContext(_param0 aws.Context, _param1
 // UntagResourceWithContext indicates an expected call of UntagResourceWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) UntagResourceWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UntagResourceWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UntagResourceWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).UntagResourceWithContext), _s...)
 }
 
 // UntagResourceRequest mocks base method
@@ -850,7 +851,7 @@ func (_m *MockDynamoDBAPI) UntagResourceRequest(_param0 *dynamodb.UntagResourceI
 
 // UntagResourceRequest indicates an expected call of UntagResourceRequest
 func (_mr *MockDynamoDBAPIMockRecorder) UntagResourceRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UntagResourceRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UntagResourceRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).UntagResourceRequest), arg0)
 }
 
 // UpdateItem mocks base method
@@ -863,7 +864,7 @@ func (_m *MockDynamoDBAPI) UpdateItem(_param0 *dynamodb.UpdateItemInput) (*dynam
 
 // UpdateItem indicates an expected call of UpdateItem
 func (_mr *MockDynamoDBAPIMockRecorder) UpdateItem(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateItem", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateItem", reflect.TypeOf((*MockDynamoDBAPI)(nil).UpdateItem), arg0)
 }
 
 // UpdateItemWithContext mocks base method
@@ -881,7 +882,7 @@ func (_m *MockDynamoDBAPI) UpdateItemWithContext(_param0 aws.Context, _param1 *d
 // UpdateItemWithContext indicates an expected call of UpdateItemWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) UpdateItemWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateItemWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateItemWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).UpdateItemWithContext), _s...)
 }
 
 // UpdateItemRequest mocks base method
@@ -894,7 +895,7 @@ func (_m *MockDynamoDBAPI) UpdateItemRequest(_param0 *dynamodb.UpdateItemInput) 
 
 // UpdateItemRequest indicates an expected call of UpdateItemRequest
 func (_mr *MockDynamoDBAPIMockRecorder) UpdateItemRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateItemRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateItemRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).UpdateItemRequest), arg0)
 }
 
 // UpdateTable mocks base method
@@ -907,7 +908,7 @@ func (_m *MockDynamoDBAPI) UpdateTable(_param0 *dynamodb.UpdateTableInput) (*dyn
 
 // UpdateTable indicates an expected call of UpdateTable
 func (_mr *MockDynamoDBAPIMockRecorder) UpdateTable(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateTable", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateTable", reflect.TypeOf((*MockDynamoDBAPI)(nil).UpdateTable), arg0)
 }
 
 // UpdateTableWithContext mocks base method
@@ -925,7 +926,7 @@ func (_m *MockDynamoDBAPI) UpdateTableWithContext(_param0 aws.Context, _param1 *
 // UpdateTableWithContext indicates an expected call of UpdateTableWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) UpdateTableWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateTableWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateTableWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).UpdateTableWithContext), _s...)
 }
 
 // UpdateTableRequest mocks base method
@@ -938,7 +939,7 @@ func (_m *MockDynamoDBAPI) UpdateTableRequest(_param0 *dynamodb.UpdateTableInput
 
 // UpdateTableRequest indicates an expected call of UpdateTableRequest
 func (_mr *MockDynamoDBAPIMockRecorder) UpdateTableRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateTableRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateTableRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).UpdateTableRequest), arg0)
 }
 
 // UpdateTimeToLive mocks base method
@@ -951,7 +952,7 @@ func (_m *MockDynamoDBAPI) UpdateTimeToLive(_param0 *dynamodb.UpdateTimeToLiveIn
 
 // UpdateTimeToLive indicates an expected call of UpdateTimeToLive
 func (_mr *MockDynamoDBAPIMockRecorder) UpdateTimeToLive(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateTimeToLive", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateTimeToLive", reflect.TypeOf((*MockDynamoDBAPI)(nil).UpdateTimeToLive), arg0)
 }
 
 // UpdateTimeToLiveWithContext mocks base method
@@ -969,7 +970,7 @@ func (_m *MockDynamoDBAPI) UpdateTimeToLiveWithContext(_param0 aws.Context, _par
 // UpdateTimeToLiveWithContext indicates an expected call of UpdateTimeToLiveWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) UpdateTimeToLiveWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateTimeToLiveWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateTimeToLiveWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).UpdateTimeToLiveWithContext), _s...)
 }
 
 // UpdateTimeToLiveRequest mocks base method
@@ -982,7 +983,7 @@ func (_m *MockDynamoDBAPI) UpdateTimeToLiveRequest(_param0 *dynamodb.UpdateTimeT
 
 // UpdateTimeToLiveRequest indicates an expected call of UpdateTimeToLiveRequest
 func (_mr *MockDynamoDBAPIMockRecorder) UpdateTimeToLiveRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateTimeToLiveRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateTimeToLiveRequest", reflect.TypeOf((*MockDynamoDBAPI)(nil).UpdateTimeToLiveRequest), arg0)
 }
 
 // WaitUntilTableExists mocks base method
@@ -994,7 +995,7 @@ func (_m *MockDynamoDBAPI) WaitUntilTableExists(_param0 *dynamodb.DescribeTableI
 
 // WaitUntilTableExists indicates an expected call of WaitUntilTableExists
 func (_mr *MockDynamoDBAPIMockRecorder) WaitUntilTableExists(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilTableExists", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilTableExists", reflect.TypeOf((*MockDynamoDBAPI)(nil).WaitUntilTableExists), arg0)
 }
 
 // WaitUntilTableExistsWithContext mocks base method
@@ -1011,7 +1012,7 @@ func (_m *MockDynamoDBAPI) WaitUntilTableExistsWithContext(_param0 aws.Context, 
 // WaitUntilTableExistsWithContext indicates an expected call of WaitUntilTableExistsWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) WaitUntilTableExistsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilTableExistsWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilTableExistsWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).WaitUntilTableExistsWithContext), _s...)
 }
 
 // WaitUntilTableNotExists mocks base method
@@ -1023,7 +1024,7 @@ func (_m *MockDynamoDBAPI) WaitUntilTableNotExists(_param0 *dynamodb.DescribeTab
 
 // WaitUntilTableNotExists indicates an expected call of WaitUntilTableNotExists
 func (_mr *MockDynamoDBAPIMockRecorder) WaitUntilTableNotExists(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilTableNotExists", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilTableNotExists", reflect.TypeOf((*MockDynamoDBAPI)(nil).WaitUntilTableNotExists), arg0)
 }
 
 // WaitUntilTableNotExistsWithContext mocks base method
@@ -1040,5 +1041,5 @@ func (_m *MockDynamoDBAPI) WaitUntilTableNotExistsWithContext(_param0 aws.Contex
 // WaitUntilTableNotExistsWithContext indicates an expected call of WaitUntilTableNotExistsWithContext
 func (_mr *MockDynamoDBAPIMockRecorder) WaitUntilTableNotExistsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilTableNotExistsWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "WaitUntilTableNotExistsWithContext", reflect.TypeOf((*MockDynamoDBAPI)(nil).WaitUntilTableNotExistsWithContext), _s...)
 }

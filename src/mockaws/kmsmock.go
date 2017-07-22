@@ -8,6 +8,7 @@ import (
 	request "github.com/aws/aws-sdk-go/aws/request"
 	kms "github.com/aws/aws-sdk-go/service/kms"
 	gomock "github.com/golang/mock/gomock"
+	reflect "reflect"
 )
 
 // MockKMSAPI is a mock of KMSAPI interface
@@ -43,7 +44,7 @@ func (_m *MockKMSAPI) CancelKeyDeletion(_param0 *kms.CancelKeyDeletionInput) (*k
 
 // CancelKeyDeletion indicates an expected call of CancelKeyDeletion
 func (_mr *MockKMSAPIMockRecorder) CancelKeyDeletion(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CancelKeyDeletion", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CancelKeyDeletion", reflect.TypeOf((*MockKMSAPI)(nil).CancelKeyDeletion), arg0)
 }
 
 // CancelKeyDeletionWithContext mocks base method
@@ -61,7 +62,7 @@ func (_m *MockKMSAPI) CancelKeyDeletionWithContext(_param0 aws.Context, _param1 
 // CancelKeyDeletionWithContext indicates an expected call of CancelKeyDeletionWithContext
 func (_mr *MockKMSAPIMockRecorder) CancelKeyDeletionWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CancelKeyDeletionWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CancelKeyDeletionWithContext", reflect.TypeOf((*MockKMSAPI)(nil).CancelKeyDeletionWithContext), _s...)
 }
 
 // CancelKeyDeletionRequest mocks base method
@@ -74,7 +75,7 @@ func (_m *MockKMSAPI) CancelKeyDeletionRequest(_param0 *kms.CancelKeyDeletionInp
 
 // CancelKeyDeletionRequest indicates an expected call of CancelKeyDeletionRequest
 func (_mr *MockKMSAPIMockRecorder) CancelKeyDeletionRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CancelKeyDeletionRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CancelKeyDeletionRequest", reflect.TypeOf((*MockKMSAPI)(nil).CancelKeyDeletionRequest), arg0)
 }
 
 // CreateAlias mocks base method
@@ -87,7 +88,7 @@ func (_m *MockKMSAPI) CreateAlias(_param0 *kms.CreateAliasInput) (*kms.CreateAli
 
 // CreateAlias indicates an expected call of CreateAlias
 func (_mr *MockKMSAPIMockRecorder) CreateAlias(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateAlias", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateAlias", reflect.TypeOf((*MockKMSAPI)(nil).CreateAlias), arg0)
 }
 
 // CreateAliasWithContext mocks base method
@@ -105,7 +106,7 @@ func (_m *MockKMSAPI) CreateAliasWithContext(_param0 aws.Context, _param1 *kms.C
 // CreateAliasWithContext indicates an expected call of CreateAliasWithContext
 func (_mr *MockKMSAPIMockRecorder) CreateAliasWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateAliasWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateAliasWithContext", reflect.TypeOf((*MockKMSAPI)(nil).CreateAliasWithContext), _s...)
 }
 
 // CreateAliasRequest mocks base method
@@ -118,7 +119,7 @@ func (_m *MockKMSAPI) CreateAliasRequest(_param0 *kms.CreateAliasInput) (*reques
 
 // CreateAliasRequest indicates an expected call of CreateAliasRequest
 func (_mr *MockKMSAPIMockRecorder) CreateAliasRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateAliasRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateAliasRequest", reflect.TypeOf((*MockKMSAPI)(nil).CreateAliasRequest), arg0)
 }
 
 // CreateGrant mocks base method
@@ -131,7 +132,7 @@ func (_m *MockKMSAPI) CreateGrant(_param0 *kms.CreateGrantInput) (*kms.CreateGra
 
 // CreateGrant indicates an expected call of CreateGrant
 func (_mr *MockKMSAPIMockRecorder) CreateGrant(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateGrant", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateGrant", reflect.TypeOf((*MockKMSAPI)(nil).CreateGrant), arg0)
 }
 
 // CreateGrantWithContext mocks base method
@@ -149,7 +150,7 @@ func (_m *MockKMSAPI) CreateGrantWithContext(_param0 aws.Context, _param1 *kms.C
 // CreateGrantWithContext indicates an expected call of CreateGrantWithContext
 func (_mr *MockKMSAPIMockRecorder) CreateGrantWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateGrantWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateGrantWithContext", reflect.TypeOf((*MockKMSAPI)(nil).CreateGrantWithContext), _s...)
 }
 
 // CreateGrantRequest mocks base method
@@ -162,7 +163,7 @@ func (_m *MockKMSAPI) CreateGrantRequest(_param0 *kms.CreateGrantInput) (*reques
 
 // CreateGrantRequest indicates an expected call of CreateGrantRequest
 func (_mr *MockKMSAPIMockRecorder) CreateGrantRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateGrantRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateGrantRequest", reflect.TypeOf((*MockKMSAPI)(nil).CreateGrantRequest), arg0)
 }
 
 // CreateKey mocks base method
@@ -175,7 +176,7 @@ func (_m *MockKMSAPI) CreateKey(_param0 *kms.CreateKeyInput) (*kms.CreateKeyOutp
 
 // CreateKey indicates an expected call of CreateKey
 func (_mr *MockKMSAPIMockRecorder) CreateKey(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateKey", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateKey", reflect.TypeOf((*MockKMSAPI)(nil).CreateKey), arg0)
 }
 
 // CreateKeyWithContext mocks base method
@@ -193,7 +194,7 @@ func (_m *MockKMSAPI) CreateKeyWithContext(_param0 aws.Context, _param1 *kms.Cre
 // CreateKeyWithContext indicates an expected call of CreateKeyWithContext
 func (_mr *MockKMSAPIMockRecorder) CreateKeyWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateKeyWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateKeyWithContext", reflect.TypeOf((*MockKMSAPI)(nil).CreateKeyWithContext), _s...)
 }
 
 // CreateKeyRequest mocks base method
@@ -206,7 +207,7 @@ func (_m *MockKMSAPI) CreateKeyRequest(_param0 *kms.CreateKeyInput) (*request.Re
 
 // CreateKeyRequest indicates an expected call of CreateKeyRequest
 func (_mr *MockKMSAPIMockRecorder) CreateKeyRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateKeyRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "CreateKeyRequest", reflect.TypeOf((*MockKMSAPI)(nil).CreateKeyRequest), arg0)
 }
 
 // Decrypt mocks base method
@@ -219,7 +220,7 @@ func (_m *MockKMSAPI) Decrypt(_param0 *kms.DecryptInput) (*kms.DecryptOutput, er
 
 // Decrypt indicates an expected call of Decrypt
 func (_mr *MockKMSAPIMockRecorder) Decrypt(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "Decrypt", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "Decrypt", reflect.TypeOf((*MockKMSAPI)(nil).Decrypt), arg0)
 }
 
 // DecryptWithContext mocks base method
@@ -237,7 +238,7 @@ func (_m *MockKMSAPI) DecryptWithContext(_param0 aws.Context, _param1 *kms.Decry
 // DecryptWithContext indicates an expected call of DecryptWithContext
 func (_mr *MockKMSAPIMockRecorder) DecryptWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DecryptWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DecryptWithContext", reflect.TypeOf((*MockKMSAPI)(nil).DecryptWithContext), _s...)
 }
 
 // DecryptRequest mocks base method
@@ -250,7 +251,7 @@ func (_m *MockKMSAPI) DecryptRequest(_param0 *kms.DecryptInput) (*request.Reques
 
 // DecryptRequest indicates an expected call of DecryptRequest
 func (_mr *MockKMSAPIMockRecorder) DecryptRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DecryptRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DecryptRequest", reflect.TypeOf((*MockKMSAPI)(nil).DecryptRequest), arg0)
 }
 
 // DeleteAlias mocks base method
@@ -263,7 +264,7 @@ func (_m *MockKMSAPI) DeleteAlias(_param0 *kms.DeleteAliasInput) (*kms.DeleteAli
 
 // DeleteAlias indicates an expected call of DeleteAlias
 func (_mr *MockKMSAPIMockRecorder) DeleteAlias(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteAlias", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteAlias", reflect.TypeOf((*MockKMSAPI)(nil).DeleteAlias), arg0)
 }
 
 // DeleteAliasWithContext mocks base method
@@ -281,7 +282,7 @@ func (_m *MockKMSAPI) DeleteAliasWithContext(_param0 aws.Context, _param1 *kms.D
 // DeleteAliasWithContext indicates an expected call of DeleteAliasWithContext
 func (_mr *MockKMSAPIMockRecorder) DeleteAliasWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteAliasWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteAliasWithContext", reflect.TypeOf((*MockKMSAPI)(nil).DeleteAliasWithContext), _s...)
 }
 
 // DeleteAliasRequest mocks base method
@@ -294,7 +295,7 @@ func (_m *MockKMSAPI) DeleteAliasRequest(_param0 *kms.DeleteAliasInput) (*reques
 
 // DeleteAliasRequest indicates an expected call of DeleteAliasRequest
 func (_mr *MockKMSAPIMockRecorder) DeleteAliasRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteAliasRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteAliasRequest", reflect.TypeOf((*MockKMSAPI)(nil).DeleteAliasRequest), arg0)
 }
 
 // DeleteImportedKeyMaterial mocks base method
@@ -307,7 +308,7 @@ func (_m *MockKMSAPI) DeleteImportedKeyMaterial(_param0 *kms.DeleteImportedKeyMa
 
 // DeleteImportedKeyMaterial indicates an expected call of DeleteImportedKeyMaterial
 func (_mr *MockKMSAPIMockRecorder) DeleteImportedKeyMaterial(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteImportedKeyMaterial", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteImportedKeyMaterial", reflect.TypeOf((*MockKMSAPI)(nil).DeleteImportedKeyMaterial), arg0)
 }
 
 // DeleteImportedKeyMaterialWithContext mocks base method
@@ -325,7 +326,7 @@ func (_m *MockKMSAPI) DeleteImportedKeyMaterialWithContext(_param0 aws.Context, 
 // DeleteImportedKeyMaterialWithContext indicates an expected call of DeleteImportedKeyMaterialWithContext
 func (_mr *MockKMSAPIMockRecorder) DeleteImportedKeyMaterialWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteImportedKeyMaterialWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteImportedKeyMaterialWithContext", reflect.TypeOf((*MockKMSAPI)(nil).DeleteImportedKeyMaterialWithContext), _s...)
 }
 
 // DeleteImportedKeyMaterialRequest mocks base method
@@ -338,7 +339,7 @@ func (_m *MockKMSAPI) DeleteImportedKeyMaterialRequest(_param0 *kms.DeleteImport
 
 // DeleteImportedKeyMaterialRequest indicates an expected call of DeleteImportedKeyMaterialRequest
 func (_mr *MockKMSAPIMockRecorder) DeleteImportedKeyMaterialRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteImportedKeyMaterialRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DeleteImportedKeyMaterialRequest", reflect.TypeOf((*MockKMSAPI)(nil).DeleteImportedKeyMaterialRequest), arg0)
 }
 
 // DescribeKey mocks base method
@@ -351,7 +352,7 @@ func (_m *MockKMSAPI) DescribeKey(_param0 *kms.DescribeKeyInput) (*kms.DescribeK
 
 // DescribeKey indicates an expected call of DescribeKey
 func (_mr *MockKMSAPIMockRecorder) DescribeKey(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeKey", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeKey", reflect.TypeOf((*MockKMSAPI)(nil).DescribeKey), arg0)
 }
 
 // DescribeKeyWithContext mocks base method
@@ -369,7 +370,7 @@ func (_m *MockKMSAPI) DescribeKeyWithContext(_param0 aws.Context, _param1 *kms.D
 // DescribeKeyWithContext indicates an expected call of DescribeKeyWithContext
 func (_mr *MockKMSAPIMockRecorder) DescribeKeyWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeKeyWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeKeyWithContext", reflect.TypeOf((*MockKMSAPI)(nil).DescribeKeyWithContext), _s...)
 }
 
 // DescribeKeyRequest mocks base method
@@ -382,7 +383,7 @@ func (_m *MockKMSAPI) DescribeKeyRequest(_param0 *kms.DescribeKeyInput) (*reques
 
 // DescribeKeyRequest indicates an expected call of DescribeKeyRequest
 func (_mr *MockKMSAPIMockRecorder) DescribeKeyRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeKeyRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DescribeKeyRequest", reflect.TypeOf((*MockKMSAPI)(nil).DescribeKeyRequest), arg0)
 }
 
 // DisableKey mocks base method
@@ -395,7 +396,7 @@ func (_m *MockKMSAPI) DisableKey(_param0 *kms.DisableKeyInput) (*kms.DisableKeyO
 
 // DisableKey indicates an expected call of DisableKey
 func (_mr *MockKMSAPIMockRecorder) DisableKey(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DisableKey", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DisableKey", reflect.TypeOf((*MockKMSAPI)(nil).DisableKey), arg0)
 }
 
 // DisableKeyWithContext mocks base method
@@ -413,7 +414,7 @@ func (_m *MockKMSAPI) DisableKeyWithContext(_param0 aws.Context, _param1 *kms.Di
 // DisableKeyWithContext indicates an expected call of DisableKeyWithContext
 func (_mr *MockKMSAPIMockRecorder) DisableKeyWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DisableKeyWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DisableKeyWithContext", reflect.TypeOf((*MockKMSAPI)(nil).DisableKeyWithContext), _s...)
 }
 
 // DisableKeyRequest mocks base method
@@ -426,7 +427,7 @@ func (_m *MockKMSAPI) DisableKeyRequest(_param0 *kms.DisableKeyInput) (*request.
 
 // DisableKeyRequest indicates an expected call of DisableKeyRequest
 func (_mr *MockKMSAPIMockRecorder) DisableKeyRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DisableKeyRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DisableKeyRequest", reflect.TypeOf((*MockKMSAPI)(nil).DisableKeyRequest), arg0)
 }
 
 // DisableKeyRotation mocks base method
@@ -439,7 +440,7 @@ func (_m *MockKMSAPI) DisableKeyRotation(_param0 *kms.DisableKeyRotationInput) (
 
 // DisableKeyRotation indicates an expected call of DisableKeyRotation
 func (_mr *MockKMSAPIMockRecorder) DisableKeyRotation(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DisableKeyRotation", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DisableKeyRotation", reflect.TypeOf((*MockKMSAPI)(nil).DisableKeyRotation), arg0)
 }
 
 // DisableKeyRotationWithContext mocks base method
@@ -457,7 +458,7 @@ func (_m *MockKMSAPI) DisableKeyRotationWithContext(_param0 aws.Context, _param1
 // DisableKeyRotationWithContext indicates an expected call of DisableKeyRotationWithContext
 func (_mr *MockKMSAPIMockRecorder) DisableKeyRotationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DisableKeyRotationWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DisableKeyRotationWithContext", reflect.TypeOf((*MockKMSAPI)(nil).DisableKeyRotationWithContext), _s...)
 }
 
 // DisableKeyRotationRequest mocks base method
@@ -470,7 +471,7 @@ func (_m *MockKMSAPI) DisableKeyRotationRequest(_param0 *kms.DisableKeyRotationI
 
 // DisableKeyRotationRequest indicates an expected call of DisableKeyRotationRequest
 func (_mr *MockKMSAPIMockRecorder) DisableKeyRotationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "DisableKeyRotationRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "DisableKeyRotationRequest", reflect.TypeOf((*MockKMSAPI)(nil).DisableKeyRotationRequest), arg0)
 }
 
 // EnableKey mocks base method
@@ -483,7 +484,7 @@ func (_m *MockKMSAPI) EnableKey(_param0 *kms.EnableKeyInput) (*kms.EnableKeyOutp
 
 // EnableKey indicates an expected call of EnableKey
 func (_mr *MockKMSAPIMockRecorder) EnableKey(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "EnableKey", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "EnableKey", reflect.TypeOf((*MockKMSAPI)(nil).EnableKey), arg0)
 }
 
 // EnableKeyWithContext mocks base method
@@ -501,7 +502,7 @@ func (_m *MockKMSAPI) EnableKeyWithContext(_param0 aws.Context, _param1 *kms.Ena
 // EnableKeyWithContext indicates an expected call of EnableKeyWithContext
 func (_mr *MockKMSAPIMockRecorder) EnableKeyWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "EnableKeyWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "EnableKeyWithContext", reflect.TypeOf((*MockKMSAPI)(nil).EnableKeyWithContext), _s...)
 }
 
 // EnableKeyRequest mocks base method
@@ -514,7 +515,7 @@ func (_m *MockKMSAPI) EnableKeyRequest(_param0 *kms.EnableKeyInput) (*request.Re
 
 // EnableKeyRequest indicates an expected call of EnableKeyRequest
 func (_mr *MockKMSAPIMockRecorder) EnableKeyRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "EnableKeyRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "EnableKeyRequest", reflect.TypeOf((*MockKMSAPI)(nil).EnableKeyRequest), arg0)
 }
 
 // EnableKeyRotation mocks base method
@@ -527,7 +528,7 @@ func (_m *MockKMSAPI) EnableKeyRotation(_param0 *kms.EnableKeyRotationInput) (*k
 
 // EnableKeyRotation indicates an expected call of EnableKeyRotation
 func (_mr *MockKMSAPIMockRecorder) EnableKeyRotation(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "EnableKeyRotation", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "EnableKeyRotation", reflect.TypeOf((*MockKMSAPI)(nil).EnableKeyRotation), arg0)
 }
 
 // EnableKeyRotationWithContext mocks base method
@@ -545,7 +546,7 @@ func (_m *MockKMSAPI) EnableKeyRotationWithContext(_param0 aws.Context, _param1 
 // EnableKeyRotationWithContext indicates an expected call of EnableKeyRotationWithContext
 func (_mr *MockKMSAPIMockRecorder) EnableKeyRotationWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "EnableKeyRotationWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "EnableKeyRotationWithContext", reflect.TypeOf((*MockKMSAPI)(nil).EnableKeyRotationWithContext), _s...)
 }
 
 // EnableKeyRotationRequest mocks base method
@@ -558,7 +559,7 @@ func (_m *MockKMSAPI) EnableKeyRotationRequest(_param0 *kms.EnableKeyRotationInp
 
 // EnableKeyRotationRequest indicates an expected call of EnableKeyRotationRequest
 func (_mr *MockKMSAPIMockRecorder) EnableKeyRotationRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "EnableKeyRotationRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "EnableKeyRotationRequest", reflect.TypeOf((*MockKMSAPI)(nil).EnableKeyRotationRequest), arg0)
 }
 
 // Encrypt mocks base method
@@ -571,7 +572,7 @@ func (_m *MockKMSAPI) Encrypt(_param0 *kms.EncryptInput) (*kms.EncryptOutput, er
 
 // Encrypt indicates an expected call of Encrypt
 func (_mr *MockKMSAPIMockRecorder) Encrypt(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "Encrypt", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "Encrypt", reflect.TypeOf((*MockKMSAPI)(nil).Encrypt), arg0)
 }
 
 // EncryptWithContext mocks base method
@@ -589,7 +590,7 @@ func (_m *MockKMSAPI) EncryptWithContext(_param0 aws.Context, _param1 *kms.Encry
 // EncryptWithContext indicates an expected call of EncryptWithContext
 func (_mr *MockKMSAPIMockRecorder) EncryptWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "EncryptWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "EncryptWithContext", reflect.TypeOf((*MockKMSAPI)(nil).EncryptWithContext), _s...)
 }
 
 // EncryptRequest mocks base method
@@ -602,7 +603,7 @@ func (_m *MockKMSAPI) EncryptRequest(_param0 *kms.EncryptInput) (*request.Reques
 
 // EncryptRequest indicates an expected call of EncryptRequest
 func (_mr *MockKMSAPIMockRecorder) EncryptRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "EncryptRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "EncryptRequest", reflect.TypeOf((*MockKMSAPI)(nil).EncryptRequest), arg0)
 }
 
 // GenerateDataKey mocks base method
@@ -615,7 +616,7 @@ func (_m *MockKMSAPI) GenerateDataKey(_param0 *kms.GenerateDataKeyInput) (*kms.G
 
 // GenerateDataKey indicates an expected call of GenerateDataKey
 func (_mr *MockKMSAPIMockRecorder) GenerateDataKey(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateDataKey", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateDataKey", reflect.TypeOf((*MockKMSAPI)(nil).GenerateDataKey), arg0)
 }
 
 // GenerateDataKeyWithContext mocks base method
@@ -633,7 +634,7 @@ func (_m *MockKMSAPI) GenerateDataKeyWithContext(_param0 aws.Context, _param1 *k
 // GenerateDataKeyWithContext indicates an expected call of GenerateDataKeyWithContext
 func (_mr *MockKMSAPIMockRecorder) GenerateDataKeyWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateDataKeyWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateDataKeyWithContext", reflect.TypeOf((*MockKMSAPI)(nil).GenerateDataKeyWithContext), _s...)
 }
 
 // GenerateDataKeyRequest mocks base method
@@ -646,7 +647,7 @@ func (_m *MockKMSAPI) GenerateDataKeyRequest(_param0 *kms.GenerateDataKeyInput) 
 
 // GenerateDataKeyRequest indicates an expected call of GenerateDataKeyRequest
 func (_mr *MockKMSAPIMockRecorder) GenerateDataKeyRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateDataKeyRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateDataKeyRequest", reflect.TypeOf((*MockKMSAPI)(nil).GenerateDataKeyRequest), arg0)
 }
 
 // GenerateDataKeyWithoutPlaintext mocks base method
@@ -659,7 +660,7 @@ func (_m *MockKMSAPI) GenerateDataKeyWithoutPlaintext(_param0 *kms.GenerateDataK
 
 // GenerateDataKeyWithoutPlaintext indicates an expected call of GenerateDataKeyWithoutPlaintext
 func (_mr *MockKMSAPIMockRecorder) GenerateDataKeyWithoutPlaintext(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateDataKeyWithoutPlaintext", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateDataKeyWithoutPlaintext", reflect.TypeOf((*MockKMSAPI)(nil).GenerateDataKeyWithoutPlaintext), arg0)
 }
 
 // GenerateDataKeyWithoutPlaintextWithContext mocks base method
@@ -677,7 +678,7 @@ func (_m *MockKMSAPI) GenerateDataKeyWithoutPlaintextWithContext(_param0 aws.Con
 // GenerateDataKeyWithoutPlaintextWithContext indicates an expected call of GenerateDataKeyWithoutPlaintextWithContext
 func (_mr *MockKMSAPIMockRecorder) GenerateDataKeyWithoutPlaintextWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateDataKeyWithoutPlaintextWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateDataKeyWithoutPlaintextWithContext", reflect.TypeOf((*MockKMSAPI)(nil).GenerateDataKeyWithoutPlaintextWithContext), _s...)
 }
 
 // GenerateDataKeyWithoutPlaintextRequest mocks base method
@@ -690,7 +691,7 @@ func (_m *MockKMSAPI) GenerateDataKeyWithoutPlaintextRequest(_param0 *kms.Genera
 
 // GenerateDataKeyWithoutPlaintextRequest indicates an expected call of GenerateDataKeyWithoutPlaintextRequest
 func (_mr *MockKMSAPIMockRecorder) GenerateDataKeyWithoutPlaintextRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateDataKeyWithoutPlaintextRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateDataKeyWithoutPlaintextRequest", reflect.TypeOf((*MockKMSAPI)(nil).GenerateDataKeyWithoutPlaintextRequest), arg0)
 }
 
 // GenerateRandom mocks base method
@@ -703,7 +704,7 @@ func (_m *MockKMSAPI) GenerateRandom(_param0 *kms.GenerateRandomInput) (*kms.Gen
 
 // GenerateRandom indicates an expected call of GenerateRandom
 func (_mr *MockKMSAPIMockRecorder) GenerateRandom(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateRandom", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateRandom", reflect.TypeOf((*MockKMSAPI)(nil).GenerateRandom), arg0)
 }
 
 // GenerateRandomWithContext mocks base method
@@ -721,7 +722,7 @@ func (_m *MockKMSAPI) GenerateRandomWithContext(_param0 aws.Context, _param1 *km
 // GenerateRandomWithContext indicates an expected call of GenerateRandomWithContext
 func (_mr *MockKMSAPIMockRecorder) GenerateRandomWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateRandomWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateRandomWithContext", reflect.TypeOf((*MockKMSAPI)(nil).GenerateRandomWithContext), _s...)
 }
 
 // GenerateRandomRequest mocks base method
@@ -734,7 +735,7 @@ func (_m *MockKMSAPI) GenerateRandomRequest(_param0 *kms.GenerateRandomInput) (*
 
 // GenerateRandomRequest indicates an expected call of GenerateRandomRequest
 func (_mr *MockKMSAPIMockRecorder) GenerateRandomRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateRandomRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GenerateRandomRequest", reflect.TypeOf((*MockKMSAPI)(nil).GenerateRandomRequest), arg0)
 }
 
 // GetKeyPolicy mocks base method
@@ -747,7 +748,7 @@ func (_m *MockKMSAPI) GetKeyPolicy(_param0 *kms.GetKeyPolicyInput) (*kms.GetKeyP
 
 // GetKeyPolicy indicates an expected call of GetKeyPolicy
 func (_mr *MockKMSAPIMockRecorder) GetKeyPolicy(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetKeyPolicy", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetKeyPolicy", reflect.TypeOf((*MockKMSAPI)(nil).GetKeyPolicy), arg0)
 }
 
 // GetKeyPolicyWithContext mocks base method
@@ -765,7 +766,7 @@ func (_m *MockKMSAPI) GetKeyPolicyWithContext(_param0 aws.Context, _param1 *kms.
 // GetKeyPolicyWithContext indicates an expected call of GetKeyPolicyWithContext
 func (_mr *MockKMSAPIMockRecorder) GetKeyPolicyWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetKeyPolicyWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetKeyPolicyWithContext", reflect.TypeOf((*MockKMSAPI)(nil).GetKeyPolicyWithContext), _s...)
 }
 
 // GetKeyPolicyRequest mocks base method
@@ -778,7 +779,7 @@ func (_m *MockKMSAPI) GetKeyPolicyRequest(_param0 *kms.GetKeyPolicyInput) (*requ
 
 // GetKeyPolicyRequest indicates an expected call of GetKeyPolicyRequest
 func (_mr *MockKMSAPIMockRecorder) GetKeyPolicyRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetKeyPolicyRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetKeyPolicyRequest", reflect.TypeOf((*MockKMSAPI)(nil).GetKeyPolicyRequest), arg0)
 }
 
 // GetKeyRotationStatus mocks base method
@@ -791,7 +792,7 @@ func (_m *MockKMSAPI) GetKeyRotationStatus(_param0 *kms.GetKeyRotationStatusInpu
 
 // GetKeyRotationStatus indicates an expected call of GetKeyRotationStatus
 func (_mr *MockKMSAPIMockRecorder) GetKeyRotationStatus(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetKeyRotationStatus", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetKeyRotationStatus", reflect.TypeOf((*MockKMSAPI)(nil).GetKeyRotationStatus), arg0)
 }
 
 // GetKeyRotationStatusWithContext mocks base method
@@ -809,7 +810,7 @@ func (_m *MockKMSAPI) GetKeyRotationStatusWithContext(_param0 aws.Context, _para
 // GetKeyRotationStatusWithContext indicates an expected call of GetKeyRotationStatusWithContext
 func (_mr *MockKMSAPIMockRecorder) GetKeyRotationStatusWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetKeyRotationStatusWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetKeyRotationStatusWithContext", reflect.TypeOf((*MockKMSAPI)(nil).GetKeyRotationStatusWithContext), _s...)
 }
 
 // GetKeyRotationStatusRequest mocks base method
@@ -822,7 +823,7 @@ func (_m *MockKMSAPI) GetKeyRotationStatusRequest(_param0 *kms.GetKeyRotationSta
 
 // GetKeyRotationStatusRequest indicates an expected call of GetKeyRotationStatusRequest
 func (_mr *MockKMSAPIMockRecorder) GetKeyRotationStatusRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetKeyRotationStatusRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetKeyRotationStatusRequest", reflect.TypeOf((*MockKMSAPI)(nil).GetKeyRotationStatusRequest), arg0)
 }
 
 // GetParametersForImport mocks base method
@@ -835,7 +836,7 @@ func (_m *MockKMSAPI) GetParametersForImport(_param0 *kms.GetParametersForImport
 
 // GetParametersForImport indicates an expected call of GetParametersForImport
 func (_mr *MockKMSAPIMockRecorder) GetParametersForImport(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetParametersForImport", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetParametersForImport", reflect.TypeOf((*MockKMSAPI)(nil).GetParametersForImport), arg0)
 }
 
 // GetParametersForImportWithContext mocks base method
@@ -853,7 +854,7 @@ func (_m *MockKMSAPI) GetParametersForImportWithContext(_param0 aws.Context, _pa
 // GetParametersForImportWithContext indicates an expected call of GetParametersForImportWithContext
 func (_mr *MockKMSAPIMockRecorder) GetParametersForImportWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetParametersForImportWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetParametersForImportWithContext", reflect.TypeOf((*MockKMSAPI)(nil).GetParametersForImportWithContext), _s...)
 }
 
 // GetParametersForImportRequest mocks base method
@@ -866,7 +867,7 @@ func (_m *MockKMSAPI) GetParametersForImportRequest(_param0 *kms.GetParametersFo
 
 // GetParametersForImportRequest indicates an expected call of GetParametersForImportRequest
 func (_mr *MockKMSAPIMockRecorder) GetParametersForImportRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetParametersForImportRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "GetParametersForImportRequest", reflect.TypeOf((*MockKMSAPI)(nil).GetParametersForImportRequest), arg0)
 }
 
 // ImportKeyMaterial mocks base method
@@ -879,7 +880,7 @@ func (_m *MockKMSAPI) ImportKeyMaterial(_param0 *kms.ImportKeyMaterialInput) (*k
 
 // ImportKeyMaterial indicates an expected call of ImportKeyMaterial
 func (_mr *MockKMSAPIMockRecorder) ImportKeyMaterial(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ImportKeyMaterial", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ImportKeyMaterial", reflect.TypeOf((*MockKMSAPI)(nil).ImportKeyMaterial), arg0)
 }
 
 // ImportKeyMaterialWithContext mocks base method
@@ -897,7 +898,7 @@ func (_m *MockKMSAPI) ImportKeyMaterialWithContext(_param0 aws.Context, _param1 
 // ImportKeyMaterialWithContext indicates an expected call of ImportKeyMaterialWithContext
 func (_mr *MockKMSAPIMockRecorder) ImportKeyMaterialWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ImportKeyMaterialWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ImportKeyMaterialWithContext", reflect.TypeOf((*MockKMSAPI)(nil).ImportKeyMaterialWithContext), _s...)
 }
 
 // ImportKeyMaterialRequest mocks base method
@@ -910,7 +911,7 @@ func (_m *MockKMSAPI) ImportKeyMaterialRequest(_param0 *kms.ImportKeyMaterialInp
 
 // ImportKeyMaterialRequest indicates an expected call of ImportKeyMaterialRequest
 func (_mr *MockKMSAPIMockRecorder) ImportKeyMaterialRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ImportKeyMaterialRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ImportKeyMaterialRequest", reflect.TypeOf((*MockKMSAPI)(nil).ImportKeyMaterialRequest), arg0)
 }
 
 // ListAliases mocks base method
@@ -923,7 +924,7 @@ func (_m *MockKMSAPI) ListAliases(_param0 *kms.ListAliasesInput) (*kms.ListAlias
 
 // ListAliases indicates an expected call of ListAliases
 func (_mr *MockKMSAPIMockRecorder) ListAliases(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListAliases", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListAliases", reflect.TypeOf((*MockKMSAPI)(nil).ListAliases), arg0)
 }
 
 // ListAliasesWithContext mocks base method
@@ -941,7 +942,7 @@ func (_m *MockKMSAPI) ListAliasesWithContext(_param0 aws.Context, _param1 *kms.L
 // ListAliasesWithContext indicates an expected call of ListAliasesWithContext
 func (_mr *MockKMSAPIMockRecorder) ListAliasesWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListAliasesWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListAliasesWithContext", reflect.TypeOf((*MockKMSAPI)(nil).ListAliasesWithContext), _s...)
 }
 
 // ListAliasesRequest mocks base method
@@ -954,7 +955,7 @@ func (_m *MockKMSAPI) ListAliasesRequest(_param0 *kms.ListAliasesInput) (*reques
 
 // ListAliasesRequest indicates an expected call of ListAliasesRequest
 func (_mr *MockKMSAPIMockRecorder) ListAliasesRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListAliasesRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListAliasesRequest", reflect.TypeOf((*MockKMSAPI)(nil).ListAliasesRequest), arg0)
 }
 
 // ListAliasesPages mocks base method
@@ -966,7 +967,7 @@ func (_m *MockKMSAPI) ListAliasesPages(_param0 *kms.ListAliasesInput, _param1 fu
 
 // ListAliasesPages indicates an expected call of ListAliasesPages
 func (_mr *MockKMSAPIMockRecorder) ListAliasesPages(arg0, arg1 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListAliasesPages", arg0, arg1)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListAliasesPages", reflect.TypeOf((*MockKMSAPI)(nil).ListAliasesPages), arg0, arg1)
 }
 
 // ListAliasesPagesWithContext mocks base method
@@ -983,7 +984,7 @@ func (_m *MockKMSAPI) ListAliasesPagesWithContext(_param0 aws.Context, _param1 *
 // ListAliasesPagesWithContext indicates an expected call of ListAliasesPagesWithContext
 func (_mr *MockKMSAPIMockRecorder) ListAliasesPagesWithContext(arg0, arg1, arg2 interface{}, arg3 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1, arg2}, arg3...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListAliasesPagesWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListAliasesPagesWithContext", reflect.TypeOf((*MockKMSAPI)(nil).ListAliasesPagesWithContext), _s...)
 }
 
 // ListGrants mocks base method
@@ -996,7 +997,7 @@ func (_m *MockKMSAPI) ListGrants(_param0 *kms.ListGrantsInput) (*kms.ListGrantsR
 
 // ListGrants indicates an expected call of ListGrants
 func (_mr *MockKMSAPIMockRecorder) ListGrants(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListGrants", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListGrants", reflect.TypeOf((*MockKMSAPI)(nil).ListGrants), arg0)
 }
 
 // ListGrantsWithContext mocks base method
@@ -1014,7 +1015,7 @@ func (_m *MockKMSAPI) ListGrantsWithContext(_param0 aws.Context, _param1 *kms.Li
 // ListGrantsWithContext indicates an expected call of ListGrantsWithContext
 func (_mr *MockKMSAPIMockRecorder) ListGrantsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListGrantsWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListGrantsWithContext", reflect.TypeOf((*MockKMSAPI)(nil).ListGrantsWithContext), _s...)
 }
 
 // ListGrantsRequest mocks base method
@@ -1027,7 +1028,7 @@ func (_m *MockKMSAPI) ListGrantsRequest(_param0 *kms.ListGrantsInput) (*request.
 
 // ListGrantsRequest indicates an expected call of ListGrantsRequest
 func (_mr *MockKMSAPIMockRecorder) ListGrantsRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListGrantsRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListGrantsRequest", reflect.TypeOf((*MockKMSAPI)(nil).ListGrantsRequest), arg0)
 }
 
 // ListGrantsPages mocks base method
@@ -1039,7 +1040,7 @@ func (_m *MockKMSAPI) ListGrantsPages(_param0 *kms.ListGrantsInput, _param1 func
 
 // ListGrantsPages indicates an expected call of ListGrantsPages
 func (_mr *MockKMSAPIMockRecorder) ListGrantsPages(arg0, arg1 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListGrantsPages", arg0, arg1)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListGrantsPages", reflect.TypeOf((*MockKMSAPI)(nil).ListGrantsPages), arg0, arg1)
 }
 
 // ListGrantsPagesWithContext mocks base method
@@ -1056,7 +1057,7 @@ func (_m *MockKMSAPI) ListGrantsPagesWithContext(_param0 aws.Context, _param1 *k
 // ListGrantsPagesWithContext indicates an expected call of ListGrantsPagesWithContext
 func (_mr *MockKMSAPIMockRecorder) ListGrantsPagesWithContext(arg0, arg1, arg2 interface{}, arg3 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1, arg2}, arg3...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListGrantsPagesWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListGrantsPagesWithContext", reflect.TypeOf((*MockKMSAPI)(nil).ListGrantsPagesWithContext), _s...)
 }
 
 // ListKeyPolicies mocks base method
@@ -1069,7 +1070,7 @@ func (_m *MockKMSAPI) ListKeyPolicies(_param0 *kms.ListKeyPoliciesInput) (*kms.L
 
 // ListKeyPolicies indicates an expected call of ListKeyPolicies
 func (_mr *MockKMSAPIMockRecorder) ListKeyPolicies(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeyPolicies", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeyPolicies", reflect.TypeOf((*MockKMSAPI)(nil).ListKeyPolicies), arg0)
 }
 
 // ListKeyPoliciesWithContext mocks base method
@@ -1087,7 +1088,7 @@ func (_m *MockKMSAPI) ListKeyPoliciesWithContext(_param0 aws.Context, _param1 *k
 // ListKeyPoliciesWithContext indicates an expected call of ListKeyPoliciesWithContext
 func (_mr *MockKMSAPIMockRecorder) ListKeyPoliciesWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeyPoliciesWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeyPoliciesWithContext", reflect.TypeOf((*MockKMSAPI)(nil).ListKeyPoliciesWithContext), _s...)
 }
 
 // ListKeyPoliciesRequest mocks base method
@@ -1100,7 +1101,7 @@ func (_m *MockKMSAPI) ListKeyPoliciesRequest(_param0 *kms.ListKeyPoliciesInput) 
 
 // ListKeyPoliciesRequest indicates an expected call of ListKeyPoliciesRequest
 func (_mr *MockKMSAPIMockRecorder) ListKeyPoliciesRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeyPoliciesRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeyPoliciesRequest", reflect.TypeOf((*MockKMSAPI)(nil).ListKeyPoliciesRequest), arg0)
 }
 
 // ListKeyPoliciesPages mocks base method
@@ -1112,7 +1113,7 @@ func (_m *MockKMSAPI) ListKeyPoliciesPages(_param0 *kms.ListKeyPoliciesInput, _p
 
 // ListKeyPoliciesPages indicates an expected call of ListKeyPoliciesPages
 func (_mr *MockKMSAPIMockRecorder) ListKeyPoliciesPages(arg0, arg1 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeyPoliciesPages", arg0, arg1)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeyPoliciesPages", reflect.TypeOf((*MockKMSAPI)(nil).ListKeyPoliciesPages), arg0, arg1)
 }
 
 // ListKeyPoliciesPagesWithContext mocks base method
@@ -1129,7 +1130,7 @@ func (_m *MockKMSAPI) ListKeyPoliciesPagesWithContext(_param0 aws.Context, _para
 // ListKeyPoliciesPagesWithContext indicates an expected call of ListKeyPoliciesPagesWithContext
 func (_mr *MockKMSAPIMockRecorder) ListKeyPoliciesPagesWithContext(arg0, arg1, arg2 interface{}, arg3 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1, arg2}, arg3...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeyPoliciesPagesWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeyPoliciesPagesWithContext", reflect.TypeOf((*MockKMSAPI)(nil).ListKeyPoliciesPagesWithContext), _s...)
 }
 
 // ListKeys mocks base method
@@ -1142,7 +1143,7 @@ func (_m *MockKMSAPI) ListKeys(_param0 *kms.ListKeysInput) (*kms.ListKeysOutput,
 
 // ListKeys indicates an expected call of ListKeys
 func (_mr *MockKMSAPIMockRecorder) ListKeys(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeys", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeys", reflect.TypeOf((*MockKMSAPI)(nil).ListKeys), arg0)
 }
 
 // ListKeysWithContext mocks base method
@@ -1160,7 +1161,7 @@ func (_m *MockKMSAPI) ListKeysWithContext(_param0 aws.Context, _param1 *kms.List
 // ListKeysWithContext indicates an expected call of ListKeysWithContext
 func (_mr *MockKMSAPIMockRecorder) ListKeysWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeysWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeysWithContext", reflect.TypeOf((*MockKMSAPI)(nil).ListKeysWithContext), _s...)
 }
 
 // ListKeysRequest mocks base method
@@ -1173,7 +1174,7 @@ func (_m *MockKMSAPI) ListKeysRequest(_param0 *kms.ListKeysInput) (*request.Requ
 
 // ListKeysRequest indicates an expected call of ListKeysRequest
 func (_mr *MockKMSAPIMockRecorder) ListKeysRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeysRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeysRequest", reflect.TypeOf((*MockKMSAPI)(nil).ListKeysRequest), arg0)
 }
 
 // ListKeysPages mocks base method
@@ -1185,7 +1186,7 @@ func (_m *MockKMSAPI) ListKeysPages(_param0 *kms.ListKeysInput, _param1 func(*km
 
 // ListKeysPages indicates an expected call of ListKeysPages
 func (_mr *MockKMSAPIMockRecorder) ListKeysPages(arg0, arg1 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeysPages", arg0, arg1)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeysPages", reflect.TypeOf((*MockKMSAPI)(nil).ListKeysPages), arg0, arg1)
 }
 
 // ListKeysPagesWithContext mocks base method
@@ -1202,7 +1203,7 @@ func (_m *MockKMSAPI) ListKeysPagesWithContext(_param0 aws.Context, _param1 *kms
 // ListKeysPagesWithContext indicates an expected call of ListKeysPagesWithContext
 func (_mr *MockKMSAPIMockRecorder) ListKeysPagesWithContext(arg0, arg1, arg2 interface{}, arg3 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1, arg2}, arg3...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeysPagesWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListKeysPagesWithContext", reflect.TypeOf((*MockKMSAPI)(nil).ListKeysPagesWithContext), _s...)
 }
 
 // ListResourceTags mocks base method
@@ -1215,7 +1216,7 @@ func (_m *MockKMSAPI) ListResourceTags(_param0 *kms.ListResourceTagsInput) (*kms
 
 // ListResourceTags indicates an expected call of ListResourceTags
 func (_mr *MockKMSAPIMockRecorder) ListResourceTags(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListResourceTags", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListResourceTags", reflect.TypeOf((*MockKMSAPI)(nil).ListResourceTags), arg0)
 }
 
 // ListResourceTagsWithContext mocks base method
@@ -1233,7 +1234,7 @@ func (_m *MockKMSAPI) ListResourceTagsWithContext(_param0 aws.Context, _param1 *
 // ListResourceTagsWithContext indicates an expected call of ListResourceTagsWithContext
 func (_mr *MockKMSAPIMockRecorder) ListResourceTagsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListResourceTagsWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListResourceTagsWithContext", reflect.TypeOf((*MockKMSAPI)(nil).ListResourceTagsWithContext), _s...)
 }
 
 // ListResourceTagsRequest mocks base method
@@ -1246,7 +1247,7 @@ func (_m *MockKMSAPI) ListResourceTagsRequest(_param0 *kms.ListResourceTagsInput
 
 // ListResourceTagsRequest indicates an expected call of ListResourceTagsRequest
 func (_mr *MockKMSAPIMockRecorder) ListResourceTagsRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListResourceTagsRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListResourceTagsRequest", reflect.TypeOf((*MockKMSAPI)(nil).ListResourceTagsRequest), arg0)
 }
 
 // ListRetirableGrants mocks base method
@@ -1259,7 +1260,7 @@ func (_m *MockKMSAPI) ListRetirableGrants(_param0 *kms.ListRetirableGrantsInput)
 
 // ListRetirableGrants indicates an expected call of ListRetirableGrants
 func (_mr *MockKMSAPIMockRecorder) ListRetirableGrants(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListRetirableGrants", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListRetirableGrants", reflect.TypeOf((*MockKMSAPI)(nil).ListRetirableGrants), arg0)
 }
 
 // ListRetirableGrantsWithContext mocks base method
@@ -1277,7 +1278,7 @@ func (_m *MockKMSAPI) ListRetirableGrantsWithContext(_param0 aws.Context, _param
 // ListRetirableGrantsWithContext indicates an expected call of ListRetirableGrantsWithContext
 func (_mr *MockKMSAPIMockRecorder) ListRetirableGrantsWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListRetirableGrantsWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListRetirableGrantsWithContext", reflect.TypeOf((*MockKMSAPI)(nil).ListRetirableGrantsWithContext), _s...)
 }
 
 // ListRetirableGrantsRequest mocks base method
@@ -1290,7 +1291,7 @@ func (_m *MockKMSAPI) ListRetirableGrantsRequest(_param0 *kms.ListRetirableGrant
 
 // ListRetirableGrantsRequest indicates an expected call of ListRetirableGrantsRequest
 func (_mr *MockKMSAPIMockRecorder) ListRetirableGrantsRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListRetirableGrantsRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ListRetirableGrantsRequest", reflect.TypeOf((*MockKMSAPI)(nil).ListRetirableGrantsRequest), arg0)
 }
 
 // PutKeyPolicy mocks base method
@@ -1303,7 +1304,7 @@ func (_m *MockKMSAPI) PutKeyPolicy(_param0 *kms.PutKeyPolicyInput) (*kms.PutKeyP
 
 // PutKeyPolicy indicates an expected call of PutKeyPolicy
 func (_mr *MockKMSAPIMockRecorder) PutKeyPolicy(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutKeyPolicy", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutKeyPolicy", reflect.TypeOf((*MockKMSAPI)(nil).PutKeyPolicy), arg0)
 }
 
 // PutKeyPolicyWithContext mocks base method
@@ -1321,7 +1322,7 @@ func (_m *MockKMSAPI) PutKeyPolicyWithContext(_param0 aws.Context, _param1 *kms.
 // PutKeyPolicyWithContext indicates an expected call of PutKeyPolicyWithContext
 func (_mr *MockKMSAPIMockRecorder) PutKeyPolicyWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutKeyPolicyWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutKeyPolicyWithContext", reflect.TypeOf((*MockKMSAPI)(nil).PutKeyPolicyWithContext), _s...)
 }
 
 // PutKeyPolicyRequest mocks base method
@@ -1334,7 +1335,7 @@ func (_m *MockKMSAPI) PutKeyPolicyRequest(_param0 *kms.PutKeyPolicyInput) (*requ
 
 // PutKeyPolicyRequest indicates an expected call of PutKeyPolicyRequest
 func (_mr *MockKMSAPIMockRecorder) PutKeyPolicyRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutKeyPolicyRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "PutKeyPolicyRequest", reflect.TypeOf((*MockKMSAPI)(nil).PutKeyPolicyRequest), arg0)
 }
 
 // ReEncrypt mocks base method
@@ -1347,7 +1348,7 @@ func (_m *MockKMSAPI) ReEncrypt(_param0 *kms.ReEncryptInput) (*kms.ReEncryptOutp
 
 // ReEncrypt indicates an expected call of ReEncrypt
 func (_mr *MockKMSAPIMockRecorder) ReEncrypt(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ReEncrypt", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ReEncrypt", reflect.TypeOf((*MockKMSAPI)(nil).ReEncrypt), arg0)
 }
 
 // ReEncryptWithContext mocks base method
@@ -1365,7 +1366,7 @@ func (_m *MockKMSAPI) ReEncryptWithContext(_param0 aws.Context, _param1 *kms.ReE
 // ReEncryptWithContext indicates an expected call of ReEncryptWithContext
 func (_mr *MockKMSAPIMockRecorder) ReEncryptWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ReEncryptWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ReEncryptWithContext", reflect.TypeOf((*MockKMSAPI)(nil).ReEncryptWithContext), _s...)
 }
 
 // ReEncryptRequest mocks base method
@@ -1378,7 +1379,7 @@ func (_m *MockKMSAPI) ReEncryptRequest(_param0 *kms.ReEncryptInput) (*request.Re
 
 // ReEncryptRequest indicates an expected call of ReEncryptRequest
 func (_mr *MockKMSAPIMockRecorder) ReEncryptRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ReEncryptRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ReEncryptRequest", reflect.TypeOf((*MockKMSAPI)(nil).ReEncryptRequest), arg0)
 }
 
 // RetireGrant mocks base method
@@ -1391,7 +1392,7 @@ func (_m *MockKMSAPI) RetireGrant(_param0 *kms.RetireGrantInput) (*kms.RetireGra
 
 // RetireGrant indicates an expected call of RetireGrant
 func (_mr *MockKMSAPIMockRecorder) RetireGrant(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "RetireGrant", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "RetireGrant", reflect.TypeOf((*MockKMSAPI)(nil).RetireGrant), arg0)
 }
 
 // RetireGrantWithContext mocks base method
@@ -1409,7 +1410,7 @@ func (_m *MockKMSAPI) RetireGrantWithContext(_param0 aws.Context, _param1 *kms.R
 // RetireGrantWithContext indicates an expected call of RetireGrantWithContext
 func (_mr *MockKMSAPIMockRecorder) RetireGrantWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "RetireGrantWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "RetireGrantWithContext", reflect.TypeOf((*MockKMSAPI)(nil).RetireGrantWithContext), _s...)
 }
 
 // RetireGrantRequest mocks base method
@@ -1422,7 +1423,7 @@ func (_m *MockKMSAPI) RetireGrantRequest(_param0 *kms.RetireGrantInput) (*reques
 
 // RetireGrantRequest indicates an expected call of RetireGrantRequest
 func (_mr *MockKMSAPIMockRecorder) RetireGrantRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "RetireGrantRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "RetireGrantRequest", reflect.TypeOf((*MockKMSAPI)(nil).RetireGrantRequest), arg0)
 }
 
 // RevokeGrant mocks base method
@@ -1435,7 +1436,7 @@ func (_m *MockKMSAPI) RevokeGrant(_param0 *kms.RevokeGrantInput) (*kms.RevokeGra
 
 // RevokeGrant indicates an expected call of RevokeGrant
 func (_mr *MockKMSAPIMockRecorder) RevokeGrant(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "RevokeGrant", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "RevokeGrant", reflect.TypeOf((*MockKMSAPI)(nil).RevokeGrant), arg0)
 }
 
 // RevokeGrantWithContext mocks base method
@@ -1453,7 +1454,7 @@ func (_m *MockKMSAPI) RevokeGrantWithContext(_param0 aws.Context, _param1 *kms.R
 // RevokeGrantWithContext indicates an expected call of RevokeGrantWithContext
 func (_mr *MockKMSAPIMockRecorder) RevokeGrantWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "RevokeGrantWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "RevokeGrantWithContext", reflect.TypeOf((*MockKMSAPI)(nil).RevokeGrantWithContext), _s...)
 }
 
 // RevokeGrantRequest mocks base method
@@ -1466,7 +1467,7 @@ func (_m *MockKMSAPI) RevokeGrantRequest(_param0 *kms.RevokeGrantInput) (*reques
 
 // RevokeGrantRequest indicates an expected call of RevokeGrantRequest
 func (_mr *MockKMSAPIMockRecorder) RevokeGrantRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "RevokeGrantRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "RevokeGrantRequest", reflect.TypeOf((*MockKMSAPI)(nil).RevokeGrantRequest), arg0)
 }
 
 // ScheduleKeyDeletion mocks base method
@@ -1479,7 +1480,7 @@ func (_m *MockKMSAPI) ScheduleKeyDeletion(_param0 *kms.ScheduleKeyDeletionInput)
 
 // ScheduleKeyDeletion indicates an expected call of ScheduleKeyDeletion
 func (_mr *MockKMSAPIMockRecorder) ScheduleKeyDeletion(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ScheduleKeyDeletion", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ScheduleKeyDeletion", reflect.TypeOf((*MockKMSAPI)(nil).ScheduleKeyDeletion), arg0)
 }
 
 // ScheduleKeyDeletionWithContext mocks base method
@@ -1497,7 +1498,7 @@ func (_m *MockKMSAPI) ScheduleKeyDeletionWithContext(_param0 aws.Context, _param
 // ScheduleKeyDeletionWithContext indicates an expected call of ScheduleKeyDeletionWithContext
 func (_mr *MockKMSAPIMockRecorder) ScheduleKeyDeletionWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ScheduleKeyDeletionWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ScheduleKeyDeletionWithContext", reflect.TypeOf((*MockKMSAPI)(nil).ScheduleKeyDeletionWithContext), _s...)
 }
 
 // ScheduleKeyDeletionRequest mocks base method
@@ -1510,7 +1511,7 @@ func (_m *MockKMSAPI) ScheduleKeyDeletionRequest(_param0 *kms.ScheduleKeyDeletio
 
 // ScheduleKeyDeletionRequest indicates an expected call of ScheduleKeyDeletionRequest
 func (_mr *MockKMSAPIMockRecorder) ScheduleKeyDeletionRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "ScheduleKeyDeletionRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "ScheduleKeyDeletionRequest", reflect.TypeOf((*MockKMSAPI)(nil).ScheduleKeyDeletionRequest), arg0)
 }
 
 // TagResource mocks base method
@@ -1523,7 +1524,7 @@ func (_m *MockKMSAPI) TagResource(_param0 *kms.TagResourceInput) (*kms.TagResour
 
 // TagResource indicates an expected call of TagResource
 func (_mr *MockKMSAPIMockRecorder) TagResource(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "TagResource", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "TagResource", reflect.TypeOf((*MockKMSAPI)(nil).TagResource), arg0)
 }
 
 // TagResourceWithContext mocks base method
@@ -1541,7 +1542,7 @@ func (_m *MockKMSAPI) TagResourceWithContext(_param0 aws.Context, _param1 *kms.T
 // TagResourceWithContext indicates an expected call of TagResourceWithContext
 func (_mr *MockKMSAPIMockRecorder) TagResourceWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "TagResourceWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "TagResourceWithContext", reflect.TypeOf((*MockKMSAPI)(nil).TagResourceWithContext), _s...)
 }
 
 // TagResourceRequest mocks base method
@@ -1554,7 +1555,7 @@ func (_m *MockKMSAPI) TagResourceRequest(_param0 *kms.TagResourceInput) (*reques
 
 // TagResourceRequest indicates an expected call of TagResourceRequest
 func (_mr *MockKMSAPIMockRecorder) TagResourceRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "TagResourceRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "TagResourceRequest", reflect.TypeOf((*MockKMSAPI)(nil).TagResourceRequest), arg0)
 }
 
 // UntagResource mocks base method
@@ -1567,7 +1568,7 @@ func (_m *MockKMSAPI) UntagResource(_param0 *kms.UntagResourceInput) (*kms.Untag
 
 // UntagResource indicates an expected call of UntagResource
 func (_mr *MockKMSAPIMockRecorder) UntagResource(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UntagResource", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UntagResource", reflect.TypeOf((*MockKMSAPI)(nil).UntagResource), arg0)
 }
 
 // UntagResourceWithContext mocks base method
@@ -1585,7 +1586,7 @@ func (_m *MockKMSAPI) UntagResourceWithContext(_param0 aws.Context, _param1 *kms
 // UntagResourceWithContext indicates an expected call of UntagResourceWithContext
 func (_mr *MockKMSAPIMockRecorder) UntagResourceWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UntagResourceWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UntagResourceWithContext", reflect.TypeOf((*MockKMSAPI)(nil).UntagResourceWithContext), _s...)
 }
 
 // UntagResourceRequest mocks base method
@@ -1598,7 +1599,7 @@ func (_m *MockKMSAPI) UntagResourceRequest(_param0 *kms.UntagResourceInput) (*re
 
 // UntagResourceRequest indicates an expected call of UntagResourceRequest
 func (_mr *MockKMSAPIMockRecorder) UntagResourceRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UntagResourceRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UntagResourceRequest", reflect.TypeOf((*MockKMSAPI)(nil).UntagResourceRequest), arg0)
 }
 
 // UpdateAlias mocks base method
@@ -1611,7 +1612,7 @@ func (_m *MockKMSAPI) UpdateAlias(_param0 *kms.UpdateAliasInput) (*kms.UpdateAli
 
 // UpdateAlias indicates an expected call of UpdateAlias
 func (_mr *MockKMSAPIMockRecorder) UpdateAlias(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateAlias", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateAlias", reflect.TypeOf((*MockKMSAPI)(nil).UpdateAlias), arg0)
 }
 
 // UpdateAliasWithContext mocks base method
@@ -1629,7 +1630,7 @@ func (_m *MockKMSAPI) UpdateAliasWithContext(_param0 aws.Context, _param1 *kms.U
 // UpdateAliasWithContext indicates an expected call of UpdateAliasWithContext
 func (_mr *MockKMSAPIMockRecorder) UpdateAliasWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateAliasWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateAliasWithContext", reflect.TypeOf((*MockKMSAPI)(nil).UpdateAliasWithContext), _s...)
 }
 
 // UpdateAliasRequest mocks base method
@@ -1642,7 +1643,7 @@ func (_m *MockKMSAPI) UpdateAliasRequest(_param0 *kms.UpdateAliasInput) (*reques
 
 // UpdateAliasRequest indicates an expected call of UpdateAliasRequest
 func (_mr *MockKMSAPIMockRecorder) UpdateAliasRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateAliasRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateAliasRequest", reflect.TypeOf((*MockKMSAPI)(nil).UpdateAliasRequest), arg0)
 }
 
 // UpdateKeyDescription mocks base method
@@ -1655,7 +1656,7 @@ func (_m *MockKMSAPI) UpdateKeyDescription(_param0 *kms.UpdateKeyDescriptionInpu
 
 // UpdateKeyDescription indicates an expected call of UpdateKeyDescription
 func (_mr *MockKMSAPIMockRecorder) UpdateKeyDescription(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateKeyDescription", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateKeyDescription", reflect.TypeOf((*MockKMSAPI)(nil).UpdateKeyDescription), arg0)
 }
 
 // UpdateKeyDescriptionWithContext mocks base method
@@ -1673,7 +1674,7 @@ func (_m *MockKMSAPI) UpdateKeyDescriptionWithContext(_param0 aws.Context, _para
 // UpdateKeyDescriptionWithContext indicates an expected call of UpdateKeyDescriptionWithContext
 func (_mr *MockKMSAPIMockRecorder) UpdateKeyDescriptionWithContext(arg0, arg1 interface{}, arg2 ...interface{}) *gomock.Call {
 	_s := append([]interface{}{arg0, arg1}, arg2...)
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateKeyDescriptionWithContext", _s...)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateKeyDescriptionWithContext", reflect.TypeOf((*MockKMSAPI)(nil).UpdateKeyDescriptionWithContext), _s...)
 }
 
 // UpdateKeyDescriptionRequest mocks base method
@@ -1686,5 +1687,5 @@ func (_m *MockKMSAPI) UpdateKeyDescriptionRequest(_param0 *kms.UpdateKeyDescript
 
 // UpdateKeyDescriptionRequest indicates an expected call of UpdateKeyDescriptionRequest
 func (_mr *MockKMSAPIMockRecorder) UpdateKeyDescriptionRequest(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateKeyDescriptionRequest", arg0)
+	return _mr.mock.ctrl.RecordCall(_mr.mock, "UpdateKeyDescriptionRequest", reflect.TypeOf((*MockKMSAPI)(nil).UpdateKeyDescriptionRequest), arg0)
 }
