@@ -1,3 +1,9 @@
+gcredstash (0.3.4) unstable; urgency=low
+
+  * Small fix get error message.
+
+ -- Genki Sugawara <sgwr_dts@yahoo.co.jp>  Sat, 22 Jul 2017 18:06:43 +0900
+
 gcredstash (0.3.3) unstable; urgency=low
 
   * Fix get error message.
