@@ -110,7 +110,7 @@ func (c *GetCommand) RunImpl(args []string) (string, error) {
 
 		if err != nil {
 			if errOut != "" {
-				c.write(errOut, fmt.Sprintf("error gcredstash get %v: %s\n", args, err.Error()))
+				c.write(errOut, fmt.Sprintf("error: gcredstash get %v: %s\n", args, err.Error()))
 			}
 
 			if noErr {

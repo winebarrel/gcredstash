@@ -337,7 +337,7 @@ func TestGetCommandWithE(t *testing.T) {
 	args := []string{"-e", tmpfile.Name(), name}
 	_, err := cmd.RunImpl(args)
 	expectedError := "Item {'name': 'test.key'} couldn't be found."
-	expectedErrOut := regexp.MustCompile(`^error gcredstash get \[-e \S+ test\.key\]: Item {'name': 'test\.key'} couldn't be found\.\n$`)
+	expectedErrOut := regexp.MustCompile(`^error: gcredstash get \[-e \S+ test\.key\]: Item {'name': 'test\.key'} couldn't be found\.\n$`)
 	tmpfile.Sync()
 	tmpfile.Seek(0, 0)
 
