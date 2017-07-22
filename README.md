@@ -197,4 +197,6 @@ export AWS_SECRET_ACCESS_KEY=...
 
 # default: alias/credstash
 #export GCREDSTASH_KMS_KEY"),
+
+#export GCREDSTASH_GET_ERROUT=/proc/1/fd/2
 ```
