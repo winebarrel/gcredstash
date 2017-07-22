@@ -11,6 +11,7 @@ import (
 	"io/ioutil"
 	"mockaws"
 	"os"
+	"regexp"
 	"testing"
 )
 
@@ -335,7 +336,8 @@ func TestGetCommandWithE(t *testing.T) {
 
 	args := []string{"-e", tmpfile.Name(), name}
 	_, err := cmd.RunImpl(args)
-	expected := "Item {'name': 'test.key'} couldn't be found."
+	expectedError := "Item {'name': 'test.key'} couldn't be found."
+	expectedErrOut := regexp.MustCompile(`^error gcredstash get \[-e \S+ test\.key\]: Item {'name': 'test\.key'} couldn't be found\.\n$`)
 	tmpfile.Sync()
 	tmpfile.Seek(0, 0)
 
@@ -343,11 +345,11 @@ func TestGetCommandWithE(t *testing.T) {
 		t.Errorf("expected error does not happen")
 	}
 
-	if expected != err.Error() {
-		t.Errorf("\nexpected: %v\ngot: %v\n", expected, err)
+	if expectedError != err.Error() {
+		t.Errorf("\nexpected: %v\ngot: %v\n", expectedError, err)
 	}
 
-	if errOut, _ := ioutil.ReadAll(tmpfile); expected+"\n" != string(errOut) {
-		t.Errorf("\nexpected: %v\ngot: %v\n", expected, string(errOut))
+	if errOut, _ := ioutil.ReadAll(tmpfile); !expectedErrOut.Match(errOut) {
+		t.Errorf("\nexpected: %v\ngot: %v\n", expectedErrOut, string(errOut))
 	}
 }
