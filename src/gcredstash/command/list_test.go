@@ -2,7 +2,7 @@ package command
 
 import (
 	"fmt"
-	"gcredstash"
+	"github.com/winebarrel/gcredstash/src/gcredstash"
 	. "gcredstash/command"
 	"gcredstash/testutils"
 	"github.com/aws/aws-sdk-go/aws"

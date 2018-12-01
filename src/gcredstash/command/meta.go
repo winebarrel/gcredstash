@@ -1,7 +1,7 @@
 package command
 
 import (
-	"gcredstash"
+	"github.com/winebarrel/gcredstash/src/gcredstash"
 	"github.com/mitchellh/cli"
 )
 

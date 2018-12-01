@@ -1,7 +1,7 @@
 package command
 
 import (
-	"gcredstash"
+	"github.com/winebarrel/gcredstash/src/gcredstash"
 	. "gcredstash/command"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"

@@ -1,7 +1,7 @@
 package command
 
 import (
-	"gcredstash"
+	"github.com/winebarrel/gcredstash/src/gcredstash"
 	. "gcredstash/command"
 	"gcredstash/testutils"
 	"github.com/aws/aws-sdk-go/aws"
@@ -392,7 +392,7 @@ func TestGetCommandWithE(t *testing.T) {
 		},
 	}
 
-	tmpfile, _ := ioutil.TempFile("", "gcredstash")
+	tmpfile, _ := ioutil.TempFile("", "github.com/winebarrel/gcredstash/src/gcredstash")
 	defer os.Remove(tmpfile.Name())
 
 	args := []string{"-e", tmpfile.Name(), name}
@@ -448,7 +448,7 @@ func TestGetCommandWithErrOutEnv(t *testing.T) {
 		},
 	}
 
-	tmpfile, _ := ioutil.TempFile("", "gcredstash")
+	tmpfile, _ := ioutil.TempFile("", "github.com/winebarrel/gcredstash/src/gcredstash")
 	defer os.Remove(tmpfile.Name())
 
 	args := []string{name}

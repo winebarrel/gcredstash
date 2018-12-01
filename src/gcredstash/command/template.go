@@ -3,7 +3,7 @@ package command
 import (
 	"bytes"
 	"fmt"
-	"gcredstash"
+	"github.com/winebarrel/gcredstash/src/gcredstash"
 	"github.com/mattn/go-shellwords"
 	"text/template"
 	"io/ioutil"
