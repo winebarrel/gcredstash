@@ -1,16 +1,18 @@
 package command
 
 import (
-	"github.com/winebarrel/gcredstash/src/gcredstash"
-	. "gcredstash/command"
-	"gcredstash/testutils"
+	"os"
+	"testing"
+
+	"github.com/winebarrel/gcredstash/src/mockaws"
+
+	"github.com/winebarrel/gcredstash/src/gcredstash/testutils"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/golang/mock/gomock"
-	"mockaws"
-	"os"
-	"testing"
+	"github.com/winebarrel/gcredstash/src/gcredstash"
 )
 
 func TestTemplateCommand(t *testing.T) {

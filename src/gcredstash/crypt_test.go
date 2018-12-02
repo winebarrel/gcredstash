@@ -2,7 +2,6 @@ package gcredstash
 
 import (
 	"bytes"
-	. "github.com/winebarrel/gcredstash/src/gcredstash"
 	"testing"
 )
 

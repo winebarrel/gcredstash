@@ -1,12 +1,13 @@
 package gcredstash
 
 import (
-	. "github.com/winebarrel/gcredstash/src/gcredstash"
+	"testing"
+
+	"github.com/winebarrel/gcredstash/src/mockaws"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/golang/mock/gomock"
-	"mockaws"
-	"testing"
 )
 
 func TestCreateTable(t *testing.T) {

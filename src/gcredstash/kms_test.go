@@ -2,12 +2,13 @@ package gcredstash
 
 import (
 	"bytes"
-	. "github.com/winebarrel/gcredstash/src/gcredstash"
+	"testing"
+
+	"github.com/winebarrel/gcredstash/src/mockaws"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/golang/mock/gomock"
-	"mockaws"
-	"testing"
 )
 
 func TestKmsDecrypt(t *testing.T) {
