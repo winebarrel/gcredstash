@@ -25,7 +25,7 @@ test: go-get $(TEST_SRC) $(CMD_TEST_SRC)
 	GOPATH=$(RUNTIME_GOPATH) go test -v $(CMD_TEST_SRC)
 
 go-get:
-	go get
+	go get -t ./...
 
 clean:
 	rm -f gcredstash{,.exe} *.gz *.zip
