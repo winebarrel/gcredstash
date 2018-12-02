@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
-	"gcredstash"
-	"gcredstash/command"
+	"os"
+
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/mitchellh/cli"
-	"os"
+	"github.com/winebarrel/gcredstash/src/gcredstash"
+	"github.com/winebarrel/gcredstash/src/gcredstash/command"
 )
 
 func Run(args []string) int {

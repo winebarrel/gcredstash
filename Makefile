@@ -25,11 +25,7 @@ test: go-get $(TEST_SRC) $(CMD_TEST_SRC)
 	GOPATH=$(RUNTIME_GOPATH) go test -v $(CMD_TEST_SRC)
 
 go-get:
-	go get github.com/mitchellh/cli
-	go get github.com/aws/aws-sdk-go
-	go get github.com/ryanuber/go-glob
-	go get github.com/golang/mock/gomock
-	go get github.com/mattn/go-shellwords
+	go get -t ./...
 
 clean:
 	rm -f gcredstash{,.exe} *.gz *.zip

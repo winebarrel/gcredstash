@@ -2,11 +2,12 @@ package gcredstash
 
 import (
 	"fmt"
+	"strings"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface"
 	"github.com/aws/aws-sdk-go/service/kms/kmsiface"
-	"strings"
 )
 
 type Driver struct {
@@ -79,10 +80,12 @@ func (driver *Driver) DecryptMaterial(name string, material map[string]*dynamodb
 	}
 
 	contents := B64Decode(*material["contents"].S)
-	hmac := HexDecode(*material["hmac"].S)
+	if material["hmac"].S != nil {
+		hmac := HexDecode(*material["hmac"].S)
 
-	if !ValidateHMAC(contents, hmac, hmacKey) {
-		return "", fmt.Errorf("Computed HMAC on %s does not match stored HMAC", name)
+		if !ValidateHMAC(contents, hmac, hmacKey) {
+			return "", fmt.Errorf("Computed HMAC on %s does not match stored HMAC", name)
+		}
 	}
 
 	decrypted := Crypt(contents, dataKey)

@@ -2,7 +2,6 @@ package gcredstash
 
 import (
 	"bytes"
-	. "gcredstash"
 	"testing"
 )
 

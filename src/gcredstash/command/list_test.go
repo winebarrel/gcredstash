@@ -2,14 +2,16 @@ package command
 
 import (
 	"fmt"
-	"gcredstash"
-	. "gcredstash/command"
-	"gcredstash/testutils"
+	"testing"
+
+	"github.com/winebarrel/gcredstash/src/mockaws"
+
+	"github.com/winebarrel/gcredstash/src/gcredstash/testutils"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/golang/mock/gomock"
-	"mockaws"
-	"testing"
+	"github.com/winebarrel/gcredstash/src/gcredstash"
 )
 
 func TestListCommand(t *testing.T) {

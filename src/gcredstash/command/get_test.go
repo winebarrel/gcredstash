@@ -1,18 +1,20 @@
 package command
 
 import (
-	"gcredstash"
-	. "gcredstash/command"
-	"gcredstash/testutils"
+	"io/ioutil"
+	"os"
+	"regexp"
+	"testing"
+
+	"github.com/winebarrel/gcredstash/src/mockaws"
+
+	"github.com/winebarrel/gcredstash/src/gcredstash/testutils"
+
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/golang/mock/gomock"
-	"io/ioutil"
-	"mockaws"
-	"os"
-	"regexp"
-	"testing"
+	"github.com/winebarrel/gcredstash/src/gcredstash"
 )
 
 func TestGetCommand(t *testing.T) {
@@ -392,11 +394,14 @@ func TestGetCommandWithE(t *testing.T) {
 		},
 	}
 
-	tmpfile, _ := ioutil.TempFile("", "gcredstash")
+	tmpfile, err := ioutil.TempFile("", "github.com-winebarrel-gcredstash-src-gcredstash")
+	if err != nil {
+		t.Fatal(err)
+	}
 	defer os.Remove(tmpfile.Name())
 
 	args := []string{"-e", tmpfile.Name(), name}
-	_, err := cmd.RunImpl(args)
+	_, err = cmd.RunImpl(args)
 	expectedError := "Item {'name': 'test.key'} couldn't be found."
 	expectedErrOut := regexp.MustCompile(`^error: gcredstash get \[-e \S+ test\.key\]: Item {'name': 'test\.key'} couldn't be found\.\n$`)
 	tmpfile.Sync()
@@ -448,7 +453,7 @@ func TestGetCommandWithErrOutEnv(t *testing.T) {
 		},
 	}
 
-	tmpfile, _ := ioutil.TempFile("", "gcredstash")
+	tmpfile, _ := ioutil.TempFile("", "github.com-winebarrel-gcredstash-src-gcredstash")
 	defer os.Remove(tmpfile.Name())
 
 	args := []string{name}
