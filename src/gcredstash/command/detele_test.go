@@ -5,6 +5,7 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/golang/mock/gomock"
 	"github.com/winebarrel/gcredstash/src/gcredstash"
+	. "github.com/winebarrel/gcredstash/src/gcredstash/command"
 	"github.com/winebarrel/gcredstash/src/gcredstash/testutils"
 	"github.com/winebarrel/gcredstash/src/mockaws"
 	"testing"
