@@ -1,11 +1,10 @@
 package gcredstash
 
 import (
-	. "gcredstash"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/golang/mock/gomock"
-	"mockaws"
+	"github.com/winebarrel/gcredstash/src/mockaws"
 	"testing"
 )
 

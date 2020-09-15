@@ -14,22 +14,15 @@ CENTOS_CONTAINER_NAME=docker-go-pkg-build-centos6-$(shell date +%s)
 
 all: gcredstash
 
-gcredstash: go-get $(SRC)
-	CGO_ENABLED=0 GOPATH=$(RUNTIME_GOPATH) go build -a -tags netgo -installsuffix netgo -o gcredstash
+gcredstash: $(SRC)
+	CGO_ENABLED=0 go build -a -ldflags "-w -s" -tags netgo -installsuffix netgo -o gcredstash
 ifeq ($(GOOS),linux)
 	[[ "`ldd gcredstash`" =~ "not a dynamic executable" ]] || exit 1
 endif
 
-test: go-get $(TEST_SRC) $(CMD_TEST_SRC)
+test: $(TEST_SRC) $(CMD_TEST_SRC)
 	GOPATH=$(RUNTIME_GOPATH) go test -v $(TEST_SRC)
 	GOPATH=$(RUNTIME_GOPATH) go test -v $(CMD_TEST_SRC)
-
-go-get:
-	go get github.com/mitchellh/cli
-	go get github.com/aws/aws-sdk-go
-	go get github.com/ryanuber/go-glob
-	go get github.com/golang/mock/gomock
-	go get github.com/mattn/go-shellwords
 
 clean:
 	rm -f gcredstash{,.exe} *.gz *.zip
@@ -79,7 +72,7 @@ rpm\:docker: clean
 docker\:build\:centos6:
 	docker build -f docker/Dockerfile.centos6 -t $(CENTOS_IMAGE) .
 
-mock: go-get
+mock:
 	go get github.com/golang/mock/mockgen
 	mockgen -source $(GOPATH)/src/github.com/aws/aws-sdk-go/service/dynamodb/dynamodbiface/interface.go -destination src/mockaws/dynamodbmock.go -package mockaws
 	mockgen -source $(GOPATH)/src/github.com/aws/aws-sdk-go/service/kms/kmsiface/interface.go -destination src/mockaws/kmsmock.go -package mockaws

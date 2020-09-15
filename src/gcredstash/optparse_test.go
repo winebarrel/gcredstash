@@ -1,7 +1,6 @@
 package gcredstash
 
 import (
-	. "gcredstash"
 	"reflect"
 	"testing"
 )

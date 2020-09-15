@@ -2,8 +2,8 @@ package command
 
 import (
 	"fmt"
-	"gcredstash"
 	"github.com/ryanuber/go-glob"
+	"github.com/winebarrel/gcredstash/src/gcredstash"
 	"os"
 	"strings"
 )
