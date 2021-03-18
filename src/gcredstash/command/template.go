@@ -3,13 +3,13 @@ package command
 import (
 	"bytes"
 	"fmt"
-	"gcredstash"
 	"github.com/mattn/go-shellwords"
-	"text/template"
+	"github.com/winebarrel/gcredstash/src/gcredstash"
 	"io/ioutil"
 	"os"
 	"os/exec"
 	"strings"
+	"text/template"
 )
 
 type TemplateCommand struct {

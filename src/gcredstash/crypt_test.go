@@ -2,8 +2,9 @@ package gcredstash
 
 import (
 	"bytes"
-	. "gcredstash"
 	"testing"
+
+	. "github.com/winebarrel/gcredstash/src/gcredstash"
 )
 
 func TestDigest(t *testing.T) {
