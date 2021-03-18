@@ -1,4 +1,4 @@
-module github.com/winebarrel/gcredstash
+module github.com/kgaughan/gcredstash
 
 go 1.13
 

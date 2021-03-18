@@ -15,9 +15,6 @@ all: gcredstash
 
 gcredstash: $(SRC)
 	CGO_ENABLED=0 go build -a -ldflags "-w -s" -tags netgo -installsuffix netgo -o gcredstash
-ifeq ($(GOOS),linux)
-	[[ "`ldd gcredstash`" =~ "not a dynamic executable" ]] || exit 1
-endif
 
 test: $(TEST_SRC) $(CMD_TEST_SRC)
 	go test -v $(TEST_SRC)

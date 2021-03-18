@@ -9,3 +9,4 @@
 /debian/files
 /pkg/gcredstash*
 .DS_Store
+*.bak

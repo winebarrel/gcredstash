@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"github.com/mattn/go-shellwords"
-	"github.com/winebarrel/gcredstash/src/gcredstash"
+	"github.com/kgaughan/gcredstash/src/gcredstash"
 	"io/ioutil"
 	"os"
 	"os/exec"

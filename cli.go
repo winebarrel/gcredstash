@@ -8,8 +8,8 @@ import (
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/mitchellh/cli"
-	"github.com/winebarrel/gcredstash/src/gcredstash"
-	"github.com/winebarrel/gcredstash/src/gcredstash/command"
+	"github.com/kgaughan/gcredstash/src/gcredstash"
+	"github.com/kgaughan/gcredstash/src/gcredstash/command"
 )
 
 func Run(args []string) int {

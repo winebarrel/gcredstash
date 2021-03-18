@@ -2,7 +2,7 @@ package command
 
 import (
 	"fmt"
-	"github.com/winebarrel/gcredstash/src/gcredstash"
+	"github.com/kgaughan/gcredstash/src/gcredstash"
 	"os"
 	"strings"
 )

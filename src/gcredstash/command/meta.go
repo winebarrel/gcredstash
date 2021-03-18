@@ -2,7 +2,7 @@ package command
 
 import (
 	"github.com/mitchellh/cli"
-	"github.com/winebarrel/gcredstash/src/gcredstash"
+	"github.com/kgaughan/gcredstash/src/gcredstash"
 )
 
 // Meta contain the meta-option that nearly all subcommand inherited.

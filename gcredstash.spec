@@ -7,9 +7,9 @@ Summary:	gcredstash manages credentials using AWS Key Management Service (KMS) a
 
 Group:		Development/Tools
 License:	Apache License, Version 2.0
-URL:		https://github.com/winebarrel/gcredstash
+URL:		https://github.com/kgaughan/gcredstash
 Source0:	%{name}.tar.gz
-# https://github.com/winebarrel/gcredstash/releases/download/v%{version}/gcredstash_%{version}.tar.gz
+# https://github.com/kgaughan/gcredstash/releases/download/v%{version}/gcredstash_%{version}.tar.gz
 
 %description
 gcredstash manages credentials using AWS Key Management Service (KMS) and DynamoDB.

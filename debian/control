@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Genki Sugawara <sgwr_dts@yahoo.co.jp>
 Build-Depends: debhelper (>= 8.0.0)
 Standards-Version: 3.9.4
-Homepage: https://github.com/winebarrel/gcredstash
+Homepage: https://github.com/kgaughan/gcredstash
 #Vcs-Git: git://git.debian.org/collab-maint/gcredstash.git
 #Vcs-Browser: http://git.debian.org/?p=collab-maint/gcredstash.git;a=summary
 

@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"testing"
 
-	. "github.com/winebarrel/gcredstash/src/gcredstash"
+	. "github.com/kgaughan/gcredstash/src/gcredstash"
 )
 
 func TestDigest(t *testing.T) {

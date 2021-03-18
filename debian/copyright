@@ -1,6 +1,6 @@
 Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: gcredstash
-Source: https://github.com/winebarrel/gcredstash
+Source: https://github.com/kgaughan/gcredstash
 
 Files: *
 Copyright: 2016 Genki Sugawara <sgwr_dts@yahoo.co.jp>

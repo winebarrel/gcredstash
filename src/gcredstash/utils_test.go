@@ -1,7 +1,7 @@
 package gcredstash
 
 import (
-	. "github.com/winebarrel/gcredstash/src/gcredstash"
+	. "github.com/kgaughan/gcredstash/src/gcredstash"
 	"testing"
 )
 
