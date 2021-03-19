@@ -2,11 +2,11 @@ package gcredstash
 
 import (
 	"bytes"
-	. "gcredstash"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/kms"
 	"github.com/golang/mock/gomock"
-	"mockaws"
+	. "github.com/kgaughan/gcredstash/src/gcredstash"
+	"github.com/kgaughan/gcredstash/src/mockaws"
 	"testing"
 )
 

@@ -1,12 +1,12 @@
 package command
 
 import (
-	"gcredstash"
-	. "gcredstash/command"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/service/dynamodb"
 	"github.com/golang/mock/gomock"
-	"mockaws"
+	"github.com/kgaughan/gcredstash/src/gcredstash"
+	. "github.com/kgaughan/gcredstash/src/gcredstash/command"
+	"github.com/kgaughan/gcredstash/src/mockaws"
 	"testing"
 )
 

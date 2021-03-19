@@ -6,7 +6,7 @@ This is a port of [CredStash](https://github.com/fugue/credstash) to Go.
 
 gcredstash manages credentials using AWS Key Management Service (KMS) and DynamoDB.
 
-[![Build Status](https://travis-ci.org/winebarrel/gcredstash.svg?branch=master)](https://travis-ci.org/winebarrel/gcredstash)
+![build status](https://github.com/kgaughan/gcredstash/actions/workflows/go.yml/badge.svg)
 
 ## Usage
 
@@ -159,25 +159,7 @@ ECHO: 100
 
 ## Installation
 
-see https://github.com/winebarrel/gcredstash/releases.
-
-### OS X
-
-```sh
-brew install https://raw.githubusercontent.com/winebarrel/gcredstash/master/homebrew/gcredstash.rb
-```
-
-### Ubuntu
-
-```sh
-wget -q -O- https://github.com/winebarrel/gcredstash/releases/download/vN.N.N/gcredstash_N.N.N_amd64.deb | dpkg -i -
-```
-
-### CentOS
-
-```sh
-yum install https://github.com/winebarrel/gcredstash/releases/download/vN.N.N/gcredstash-N.N.N-x.el6.x86_64.rpm
-```
+see https://github.com/kgaughan/gcredstash/releases.
 
 ## Setup
 

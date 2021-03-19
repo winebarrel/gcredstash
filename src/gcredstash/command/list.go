@@ -2,7 +2,7 @@ package command
 
 import (
 	"fmt"
-	"gcredstash"
+	"github.com/kgaughan/gcredstash/src/gcredstash"
 	"os"
 	"sort"
 	"strings"
